@@ -1,0 +1,3282 @@
+{
+ "ratios": [
+  {
+   "r": 1.0,
+   "Jx": 1.0,
+   "Jy": 1.0,
+   "gods_eye": {
+    "L": 1024,
+    "Jx": 1.0,
+    "Jy": 1.0,
+    "thetas": [
+     1e-06,
+     1e-08,
+     1e-10,
+     1e-12
+    ],
+    "vx": 1.9836634828723017,
+    "vy": 1.9836634828723034,
+    "sigma_vx": 0.015889967950826527,
+    "sigma_vy": 0.015889967950827078,
+    "A_god": 0.9999999999999991,
+    "sigma_A_god": 0.011328437699117372,
+    "v_exact_x": 2.0,
+    "v_exact_y": 2.0
+   },
+   "calibration": {
+    "tests": {
+     "front": {
+      "R": 0.9999999999999991,
+      "sigma": 0.011328437699117372,
+      "detected": false
+     },
+     "wavepacket": {
+      "R": 0.9999999999999999,
+      "sigma": 6.508881829773638e-07,
+      "detected": false
+     },
+     "spreading": {
+      "R": 1.0,
+      "sigma": 0.002,
+      "detected": false,
+      "sigma_x_final": 4.648287329052471,
+      "sigma_y_final": 4.648287329052471,
+      "stopped_at_t": 10.8,
+      "tail_mass": 3.895883377218871e-30
+     }
+    },
+    "substrate_anisotropic": false,
+    "calibration_pass": true
+   },
+   "sweep": [
+    {
+     "eps": 12.0,
+     "observer": {
+      "eps": 12.0,
+      "rod_x": 0.12203175574051797,
+      "rod_y": 0.12203175574051799,
+      "xi": 0.12203175574051797,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 3.8918553291309514e-32,
+      "tick": 8.582990746292458,
+      "E0": -12.335583100846577,
+      "binding_energy": 8.335583100846577
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999055,
+       "sigma_v": 1.4080428790975194e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999057,
+       "sigma_v": 1.408042879111227e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 139.5191375714854,
+      "speed_y_rods_per_tick": 139.51913757148554,
+      "A_endo": 0.999999999999999,
+      "sigma_A_endo": 0.01132843787566422
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 83.03113154594199,
+      "speed_y_rods_per_tick": 83.031131545942,
+      "A_endo": 0.9999999999999998,
+      "sigma_A_endo": 1.6985849734716822e-05
+     },
+     "battery": {
+      "front": {
+       "R": 0.9999999999999991,
+       "sigma": 0.011328437875664222,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 1.0,
+       "sigma": 1.6985849734716826e-05,
+       "detected": false
+      },
+      "spreading": {
+       "R": 1.0000000000000002,
+       "sigma": 0.0020000009999997506,
+       "detected": false,
+       "sigma_x_final": 0.5317883104660075,
+       "sigma_y_final": 0.5317883104660075,
+       "stopped_at_t": 0.3484669361732545,
+       "tail_mass": 3.725459371515516e-32
+      }
+     },
+     "class_front": "APPROXIMATE",
+     "class_wavepacket": "APPROXIMATE",
+     "battery_any_detected": false
+    },
+    {
+     "eps": 8.0,
+     "observer": {
+      "eps": 8.0,
+      "rod_x": 0.1912642373322245,
+      "rod_y": 0.19126423733222447,
+      "xi": 0.19126423733222447,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 1.8706300555860128e-32,
+      "tick": 8.582990746292458,
+      "E0": -8.50731221306455,
+      "binding_energy": 4.50731221306455
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999055,
+       "sigma_v": 1.4080428790975194e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999057,
+       "sigma_v": 1.408042879111227e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 89.01698276023033,
+      "speed_y_rods_per_tick": 89.01698276023043,
+      "A_endo": 0.9999999999999989,
+      "sigma_A_endo": 0.01132843787566422
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 52.97610732148138,
+      "speed_y_rods_per_tick": 52.97610732148139,
+      "A_endo": 0.9999999999999998,
+      "sigma_A_endo": 1.6985849734716822e-05
+     },
+     "battery": {
+      "front": {
+       "R": 0.999999999999999,
+       "sigma": 0.01132843787566422,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 0.9999999999999997,
+       "sigma": 1.698584973471682e-05,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9999999999999998,
+       "sigma": 0.0020000009999997497,
+       "detected": false,
+       "sigma_x_final": 0.8659353281189718,
+       "sigma_y_final": 0.8659353281189718,
+       "stopped_at_t": 0.526780922144796,
+       "tail_mass": 4.573525483268423e-32
+      }
+     },
+     "class_front": "APPROXIMATE",
+     "class_wavepacket": "APPROXIMATE",
+     "battery_any_detected": false
+    },
+    {
+     "eps": 6.0,
+     "observer": {
+      "eps": 6.0,
+      "rod_x": 0.27131402165861906,
+      "rod_y": 0.271314021658619,
+      "xi": 0.27131402165861906,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 1.984651102580558e-32,
+      "tick": 8.582990746292458,
+      "E0": -6.683045740423177,
+      "binding_energy": 2.683045740423177
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999055,
+       "sigma_v": 1.4080428790975194e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999057,
+       "sigma_v": 1.408042879111227e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 62.75298715918894,
+      "speed_y_rods_per_tick": 62.75298715918902,
+      "A_endo": 0.9999999999999988,
+      "sigma_A_endo": 0.011328437875664218
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 37.3457836853797,
+      "speed_y_rods_per_tick": 37.345783685379715,
+      "A_endo": 0.9999999999999997,
+      "sigma_A_endo": 1.698584973471682e-05
+     },
+     "battery": {
+      "front": {
+       "R": 0.9999999999999989,
+       "sigma": 0.01132843787566422,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 0.9999999999999996,
+       "sigma": 1.698584973471682e-05,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9999999999999998,
+       "sigma": 0.0020000009999997497,
+       "detected": false,
+       "sigma_x_final": 1.1542081080960325,
+       "sigma_y_final": 1.1542081080960325,
+       "stopped_at_t": 0.7950020221645948,
+       "tail_mass": 6.09891847545714e-32
+      }
+     },
+     "class_front": "APPROXIMATE",
+     "class_wavepacket": "APPROXIMATE",
+     "battery_any_detected": false
+    },
+    {
+     "eps": 4.0,
+     "observer": {
+      "eps": 4.0,
+      "rod_x": 0.4862867900208563,
+      "rod_y": 0.48628679002085634,
+      "xi": 0.4862867900208563,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 2.66592287259307e-32,
+      "tick": 8.582990746292458,
+      "E0": -5.045878166835759,
+      "binding_energy": 1.0458781668357586
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999055,
+       "sigma_v": 1.4080428790975194e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999057,
+       "sigma_v": 1.408042879111227e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 35.011778371608685,
+      "speed_y_rods_per_tick": 35.01177837160872,
+      "A_endo": 0.999999999999999,
+      "sigma_A_endo": 0.01132843787566422
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 20.83633561840872,
+      "speed_y_rods_per_tick": 20.83633561840872,
+      "A_endo": 1.0,
+      "sigma_A_endo": 1.6985849734716826e-05
+     },
+     "battery": {
+      "front": {
+       "R": 0.9999999999999993,
+       "sigma": 0.011328437875664225,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 0.9999999999999998,
+       "sigma": 1.6985849734716822e-05,
+       "detected": false
+      },
+      "spreading": {
+       "R": 1.0,
+       "sigma": 0.00200000099999975,
+       "detected": false,
+       "sigma_x_final": 2.204449694736513,
+       "sigma_y_final": 2.204449694736513,
+       "stopped_at_t": 2.553928295206915,
+       "tail_mass": 2.7141207409490837e-31
+      }
+     },
+     "class_front": "APPROXIMATE",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": false
+    },
+    {
+     "eps": 3.0,
+     "observer": {
+      "eps": 3.0,
+      "rod_x": 0.8289465660836907,
+      "rod_y": 0.8289465660836907,
+      "xi": 0.8289465660836907,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 5.361570201202742e-32,
+      "tick": 8.582990746292458,
+      "E0": -4.412076451600735,
+      "binding_energy": 0.41207645160073536
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 1.8949307362669123,
+       "uv_capped": false,
+       "w": 3.3157862643347626,
+       "L": 512,
+       "v_sites_per_time": 1.8744161444115213,
+       "sigma_v": 1.0121963198752818e-06
+      },
+      "y": {
+       "k": 1.8949307362669123,
+       "uv_capped": false,
+       "w": 3.3157862643347626,
+       "L": 512,
+       "v_sites_per_time": 1.8744161444115213,
+       "sigma_v": 1.0121963198810933e-06
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 20.539038357669373,
+      "speed_y_rods_per_tick": 20.539038357669394,
+      "A_endo": 0.999999999999999,
+      "sigma_A_endo": 0.01132843787566422
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 19.407881135442228,
+      "speed_y_rods_per_tick": 19.407881135442228,
+      "A_endo": 1.0,
+      "sigma_A_endo": 2.140844078774518e-06
+     },
+     "battery": {
+      "front": {
+       "R": 0.9999999999999992,
+       "sigma": 0.011328437875664224,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 1.0,
+       "sigma": 2.140844078774518e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9999999999999998,
+       "sigma": 0.0020000009999997497,
+       "detected": false,
+       "sigma_x_final": 3.8391894740590797,
+       "sigma_y_final": 3.83918947405908,
+       "stopped_at_t": 7.42124602175698,
+       "tail_mass": 1.3345453723304054e-30
+      }
+     },
+     "class_front": "APPROXIMATE",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": false
+    },
+    {
+     "eps": 2.5,
+     "observer": {
+      "eps": 2.5,
+      "rod_x": 1.2607305635768884,
+      "rod_y": 1.2607305635768884,
+      "xi": 1.2607305635768884,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 1.7014373478449517e-31,
+      "tick": 8.582990746292458,
+      "E0": -4.190794185597042,
+      "binding_energy": 0.1907941855970421
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 1.2459413392329473,
+       "uv_capped": false,
+       "w": 5.042922254307554,
+       "L": 512,
+       "v_sites_per_time": 1.886090039825006,
+       "sigma_v": 1.891680012548396e-07
+      },
+      "y": {
+       "k": 1.2459413392329473,
+       "uv_capped": false,
+       "w": 5.042922254307554,
+       "L": 512,
+       "v_sites_per_time": 1.8860900398250056,
+       "sigma_v": 1.891680011405363e-07
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 13.504681974986385,
+      "speed_y_rods_per_tick": 13.504681974986399,
+      "A_endo": 0.999999999999999,
+      "sigma_A_endo": 0.01132843787566422
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 12.840406845189582,
+      "speed_y_rods_per_tick": 12.84040684518958,
+      "A_endo": 1.0000000000000002,
+      "sigma_A_endo": 2.0050233732365105e-06
+     },
+     "battery": {
+      "front": {
+       "R": 0.9999999999999991,
+       "sigma": 0.011328437875664222,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 1.0000000000000002,
+       "sigma": 2.0050233732365105e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 1.0,
+       "sigma": 0.00200000099999975,
+       "detected": false,
+       "sigma_x_final": 5.877779723105019,
+       "sigma_y_final": 5.877779723105019,
+       "stopped_at_t": 17.165968782518505,
+       "tail_mass": 1.2272710602714203e-29
+      }
+     },
+     "class_front": "APPROXIMATE",
+     "class_wavepacket": "APPROXIMATE",
+     "battery_any_detected": false
+    },
+    {
+     "eps": 2.0,
+     "observer": {
+      "eps": 2.0,
+      "rod_x": 2.3621830081545987,
+      "rod_y": 2.3621830081545983,
+      "xi": 2.3621830081545983,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 1.7843777880953006e-30,
+      "tick": 8.582990746292458,
+      "E0": -4.057532704563872,
+      "binding_energy": 0.05753270456387227
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.6649765582820127,
+       "uv_capped": false,
+       "w": 9.448732032618395,
+       "L": 512,
+       "v_sites_per_time": 1.2323479759913667,
+       "sigma_v": 1.4182128413820582e-07
+      },
+      "y": {
+       "k": 0.6649765582820129,
+       "uv_capped": false,
+       "w": 9.448732032618393,
+       "L": 512,
+       "v_sites_per_time": 1.2323479759913674,
+       "sigma_v": 1.4182128406496034e-07
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 7.207640245686222,
+      "speed_y_rods_per_tick": 7.207640245686231,
+      "A_endo": 0.9999999999999988,
+      "sigma_A_endo": 0.011328437875664218
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 4.4777357375072135,
+      "speed_y_rods_per_tick": 4.477735737507216,
+      "A_endo": 0.9999999999999994,
+      "sigma_A_endo": 2.0066110269575847e-06
+     },
+     "battery": {
+      "front": {
+       "R": 0.9999999999999989,
+       "sigma": 0.01132843787566422,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 0.9999999999999991,
+       "sigma": 2.0066110269575843e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9999999999999998,
+       "sigma": 0.0020000009999997497,
+       "detected": false,
+       "sigma_x_final": 11.053324561438682,
+       "sigma_y_final": 11.053324561438682,
+       "stopped_at_t": 60.263012491354516,
+       "tail_mass": 8.46333962258341e-29
+      }
+     },
+     "class_front": "APPROXIMATE",
+     "class_wavepacket": "APPROXIMATE",
+     "battery_any_detected": false
+    },
+    {
+     "eps": 1.75,
+     "observer": {
+      "eps": 1.75,
+      "rod_x": 3.6997488769999585,
+      "rod_y": 3.699748876999958,
+      "xi": 3.699748876999958,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 1.0588078380999929e-29,
+      "tick": 8.582990746292458,
+      "E0": -4.023908771892836,
+      "binding_energy": 0.023908771892836356
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.4245683636962461,
+       "uv_capped": false,
+       "w": 14.798995507999834,
+       "L": 512,
+       "v_sites_per_time": 0.8233800931600785,
+       "sigma_v": 4.750657111589691e-08
+      },
+      "y": {
+       "k": 0.4245683636962462,
+       "uv_capped": false,
+       "w": 14.798995507999832,
+       "L": 512,
+       "v_sites_per_time": 0.8233800931600784,
+       "sigma_v": 4.7506571102113477e-08
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 4.601870527779451,
+      "speed_y_rods_per_tick": 4.6018705277794565,
+      "A_endo": 0.9999999999999989,
+      "sigma_A_endo": 0.01132843787566422
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 1.9101468654285791,
+      "speed_y_rods_per_tick": 1.9101468654285791,
+      "A_endo": 1.0,
+      "sigma_A_endo": 2.001663780554967e-06
+     },
+     "battery": {
+      "front": {
+       "R": 0.999999999999999,
+       "sigma": 0.01132843787566422,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 1.0,
+       "sigma": 2.001663780554967e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9999999999999998,
+       "sigma": 0.002000001001681395,
+       "detected": false,
+       "sigma_x_final": 17.327206336817376,
+       "sigma_y_final": 17.327206336817376,
+       "stopped_at_t": 147.83193093091447,
+       "tail_mass": 1.6816459792800237e-13
+      }
+     },
+     "class_front": "APPROXIMATE",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": false
+    },
+    {
+     "eps": 1.5,
+     "observer": {
+      "eps": 1.5,
+      "rod_x": 6.730324469477383,
+      "rod_y": 6.73032446947738,
+      "xi": 6.730324469477381,
+      "sigma_rod_rel": 1.0000000000001975e-06,
+      "tail_mass": 1.976267848688616e-20,
+      "tick": 8.582990746292458,
+      "E0": -4.007309472545009,
+      "binding_energy": 0.007309472545008688
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.23339087646050305,
+       "uv_capped": false,
+       "w": 26.92129787790953,
+       "L": 512,
+       "v_sites_per_time": 0.4624729661835571,
+       "sigma_v": 8.824724825256467e-09
+      },
+      "y": {
+       "k": 0.23339087646050313,
+       "uv_capped": false,
+       "w": 26.92129787790952,
+       "L": 512,
+       "v_sites_per_time": 0.462472966183557,
+       "sigma_v": 8.824724573171369e-09
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 2.5297094359216388,
+      "speed_y_rods_per_tick": 2.5297094359216423,
+      "A_endo": 0.9999999999999986,
+      "sigma_A_endo": 0.011328437875664217
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 0.5897785771199414,
+      "speed_y_rods_per_tick": 0.5897785771199415,
+      "A_endo": 0.9999999999999998,
+      "sigma_A_endo": 2.000182045467134e-06
+     },
+     "battery": {
+      "front": {
+       "R": 0.9999999999999987,
+       "sigma": 0.011328437875664217,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 0.9999999999999998,
+       "sigma": 2.000182045467134e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9999999999999994,
+       "sigma": 0.0025253407115278393,
+       "detected": false,
+       "sigma_x_final": 31.533603356578737,
+       "sigma_y_final": 31.53360335657874,
+       "stopped_at_t": 489.21048861601673,
+       "tail_mass": 5.2533991955537316e-05
+      }
+     },
+     "class_front": "APPROXIMATE",
+     "class_wavepacket": "APPROXIMATE",
+     "battery_any_detected": false
+    }
+   ]
+  },
+  {
+   "r": 1.25,
+   "Jx": 1.25,
+   "Jy": 1.0,
+   "gods_eye": {
+    "L": 1024,
+    "Jx": 1.25,
+    "Jy": 1.0,
+    "thetas": [
+     1e-06,
+     1e-08,
+     1e-10,
+     1e-12
+    ],
+    "vx": 2.4790787215244525,
+    "vy": 1.9807639789466243,
+    "sigma_vx": 0.02486055738962997,
+    "sigma_vy": 0.014434052525870805,
+    "A_god": 1.2515770419264356,
+    "sigma_A_god": 0.015514795134697248,
+    "v_exact_x": 2.5,
+    "v_exact_y": 2.0
+   },
+   "calibration": {
+    "tests": {
+     "front": {
+      "R": 1.2515770419264356,
+      "sigma": 0.015514795134697248,
+      "detected": true
+     },
+     "wavepacket": {
+      "R": 1.2500000000000004,
+      "sigma": 8.136102286685621e-07,
+      "detected": true
+     },
+     "spreading": {
+      "R": 1.130204442438566,
+      "sigma": 0.002260408884877132,
+      "detected": true,
+      "sigma_x_final": 4.762248359018563,
+      "sigma_y_final": 4.213616740652143,
+      "stopped_at_t": 9.0,
+      "tail_mass": 5.85235179656011e-30
+     }
+    },
+    "substrate_anisotropic": true,
+    "calibration_pass": true
+   },
+   "sweep": [
+    {
+     "eps": 12.0,
+     "observer": {
+      "eps": 12.0,
+      "rod_x": 0.15265018848199938,
+      "rod_y": 0.12432458248501659,
+      "xi": 0.13776128247546066,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 2.0984437650354137e-32,
+      "tick": 8.5829907462925,
+      "E0": -12.430216387341739,
+      "binding_energy": 7.930216387341739
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.4756561936248827,
+       "sigma_v": 1.7600535988797773e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999057,
+       "sigma_v": 1.4080428791068152e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 139.3899996964899,
+      "speed_y_rods_per_tick": 136.74591590876494,
+      "A_endo": 1.0193357422790532,
+      "sigma_A_endo": 0.012635886478410862
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 82.9710305669561,
+      "speed_y_rods_per_tick": 81.49984951603926,
+      "A_endo": 1.0180513345687505,
+      "sigma_A_endo": 1.7292466991224167e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.019335742279053,
+       "sigma": 0.01263588647841086,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 1.0180513345687507,
+       "sigma": 1.729246699122417e-05,
+       "detected": false
+      },
+      "spreading": {
+       "R": 1.0921190276794157,
+       "sigma": 0.0021842391474775863,
+       "detected": true,
+       "sigma_x_final": 0.6513626046810105,
+       "sigma_y_final": 0.4857496680688433,
+       "stopped_at_t": 0.3074463693783953,
+       "tail_mass": 3.306473055918918e-32
+      }
+     },
+     "class_front": "CANCELLED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 8.0,
+     "observer": {
+      "eps": 8.0,
+      "rod_x": 0.23990595321000438,
+      "rod_y": 0.19899888414973477,
+      "xi": 0.21849717844784483,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 2.2977366857432562e-32,
+      "tick": 8.5829907462925,
+      "E0": -8.65068669749743,
+      "binding_energy": 4.150686697497431
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.4756561936248827,
+       "sigma_v": 1.7600535988797773e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999057,
+       "sigma_v": 1.4080428791068152e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 88.69271246282563,
+      "speed_y_rods_per_tick": 85.43203131277984,
+      "A_endo": 1.0381669626712717,
+      "sigma_A_endo": 0.012869321992595812
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 52.79378558607362,
+      "speed_y_rods_per_tick": 50.91704311291117,
+      "A_endo": 1.036858826797948,
+      "sigma_A_endo": 1.761192822811638e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.0381669626712717,
+       "sigma": 0.012869321992595812,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 1.036858826797948,
+       "sigma": 1.761192822811638e-05,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9737526499034651,
+       "sigma": 0.0019475062735593367,
+       "detected": true,
+       "sigma_x_final": 1.0156620495872397,
+       "sigma_y_final": 0.8651874056621053,
+       "stopped_at_t": 0.5156029834884289,
+       "tail_mass": 5.407142347662944e-32
+      }
+     },
+     "class_front": "APPROXIMATE",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 6.0,
+     "observer": {
+      "eps": 6.0,
+      "rod_x": 0.3425429631151583,
+      "rod_y": 0.2897650444578996,
+      "xi": 0.3150507529522894,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 3.2261971924520514e-32,
+      "tick": 8.5829907462925,
+      "E0": -6.876263989117252,
+      "binding_energy": 2.376263989117252
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.4756561936248827,
+       "sigma_v": 1.7600535988797773e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999057,
+       "sigma_v": 1.4080428791068152e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 62.117491869251076,
+      "speed_y_rods_per_tick": 58.67125530511832,
+      "A_endo": 1.0587380744831638,
+      "sigma_A_endo": 0.013124325543249887
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 36.97505077730526,
+      "speed_y_rods_per_tick": 34.96776080299575,
+      "A_endo": 1.0574040181073747,
+      "sigma_A_endo": 1.7960905760469544e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.0587380744831636,
+       "sigma": 0.013124325543249885,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 1.0574040181073747,
+       "sigma": 1.7960905760469544e-05,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9669265806728838,
+       "sigma": 0.0019338541282721067,
+       "detected": true,
+       "sigma_x_final": 1.4130067552822934,
+       "sigma_y_final": 1.236179913150058,
+       "stopped_at_t": 0.8933127924222406,
+       "tail_mass": 8.582764995236994e-32
+      }
+     },
+     "class_front": "APPROXIMATE",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 4.0,
+     "observer": {
+      "eps": 4.0,
+      "rod_x": 0.6320807305230848,
+      "rod_y": 0.5517929610565754,
+      "xi": 0.5905740410161424,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 3.841748528131319e-32,
+      "tick": 8.5829907462925,
+      "E0": -5.338600168631104,
+      "binding_energy": 0.8386001686311042
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.485119781289596,
+       "uv_capped": false,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.504878489867983,
+       "sigma_v": 1.6878678240511686e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999057,
+       "sigma_v": 1.4080428791068152e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 33.66327859507166,
+      "speed_y_rods_per_tick": 30.810249680124656,
+      "A_endo": 1.0925999933323312,
+      "sigma_A_endo": 0.013544084553723303
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 20.434665271542876,
+      "speed_y_rods_per_tick": 18.362747404881052,
+      "A_endo": 1.1128326726375968,
+      "sigma_A_endo": 1.835525053309171e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.0925999933323312,
+       "sigma": 0.013544084553723303,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.1128326726375966,
+       "sigma": 1.8355250533091702e-05,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9798506369926065,
+       "sigma": 0.001959702253835605,
+       "detected": true,
+       "sigma_x_final": 2.755550845717406,
+       "sigma_y_final": 2.4550037236216977,
+       "stopped_at_t": 3.138999281299226,
+       "tail_mass": 6.471525433916261e-31
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 3.0,
+     "observer": {
+      "eps": 3.0,
+      "rod_x": 1.1310624785423595,
+      "rod_y": 1.0031564449225132,
+      "xi": 1.06519135133543,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 1.7773491789379718e-31,
+      "tick": 8.5829907462925,
+      "E0": -4.791677715767843,
+      "binding_energy": 0.2916777157678432
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 1.3887794499374055,
+       "uv_capped": false,
+       "w": 4.524249914169438,
+       "L": 512,
+       "v_sites_per_time": 2.4437178878955197,
+       "sigma_v": 1.224688257715252e-07
+      },
+      "y": {
+       "k": 1.5658537955325897,
+       "uv_capped": false,
+       "w": 4.012625779690053,
+       "L": 512,
+       "v_sites_per_time": 1.9844967483579639,
+       "sigma_v": 2.1957561158248187e-08
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 18.812320388875968,
+      "speed_y_rods_per_tick": 16.947385413250856,
+      "A_endo": 1.1100426366752096,
+      "sigma_A_endo": 0.013760306993516535
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 18.543987106165137,
+      "speed_y_rods_per_tick": 16.979322929555252,
+      "A_endo": 1.0921511524989218,
+      "sigma_A_endo": 2.185021372420384e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.1100426366752094,
+       "sigma": 0.013760306993516531,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0921511524989218,
+       "sigma": 2.185021372420384e-06,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9923653308332497,
+       "sigma": 0.0019847316540315824,
+       "detected": false,
+       "sigma_x_final": 5.036096037595799,
+       "sigma_y_final": 4.500953147935895,
+       "stopped_at_t": 10.211693534638197,
+       "tail_mass": 7.187525101407219e-30
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 2.5,
+     "observer": {
+      "eps": 2.5,
+      "rod_x": 1.8016029798909385,
+      "rod_y": 1.6060284778880083,
+      "xi": 1.7010072579365274,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 9.667419436284863e-31,
+      "tick": 8.5829907462925,
+      "E0": -4.6210701096862925,
+      "binding_energy": 0.1210701096862925
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.8718881708832353,
+       "uv_capped": false,
+       "w": 7.206411919563754,
+       "L": 512,
+       "v_sites_per_time": 1.909251673644649,
+       "sigma_v": 2.8133847827203357e-07
+      },
+      "y": {
+       "k": 0.9780625614189336,
+       "uv_capped": false,
+       "w": 6.424113911552033,
+       "L": 512,
+       "v_sites_per_time": 1.6538077448107285,
+       "sigma_v": 2.4776925273661886e-07
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 11.810543146117073,
+      "speed_y_rods_per_tick": 10.585664660346014,
+      "A_endo": 1.1157110606724077,
+      "sigma_A_endo": 0.013830573892997515
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 9.095838334052655,
+      "speed_y_rods_per_tick": 8.838334291882445,
+      "A_endo": 1.029134906382384,
+      "sigma_A_endo": 2.069599986987437e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.1157110606724077,
+       "sigma": 0.013830573892997515,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.029134906382384,
+       "sigma": 2.069599986987437e-06,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9969184364977624,
+       "sigma": 0.0019938378699137123,
+       "detected": false,
+       "sigma_x_final": 8.073109483830109,
+       "sigma_y_final": 7.2189721257104935,
+       "stopped_at_t": 26.040831223974692,
+       "tail_mass": 4.5408881409016923e-29
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 2.0,
+     "observer": {
+      "eps": 2.0,
+      "rod_x": 3.631288978703182,
+      "rod_y": 3.245304986418717,
+      "xi": 3.4328763784489484,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 1.4985447892623613e-29,
+      "tick": 8.5829907462925,
+      "E0": -4.530972504373913,
+      "binding_energy": 0.030972504373912635
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.43257265836107167,
+       "uv_capped": false,
+       "w": 14.525155914812728,
+       "L": 512,
+       "v_sites_per_time": 1.0473928167192135,
+       "sigma_v": 6.241369811964819e-08
+      },
+      "y": {
+       "k": 0.4840211731620064,
+       "uv_capped": false,
+       "w": 12.981219945674868,
+       "L": 512,
+       "v_sites_per_time": 0.9299888996930608,
+       "sigma_v": 6.697227594919618e-08
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 5.859602430697723,
+      "speed_y_rods_per_tick": 5.238607456937144,
+      "A_endo": 1.1185419940061048,
+      "sigma_A_endo": 0.013865666699762602
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 2.475639616223741,
+      "speed_y_rods_per_tick": 2.4595796554174516,
+      "A_endo": 1.0065295550688573,
+      "sigma_A_endo": 2.0152564087294345e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.1185419940061048,
+       "sigma": 0.013865666699762602,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0065295550688576,
+       "sigma": 2.015256408729435e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9992522363275245,
+       "sigma": 0.0019985054719596595,
+       "detected": false,
+       "sigma_x_final": 16.323942258752094,
+       "sigma_y_final": 14.59972335482653,
+       "stopped_at_t": 106.06176206741489,
+       "tail_mass": 5.266326455073989e-15
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 1.75,
+     "observer": {
+      "eps": 1.75,
+      "rod_x": 5.995783021638348,
+      "rod_y": 5.3612213063641265,
+      "xi": 5.66963135344299,
+      "sigma_rod_rel": 1.0000000000000008e-06,
+      "tail_mass": 9.342039237599727e-23,
+      "tick": 8.5829907462925,
+      "E0": -4.511489408349679,
+      "binding_energy": 0.011489408349678598
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.26198351760328986,
+       "uv_capped": false,
+       "w": 23.983132086553393,
+       "L": 512,
+       "v_sites_per_time": 0.6473475883929041,
+       "sigma_v": 1.541113126153746e-08
+      },
+      "y": {
+       "k": 0.2929922562477055,
+       "uv_capped": false,
+       "w": 21.444885225456506,
+       "L": 512,
+       "v_sites_per_time": 0.5774760126604286,
+       "sigma_v": 1.6987720386000044e-08
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 3.5488124986152063,
+      "speed_y_rods_per_tick": 3.1710832160028937,
+      "A_endo": 1.1191167991764137,
+      "sigma_A_endo": 0.01387279209778209
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 0.9266810257741508,
+      "speed_y_rods_per_tick": 0.9245041362099131,
+      "A_endo": 1.0023546563817032,
+      "sigma_A_endo": 2.0050681547200085e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.1191167991764137,
+       "sigma": 0.01387279209778209,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0023546563817032,
+       "sigma": 2.0050681547200085e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.999728595803081,
+       "sigma": 0.002022091911394134,
+       "detected": false,
+       "sigma_x_final": 26.97084913508859,
+       "sigma_y_final": 24.122945295804417,
+       "stopped_at_t": 289.30247715549416,
+       "tail_mass": 2.26398758071226e-06
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 1.5,
+     "observer": {
+      "eps": 1.5,
+      "rod_x": 11.704422910899714,
+      "rod_y": 10.467955155146495,
+      "xi": 11.068937354062827,
+      "sigma_rod_rel": 1.0000280092394717e-06,
+      "tail_mass": 2.800923947178194e-12,
+      "tick": 8.5829907462925,
+      "E0": -4.503033089242541,
+      "binding_energy": 0.003033089242540754
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.1342053631138103,
+       "uv_capped": false,
+       "w": 46.817691643598856,
+       "L": 512,
+       "v_sites_per_time": 0.334485991199427,
+       "sigma_v": 2.108404695579415e-09
+      },
+      "y": {
+       "k": 0.15005760948666522,
+       "uv_capped": false,
+       "w": 41.87182062058598,
+       "L": 512,
+       "v_sites_per_time": 0.29896701440191464,
+       "sigma_v": 2.4107253663988757e-09
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 1.8179375342256319,
+      "speed_y_rods_per_tick": 1.6240878614702536,
+      "A_endo": 1.1193591044882818,
+      "sigma_A_endo": 0.013875795762126625
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 0.24528250466374107,
+      "speed_y_rods_per_tick": 0.24513203199927344,
+      "A_endo": 1.0006138433367537,
+      "sigma_A_endo": 2.0013099430490644e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.1193591044882818,
+       "sigma": 0.013875795762126625,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0006138433367535,
+       "sigma": 2.001309943049064e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9999293258072234,
+       "sigma": 0.15675613792110385,
+       "detected": false,
+       "sigma_x_final": 52.66470524243765,
+       "sigma_y_final": 47.104478519675894,
+       "stopped_at_t": 1102.6923673335066,
+       "tail_mass": 0.015476721730488315
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    }
+   ]
+  },
+  {
+   "r": 1.5,
+   "Jx": 1.5,
+   "Jy": 1.0,
+   "gods_eye": {
+    "L": 1024,
+    "Jx": 1.5,
+    "Jy": 1.0,
+    "thetas": [
+     1e-06,
+     1e-08,
+     1e-10,
+     1e-12
+    ],
+    "vx": 2.9666544380112967,
+    "vy": 1.9678784114889496,
+    "sigma_vx": 0.023239440519914854,
+    "sigma_vy": 0.020828009294906292,
+    "A_god": 1.5075395007594226,
+    "sigma_A_god": 0.019850661462135873,
+    "v_exact_x": 3.0,
+    "v_exact_y": 2.0
+   },
+   "calibration": {
+    "tests": {
+     "front": {
+      "R": 1.5075395007594226,
+      "sigma": 0.019850661462135873,
+      "detected": true
+     },
+     "wavepacket": {
+      "R": 1.4999999999999993,
+      "sigma": 9.763322745596072e-07,
+      "detected": true
+     },
+     "spreading": {
+      "R": 1.21639066627229,
+      "sigma": 0.00243278133254458,
+      "detected": true,
+      "sigma_x_final": 4.64828732905247,
+      "sigma_y_final": 3.8213770114641337,
+      "stopped_at_t": 7.2,
+      "tail_mass": 4.8897631257150685e-30
+     }
+    },
+    "substrate_anisotropic": true,
+    "calibration_pass": true
+   },
+   "sweep": [
+    {
+     "eps": 12.0,
+     "observer": {
+      "eps": 12.0,
+      "rod_x": 0.1833421985458603,
+      "rod_y": 0.12707361570978232,
+      "xi": 0.15263667999993732,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 2.1559842002856448e-32,
+      "tick": 8.582990746292442,
+      "E0": -12.544907953315816,
+      "binding_energy": 7.544907953315816
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.7707874323498582,
+       "sigma_v": 2.112064318650528e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999055,
+       "sigma_v": 1.4080428790942922e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 138.88110751835035,
+      "speed_y_rods_per_tick": 132.91730231563787,
+      "A_endo": 1.0448685393008523,
+      "sigma_A_endo": 0.013758400277339572
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 82.89773039733714,
+      "speed_y_rods_per_tick": 79.73673139839036,
+      "A_endo": 1.0396429467763535,
+      "sigma_A_endo": 1.7659218871614133e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.0448685393008526,
+       "sigma": 0.013758400277339575,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 1.0396429467763535,
+       "sigma": 1.7659218871614133e-05,
+       "detected": true
+      },
+      "spreading": {
+       "R": 1.094565776005441,
+       "sigma": 0.0021891326465763848,
+       "detected": true,
+       "sigma_x_final": 0.8328757665040158,
+       "sigma_y_final": 0.5273892991288172,
+       "stopped_at_t": 0.335490567572207,
+       "tail_mass": 4.0896110860778334e-32
+      }
+     },
+     "class_front": "APPROXIMATE",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 8.0,
+     "observer": {
+      "eps": 8.0,
+      "rod_x": 0.2890951475510578,
+      "rod_y": 0.20810756054884347,
+      "xi": 0.24528123842511598,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 2.1320587919501328e-32,
+      "tick": 8.582990746292442,
+      "E0": -8.822727912601342,
+      "binding_energy": 3.8227279126013425
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.7707874323498582,
+       "sigma_v": 2.112064318650528e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999055,
+       "sigma_v": 1.4080428790942922e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 88.0774644769896,
+      "speed_y_rods_per_tick": 81.16130981062615,
+      "A_endo": 1.0852149217712348,
+      "sigma_A_endo": 0.014289664889959253
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 52.57318316913471,
+      "speed_y_rods_per_tick": 48.68845099596984,
+      "A_endo": 1.0797875490737305,
+      "sigma_A_endo": 1.834110905389398e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.0852149217712348,
+       "sigma": 0.014289664889959253,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0797875490737305,
+       "sigma": 1.834110905389398e-05,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9450608448380803,
+       "sigma": 0.0018901226347367694,
+       "detected": true,
+       "sigma_x_final": 1.1801784331898002,
+       "sigma_y_final": 0.8989488065268617,
+       "stopped_at_t": 0.5414659733102274,
+       "tail_mass": 5.947065886047658e-32
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 6.0,
+     "observer": {
+      "eps": 6.0,
+      "rod_x": 0.41600511108289523,
+      "rod_y": 0.31114091255575155,
+      "xi": 0.359772441815919,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 2.4194251653926414e-32,
+      "tick": 8.582990746292442,
+      "E0": -7.105079767944533,
+      "binding_energy": 2.1050797679445328
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.7707874323498582,
+       "sigma_v": 2.112064318650528e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999055,
+       "sigma_v": 1.4080428790942922e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 61.20782391979921,
+      "speed_y_rods_per_tick": 54.28499279281329,
+      "A_endo": 1.1275275314746367,
+      "sigma_A_endo": 0.014846819976155818
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 36.534772628024825,
+      "speed_y_rods_per_tick": 32.56542085849163,
+      "A_endo": 1.1218885451160434,
+      "sigma_A_endo": 1.9056230246347082e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.1275275314746367,
+       "sigma": 0.014846819976155818,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.1218885451160434,
+       "sigma": 1.9056230246347082e-05,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9379929526879963,
+       "sigma": 0.0018759868433687109,
+       "detected": true,
+       "sigma_x_final": 1.7984415833432326,
+       "sigma_y_final": 1.4340200216012084,
+       "stopped_at_t": 1.1649258890116991,
+       "tail_mass": 1.5099454573575768e-31
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 4.0,
+     "observer": {
+      "eps": 4.0,
+      "rod_x": 0.7932388225174629,
+      "rod_y": 0.6267357112334149,
+      "xi": 0.705089425256427,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 5.916593238585563e-32,
+      "tick": 8.582990746292442,
+      "E0": -5.673414435984454,
+      "binding_energy": 0.673414435984454
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 1.9802312773973136,
+       "uv_capped": false,
+       "w": 3.1729552900698517,
+       "L": 512,
+       "v_sites_per_time": 2.7180822672012535,
+       "sigma_v": 2.8446013377760473e-06
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999055,
+       "sigma_v": 1.4080428790942922e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 32.09974961650066,
+      "speed_y_rods_per_tick": 26.94960873124379,
+      "A_endo": 1.1911026218086092,
+      "sigma_A_endo": 0.015683950684549138
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 29.4101527620786,
+      "speed_y_rods_per_tick": 16.166997638817445,
+      "A_endo": 1.819147464428642,
+      "sigma_A_endo": 2.2082592527320354e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.191102621808609,
+       "sigma": 0.015683950684549135,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.819147464428642,
+       "sigma": 2.2082592527320354e-05,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.969575276053872,
+       "sigma": 0.0019391515216827778,
+       "detected": true,
+       "sigma_x_final": 3.643647968611629,
+       "sigma_y_final": 2.969172014793536,
+       "stopped_at_t": 4.474359878475949,
+       "tail_mass": 1.4350351167473069e-30
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 3.0,
+     "observer": {
+      "eps": 3.0,
+      "rod_x": 1.4917246432846611,
+      "rod_y": 1.206103144359109,
+      "xi": 1.3413328381813368,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 4.006140344983771e-31,
+      "tick": 8.582990746292442,
+      "E0": -5.207949959465391,
+      "binding_energy": 0.20794995946539085
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 1.0530068896201419,
+       "uv_capped": false,
+       "w": 5.966898573138645,
+       "L": 512,
+       "v_sites_per_time": 2.5975967612298625,
+       "sigma_v": 3.74311717262081e-07
+      },
+      "y": {
+       "k": 1.3023731296460352,
+       "uv_capped": false,
+       "w": 4.824412577436436,
+       "L": 512,
+       "v_sites_per_time": 1.9180408428931526,
+       "sigma_v": 1.5566438448646492e-07
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 17.069348356967097,
+      "speed_y_rods_per_tick": 14.004011410328731,
+      "A_endo": 1.218889920667839,
+      "sigma_A_endo": 0.0160498424364313
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 14.945887677462345,
+      "speed_y_rods_per_tick": 13.649352364727173,
+      "A_endo": 1.094988778814568,
+      "sigma_A_endo": 2.197452120078438e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.218889920667839,
+       "sigma": 0.0160498424364313,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.094988778814568,
+       "sigma": 2.197452120078438e-06,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9903153759771278,
+       "sigma": 0.001980631742269384,
+       "detected": false,
+       "sigma_x_final": 7.008557099384049,
+       "sigma_y_final": 5.722039865042293,
+       "stopped_at_t": 16.1925640450524,
+       "tail_mass": 2.0616417801435055e-29
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 2.5,
+     "observer": {
+      "eps": 2.5,
+      "rod_x": 2.482983534580361,
+      "rod_y": 2.020266333439348,
+      "xi": 2.2397071329521943,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 2.778408388486721e-30,
+      "tick": 8.582990746292442,
+      "E0": -5.078101563392243,
+      "binding_energy": 0.07810156339224328
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.6326245441898876,
+       "uv_capped": false,
+       "w": 9.931934138321443,
+       "L": 512,
+       "v_sites_per_time": 1.7715341875799682,
+       "sigma_v": 1.9110527225930312e-07
+      },
+      "y": {
+       "k": 0.777519429391637,
+       "uv_capped": false,
+       "w": 8.081065333757392,
+       "L": 512,
+       "v_sites_per_time": 1.4003370883108694,
+       "sigma_v": 1.908521941215286e-07
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 10.254907950165576,
+      "speed_y_rods_per_tick": 8.360423532319087,
+      "A_endo": 1.226601488611544,
+      "sigma_A_endo": 0.016151385199510745
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 6.123706149066072,
+      "speed_y_rods_per_tick": 5.9492553391219145,
+      "A_endo": 1.02932313373692,
+      "sigma_A_endo": 2.0664061594219527e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.2266014886115442,
+       "sigma": 0.01615138519951075,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.02932313373692,
+       "sigma": 2.0664061594219527e-06,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9965040723928362,
+       "sigma": 0.0019930091412894957,
+       "detected": false,
+       "sigma_x_final": 11.737354316945122,
+       "sigma_y_final": 9.583539209284421,
+       "stopped_at_t": 45.14659237257244,
+       "tail_mass": 8.306868849131456e-28
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 2.0,
+     "observer": {
+      "eps": 2.0,
+      "rod_x": 5.351823235863497,
+      "rod_y": 4.366524484596005,
+      "xi": 4.834135620421481,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 2.621503459360408e-25,
+      "tick": 8.582990746292442,
+      "E0": -5.017262742728228,
+      "binding_energy": 0.01726274272822792
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.29350676537085857,
+       "uv_capped": false,
+       "w": 21.40729294345399,
+       "L": 512,
+       "v_sites_per_time": 0.8676904135584415,
+       "sigma_v": 2.5609275316793128e-08
+      },
+      "y": {
+       "k": 0.3597360629343243,
+       "uv_capped": false,
+       "w": 17.46609793838402,
+       "L": 512,
+       "v_sites_per_time": 0.7037617727654668,
+       "sigma_v": 3.025345786957249e-08
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 4.757774400744018,
+      "speed_y_rods_per_tick": 3.8681295055651175,
+      "A_endo": 1.2299935650807345,
+      "sigma_A_endo": 0.016196050670887363
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 1.3915591868417077,
+      "speed_y_rods_per_tick": 1.3833383517141156,
+      "A_endo": 1.0059427508226064,
+      "sigma_A_endo": 2.0125691951776094e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.2299935650807345,
+       "sigma": 0.016196050670887363,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0059427508226064,
+       "sigma": 2.0125691951776094e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9992618576494574,
+       "sigma": 0.0020034617623315844,
+       "detected": false,
+       "sigma_x_final": 25.367326576446608,
+       "sigma_y_final": 20.712357260049085,
+       "stopped_at_t": 210.31980476965,
+       "tail_mass": 4.940697171325098e-07
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 1.75,
+     "observer": {
+      "eps": 1.75,
+      "rod_x": 9.270496565627145,
+      "rod_y": 7.567483104846683,
+      "xi": 8.375817938202967,
+      "sigma_rod_rel": 1.0000000348331313e-06,
+      "tail_mass": 3.483313141590453e-15,
+      "tick": 8.582990746292442,
+      "E0": -5.005792171010906,
+      "binding_energy": 0.005792171010906344
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.16944036553759653,
+       "uv_capped": false,
+       "w": 37.08198626250858,
+       "L": 512,
+       "v_sites_per_time": 0.5058431422315904,
+       "sigma_v": 5.1789144781280365e-09
+      },
+      "y": {
+       "k": 0.2075718313515443,
+       "uv_capped": false,
+       "w": 30.26993241938673,
+       "L": 512,
+       "v_sites_per_time": 0.41211015924057964,
+       "sigma_v": 6.2694835349006294e-09
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 2.7466454907397746,
+      "speed_y_rods_per_tick": 2.2319550584553993,
+      "A_endo": 1.230600714980597,
+      "sigma_A_endo": 0.01620404537169083
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 0.4683294986535084,
+      "speed_y_rods_per_tick": 0.4674126964286975,
+      "A_endo": 1.0019614405680801,
+      "sigma_A_endo": 2.0040071789464363e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.2306007149805969,
+       "sigma": 0.016204045371690828,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.00196144056808,
+       "sigma": 2.004007178946436e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9997559794202339,
+       "sigma": 0.039268486349308226,
+       "detected": false,
+       "sigma_x_final": 43.96313142181751,
+       "sigma_y_final": 35.8957532640216,
+       "stopped_at_t": 631.3889352053035,
+       "tail_mass": 0.003727807095604845
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 1.5,
+     "observer": {
+      "eps": 1.5,
+      "rod_x": 19.290742983170954,
+      "rod_y": 15.749942335276558,
+      "xi": 17.430665207891046,
+      "sigma_rod_rel": 1.6901243139714188e-06,
+      "tail_mass": 6.901243139714189e-08,
+      "tick": 8.582990746292442,
+      "E0": -5.00134195197218,
+      "binding_energy": 0.001341951972180233
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.08142746643637537,
+       "uv_capped": false,
+       "w": 77.16297193268382,
+       "L": 1024,
+       "v_sites_per_time": 0.24400703466467663,
+       "sigma_v": 1.4641940464629347e-10
+      },
+      "y": {
+       "k": 0.09973346526333898,
+       "uv_capped": false,
+       "w": 62.99976934110623,
+       "L": 512,
+       "v_sites_per_time": 0.19913236324351624,
+       "sigma_v": 2.103344178419643e-08
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 1.3199474800484263,
+      "speed_y_rods_per_tick": 1.0724027959015219,
+      "A_endo": 1.2308318153337194,
+      "sigma_A_endo": 0.016207088753407848
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 0.10856554993160362,
+      "speed_y_rods_per_tick": 0.10851793578813974,
+      "A_endo": 1.0004387675006723,
+      "sigma_A_endo": 3.3833824284247047e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.2308318153337194,
+       "sigma": 0.016207088753407848,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0004387675006725,
+       "sigma": 3.3833824284247056e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9999438932191858,
+       "sigma": 0.05431281295704663,
+       "detected": false,
+       "sigma_x_final": 91.49889963620606,
+       "sigma_y_final": 74.70854048605979,
+       "stopped_at_t": 2734.45280630625,
+       "tail_mass": 0.0052315860339941555
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    }
+   ]
+  },
+  {
+   "r": 2.0,
+   "Jx": 2.0,
+   "Jy": 1.0,
+   "gods_eye": {
+    "L": 1024,
+    "Jx": 2.0,
+    "Jy": 1.0,
+    "thetas": [
+     1e-06,
+     1e-08,
+     1e-10,
+     1e-12
+    ],
+    "vx": 3.96978955012768,
+    "vy": 1.9774874870298178,
+    "sigma_vx": 0.048467109307690194,
+    "sigma_vy": 0.04105690787888729,
+    "A_god": 2.007491615580484,
+    "sigma_A_god": 0.048352075452202485,
+    "v_exact_x": 4.0,
+    "v_exact_y": 2.0,
+    "snapshot_t": 86.8
+   },
+   "calibration": {
+    "tests": {
+     "front": {
+      "R": 2.007491615580484,
+      "sigma": 0.048352075452202485,
+      "detected": true
+     },
+     "wavepacket": {
+      "R": 1.9999999999999993,
+      "sigma": 1.3017763659286267e-06,
+      "detected": true
+     },
+     "spreading": {
+      "R": 1.3334460549746552,
+      "sigma": 0.00266689210994931,
+      "detected": true,
+      "sigma_x_final": 4.648287329052471,
+      "sigma_y_final": 3.4859207927543956,
+      "stopped_at_t": 5.4,
+      "tail_mass": 2.6235371808921948e-30
+     }
+    },
+    "substrate_anisotropic": true,
+    "calibration_pass": true
+   },
+   "sweep": [
+    {
+     "eps": 12.0,
+     "observer": {
+      "eps": 12.0,
+      "rod_x": 0.24500542748754045,
+      "rod_y": 0.13383004275974011,
+      "xi": 0.18107757132518082,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 1.6171722733837328e-32,
+      "tick": 8.582990746292452,
+      "E0": -12.832216045468382,
+      "binding_energy": 6.832216045468382
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 2.361049909799811,
+       "sigma_v": 2.8160857581956916e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999055,
+       "sigma_v": 1.408042879099087e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 139.06902929816562,
+      "speed_y_rods_per_tick": 126.8232188534571,
+      "A_endo": 1.0965581110100857,
+      "sigma_A_endo": 0.0264114979572373
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 82.71192085480212,
+      "speed_y_rods_per_tick": 75.71121218173388,
+      "A_endo": 1.0924659435680946,
+      "sigma_A_endo": 1.855646235766652e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.0965581110100857,
+       "sigma": 0.0264114979572373,
+       "detected": false
+      },
+      "wavepacket": {
+       "R": 1.0924659435680943,
+       "sigma": 1.8556462357666513e-05,
+       "detected": true
+      },
+      "spreading": {
+       "R": 1.030071586585223,
+       "sigma": 0.0020601442032417753,
+       "detected": true,
+       "sigma_x_final": 1.0701965592440836,
+       "sigma_y_final": 0.5675106998018269,
+       "stopped_at_t": 0.3541221378398802,
+       "tail_mass": 4.4842596653086985e-32
+      }
+     },
+     "class_front": "APPROXIMATE",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 8.0,
+     "observer": {
+      "eps": 8.0,
+      "rod_x": 0.38954088672238385,
+      "rod_y": 0.22987271124857458,
+      "xi": 0.29924040464657886,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 2.21339009428833e-32,
+      "tick": 8.582990746292452,
+      "E0": -9.246073228335833,
+      "binding_energy": 3.246073228335833
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 2.361049909799811,
+       "sigma_v": 2.8160857581956916e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999055,
+       "sigma_v": 1.408042879099087e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 87.46878218654645,
+      "speed_y_rods_per_tick": 73.83545750122738,
+      "A_endo": 1.184644683553189,
+      "sigma_A_endo": 0.028533135020902965
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 52.022445443034265,
+      "speed_y_rods_per_tick": 44.07845850269899,
+      "A_endo": 1.180223792078592,
+      "sigma_A_endo": 2.0047103985501704e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.184644683553189,
+       "sigma": 0.028533135020902965,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.180223792078592,
+       "sigma": 2.0047103985501704e-05,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9046547620269889,
+       "sigma": 0.0018093104287085137,
+       "detected": true,
+       "sigma_x_final": 1.544395902434402,
+       "sigma_y_final": 1.007418998357846,
+       "stopped_at_t": 0.6447227023659474,
+       "tail_mass": 6.670383473863919e-32
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 6.0,
+     "observer": {
+      "eps": 6.0,
+      "rod_x": 0.5712745688650496,
+      "rod_y": 0.36118936879604263,
+      "xi": 0.4542447588443907,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 4.962408466858252e-32,
+      "tick": 8.582990746292452,
+      "E0": -7.6557944974568315,
+      "binding_energy": 1.6557944974568315
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 2.361049909799811,
+       "sigma_v": 2.8160857581956916e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999055,
+       "sigma_v": 1.408042879099087e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 59.64324132468644,
+      "speed_y_rods_per_tick": 46.991296722441085,
+      "A_endo": 1.2692401675351792,
+      "sigma_A_endo": 0.03057068636446444
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 35.47308182754677,
+      "speed_y_rods_per_tick": 28.052970654833455,
+      "A_endo": 1.2645035801737756,
+      "sigma_A_endo": 2.1478667801754345e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.2692401675351792,
+       "sigma": 0.03057068636446444,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.2645035801737754,
+       "sigma": 2.147866780175434e-05,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9178882144072598,
+       "sigma": 0.0018357773467025046,
+       "detected": true,
+       "sigma_x_final": 2.3876815185516613,
+       "sigma_y_final": 1.6446620520523012,
+       "stopped_at_t": 1.4856357667507103,
+       "tail_mass": 2.7626309666771944e-31
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 4.0,
+     "observer": {
+      "eps": 4.0,
+      "rod_x": 1.171395717889797,
+      "rod_y": 0.8023486964483562,
+      "xi": 0.9694678062081613,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 1.055652774015731e-31,
+      "tick": 8.582990746292452,
+      "E0": -6.438040551829809,
+      "binding_energy": 0.4380405518298094
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 1.3409613018089201,
+       "uv_capped": false,
+       "w": 4.685582871559188,
+       "L": 512,
+       "v_sites_per_time": 3.872681169254845,
+       "sigma_v": 2.6063174439564866e-07
+      },
+      "y": {
+       "k": 1.957747714613508,
+       "uv_capped": false,
+       "w": 3.2093947857934246,
+       "L": 512,
+       "v_sites_per_time": 1.8297863814847015,
+       "sigma_v": 1.6223403244967305e-06
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 29.087238798221268,
+      "speed_y_rods_per_tick": 21.153841063389212,
+      "A_endo": 1.375033437712753,
+      "sigma_A_endo": 0.03311880370647255
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 28.375711240377317,
+      "speed_y_rods_per_tick": 19.573833234221517,
+      "A_endo": 1.44967574316344,
+      "sigma_A_endo": 3.172981895272812e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.375033437712753,
+       "sigma": 0.03311880370647255,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.4496757431634402,
+       "sigma": 3.1729818952728124e-06,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9714409673829556,
+       "sigma": 0.001942882906206636,
+       "detected": true,
+       "sigma_x_final": 5.185129826209478,
+       "sigma_y_final": 3.655970978321504,
+       "stopped_at_t": 6.767048356373268,
+       "tail_mass": 4.283209178945572e-30
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 3.0,
+     "observer": {
+      "eps": 3.0,
+      "rod_x": 2.426419813941702,
+      "rod_y": 1.703127807665824,
+      "xi": 2.0328558872176474,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 1.3100358927999004e-30,
+      "tick": 8.582990746292452,
+      "E0": -6.108679434293393,
+      "binding_energy": 0.10867943429339277
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.6473720325598351,
+       "uv_capped": false,
+       "w": 9.705679255766809,
+       "L": 512,
+       "v_sites_per_time": 2.4091566835914144,
+       "sigma_v": 2.6791406257851274e-07
+      },
+      "y": {
+       "k": 0.9223009099638324,
+       "uv_capped": false,
+       "w": 6.812511230663296,
+       "L": 512,
+       "v_sites_per_time": 1.5896911592238185,
+       "sigma_v": 2.384242077442972e-07
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 14.042362652043936,
+      "speed_y_rods_per_tick": 9.965638941300359,
+      "A_endo": 1.4090780064134683,
+      "sigma_A_endo": 0.033938794956973356
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 8.521925761907966,
+      "speed_y_rods_per_tick": 8.01132155065966,
+      "A_endo": 1.0637353285621474,
+      "sigma_A_endo": 2.1367213553497766e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.4090780064134685,
+       "sigma": 0.033938794956973356,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0637353285621474,
+       "sigma": 2.1367213553497766e-06,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9931232078367522,
+       "sigma": 0.001986247408796464,
+       "detected": false,
+       "sigma_x_final": 10.931794880748289,
+       "sigma_y_final": 7.726265707708249,
+       "stopped_at_t": 29.754022019007223,
+       "tail_mass": 7.398145839200899e-29
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 2.5,
+     "observer": {
+      "eps": 2.5,
+      "rod_x": 4.375531045595011,
+      "rod_y": 3.0870973969424456,
+      "xi": 3.6752810098137005,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 1.5861230739478562e-29,
+      "tick": 8.582990746292452,
+      "E0": -6.034237625110526,
+      "binding_energy": 0.03423762511052608
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.35899558486192623,
+       "uv_capped": false,
+       "w": 17.502124182380044,
+       "L": 512,
+       "v_sites_per_time": 1.404754358204772,
+       "sigma_v": 6.016261192066688e-08
+      },
+      "y": {
+       "k": 0.5088262937057512,
+       "uv_capped": false,
+       "w": 12.348389587769782,
+       "L": 512,
+       "v_sites_per_time": 0.9735011735579084,
+       "sigma_v": 7.603214463439874e-08
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 7.787092953614491,
+      "speed_y_rods_per_tick": 5.497966089083024,
+      "A_endo": 1.416358854791201,
+      "sigma_A_endo": 0.03411416013837565
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 2.755549790790244,
+      "speed_y_rods_per_tick": 2.7066044538886147,
+      "A_endo": 1.0180836682032754,
+      "sigma_A_endo": 2.0381857325030966e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.4163588547912012,
+       "sigma": 0.034114160138375656,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0180836682032757,
+       "sigma": 2.038185732503097e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9979187549814597,
+       "sigma": 0.0019958396402647016,
+       "detected": false,
+       "sigma_x_final": 19.78798371401274,
+       "sigma_y_final": 13.990264369981308,
+       "stopped_at_t": 97.25537160789995,
+       "tail_mass": 1.1347455266109597e-10
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 2.0,
+     "observer": {
+      "eps": 2.0,
+      "rod_x": 10.629465809296935,
+      "rod_y": 7.513380223633068,
+      "xi": 8.936622303720542,
+      "sigma_rod_rel": 1.0000021337089964e-06,
+      "tail_mass": 2.1337089963736238e-13,
+      "tick": 8.582990746292452,
+      "E0": -6.005877456498489,
+      "binding_energy": 0.005877456498488698
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.14777754169179588,
+       "uv_capped": false,
+       "w": 42.51786323718774,
+       "L": 512,
+       "v_sites_per_time": 0.5889166646156297,
+       "sigma_v": 4.6097002732099534e-09
+      },
+      "y": {
+       "k": 0.20906652931712585,
+       "uv_capped": false,
+       "w": 30.053520894532273,
+       "L": 512,
+       "v_sites_per_time": 0.4150336891375952,
+       "sigma_v": 6.402454607127141e-09
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 3.2054919395547707,
+      "speed_y_rods_per_tick": 2.259004109588231,
+      "A_endo": 1.4189845542773558,
+      "sigma_A_endo": 0.03417740225561426
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 0.4755334250487322,
+      "speed_y_rods_per_tick": 0.4741182007617198,
+      "A_endo": 1.0029849608910577,
+      "sigma_A_endo": 2.0060492338831044e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.4189845542773558,
+       "sigma": 0.03417740225561426,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.002984960891058,
+       "sigma": 2.006049233883105e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9996527772925154,
+       "sigma": 0.08275814499159861,
+       "detected": false,
+       "sigma_x_final": 48.137079926580974,
+       "sigma_y_final": 34.0372522241047,
+       "stopped_at_t": 575.0151710353593,
+       "tail_mass": 0.008078689045569673
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 1.75,
+     "observer": {
+      "eps": 1.75,
+      "rod_x": 20.049240031756934,
+      "rod_y": 14.17548118086956,
+      "xi": 16.85845855233826,
+      "sigma_rod_rel": 2.251886523329228e-06,
+      "tail_mass": 1.2518865233292278e-07,
+      "tick": 8.582990746292452,
+      "E0": -6.00165633601257,
+      "binding_energy": 0.0016563360125703142
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.07834692608332477,
+       "uv_capped": false,
+       "w": 80.19696012702774,
+       "L": 1024,
+       "v_sites_per_time": 0.3130606200408991,
+       "sigma_v": 1.7351612222625298e-10
+      },
+      "y": {
+       "k": 0.11081079412773344,
+       "uv_capped": false,
+       "w": 56.70192472347824,
+       "L": 512,
+       "v_sites_per_time": 0.2211584750428472,
+       "sigma_v": 2.2682777575192794e-09
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 1.6994493017942354,
+      "speed_y_rods_per_tick": 1.1973319695836167,
+      "A_endo": 1.4193635056660474,
+      "sigma_A_endo": 0.03418653008920438
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 0.13401986312616113,
+      "speed_y_rods_per_tick": 0.1339073517531535,
+      "A_endo": 1.000840218042808,
+      "sigma_A_endo": 4.507568920241342e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.4193635056660474,
+       "sigma": 0.03418653008920438,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0008402180428078,
+       "sigma": 4.507568920241341e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9999027920567694,
+       "sigma": 0.05100533603634443,
+       "detected": false,
+       "sigma_x_final": 90.8140087140552,
+       "sigma_y_final": 64.21477425250009,
+       "stopped_at_t": 2046.2948982785306,
+       "tail_mass": 0.0049010294443347854
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 1.5,
+     "observer": {
+      "eps": 1.5,
+      "rod_x": 46.73119591844262,
+      "rod_y": 33.04331446107353,
+      "xi": 39.29571989256763,
+      "sigma_rod_rel": 1.1587964617382794e-05,
+      "tail_mass": 1.0587964617382793e-06,
+      "tick": 8.582990746292452,
+      "E0": -6.000305189687901,
+      "binding_energy": 0.0003051896879009419
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.033613441640490446,
+       "uv_capped": false,
+       "w": 186.9247836737705,
+       "L": 2048,
+       "v_sites_per_time": 0.13442791445293187,
+       "sigma_v": 3.8941519053520584e-13
+      },
+      "y": {
+       "k": 0.047537492906329464,
+       "uv_capped": false,
+       "w": 132.1732578442941,
+       "L": 1024,
+       "v_sites_per_time": 0.0950333404727793,
+       "sigma_v": 5.162086674225891e-08
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 0.7291203724582503,
+      "speed_y_rods_per_tick": 0.513651765233197,
+      "A_endo": 1.419483825052623,
+      "sigma_A_endo": 0.03418944330979082
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 0.02469000681699993,
+      "speed_y_rods_per_tick": 0.02468488089558994,
+      "A_endo": 1.0002076542897522,
+      "sigma_A_endo": 2.3187107747768454e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.4194838250526232,
+       "sigma": 0.034189443309790825,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0002076542897522,
+       "sigma": 2.3187107747768454e-05,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9999820841506502,
+       "sigma": 0.158774158403806,
+       "detected": false,
+       "sigma_x_final": 211.68464064356743,
+       "sigma_y_final": 149.68346795409664,
+       "stopped_at_t": 11117.905933500977,
+       "tail_mass": 0.0156777001337232
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    }
+   ]
+  },
+  {
+   "r": 3.0,
+   "Jx": 3.0,
+   "Jy": 1.0,
+   "gods_eye": {
+    "L": 1024,
+    "Jx": 3.0,
+    "Jy": 1.0,
+    "thetas": [
+     1e-06,
+     1e-08,
+     1e-10,
+     1e-12
+    ],
+    "vx": 5.937005984789077,
+    "vy": 2.031696322663621,
+    "sigma_vx": 0.052645471433847284,
+    "sigma_vy": 0.01893703840543272,
+    "A_god": 2.9221916280310367,
+    "sigma_A_god": 0.03759387023815436,
+    "v_exact_x": 6.0,
+    "v_exact_y": 2.0
+   },
+   "calibration": {
+    "tests": {
+     "front": {
+      "R": 2.9221916280310367,
+      "sigma": 0.03759387023815436,
+      "detected": true
+     },
+     "wavepacket": {
+      "R": 2.9999999999999973,
+      "sigma": 1.952664548890305e-06,
+      "detected": true
+     },
+     "spreading": {
+      "R": 1.4413220896945196,
+      "sigma": 0.0028826441793890394,
+      "detected": true,
+      "sigma_x_final": 4.64828732905247,
+      "sigma_y_final": 3.2250163667703515,
+      "stopped_at_t": 3.6,
+      "tail_mass": 1.416339914085891e-30
+     }
+    },
+    "substrate_anisotropic": true,
+    "calibration_pass": true
+   },
+   "sweep": [
+    {
+     "eps": 12.0,
+     "observer": {
+      "eps": 12.0,
+      "rod_x": 0.3698550980536763,
+      "rod_y": 0.15157681447253116,
+      "xi": 0.236773008553344,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 2.334898448544161e-32,
+      "tick": 8.582990746292463,
+      "E0": -13.619672074318073,
+      "binding_energy": 5.619672074318073
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 3.5415748646997183,
+       "sigma_v": 4.224128637298401e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999053,
+       "sigma_v": 1.4080428790978207e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 137.7763013036319,
+      "speed_y_rods_per_tick": 115.0441826962818,
+      "A_endo": 1.1975946812309772,
+      "sigma_A_endo": 0.01540700450862928
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 82.18706312548427,
+      "speed_y_rods_per_tick": 66.84686440292899,
+      "A_endo": 1.2294826969009354,
+      "sigma_A_endo": 2.088380834090988e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.197594681230977,
+       "sigma": 0.015407004508629278,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.2294826969009351,
+       "sigma": 2.0883808340909877e-05,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.909760441479695,
+       "sigma": 0.0018195217927196043,
+       "detected": true,
+       "sigma_x_final": 1.4866057926928729,
+       "sigma_y_final": 0.6696840237252641,
+       "stopped_at_t": 0.40364249457169377,
+       "tail_mass": 6.226511942657774e-32
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 8.0,
+     "observer": {
+      "eps": 8.0,
+      "rod_x": 0.6015827737963232,
+      "rod_y": 0.2842868466521649,
+      "xi": 0.41354814684969793,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 2.515481785929862e-32,
+      "tick": 8.582990746292463,
+      "E0": -10.359752767467894,
+      "binding_energy": 2.359752767467894
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 3.5415748646997183,
+       "sigma_v": 4.224128637298401e-05
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999053,
+       "sigma_v": 1.4080428790978207e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 84.7053300854325,
+      "speed_y_rods_per_tick": 61.33956228384473,
+      "A_endo": 1.3809249191160549,
+      "sigma_A_endo": 0.017765540201824047
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 50.528880837454345,
+      "speed_y_rods_per_tick": 35.64158835695486,
+      "A_endo": 1.4176944173026587,
+      "sigma_A_endo": 2.408074434195326e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.3809249191160549,
+       "sigma": 0.017765540201824047,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.4176944173026582,
+       "sigma": 2.4080744341953254e-05,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.8783114507261277,
+       "sigma": 0.0017566237797634868,
+       "detected": true,
+       "sigma_x_final": 2.3327715504113424,
+       "sigma_y_final": 1.2551193926810715,
+       "stopped_at_t": 0.9235191767192245,
+       "tail_mass": 1.5702391313549932e-31
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 6.0,
+     "observer": {
+      "eps": 6.0,
+      "rod_x": 0.9258672679298052,
+      "rod_y": 0.4838999793786927,
+      "xi": 0.6693483038438502,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 4.4327724036542957e-32,
+      "tick": 8.582990746292463,
+      "E0": -9.040541543938005,
+      "binding_energy": 1.040541543938005
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 1.6965675115690413,
+       "uv_capped": false,
+       "w": 3.703469071719221,
+       "L": 512,
+       "v_sites_per_time": 5.898569405727495,
+       "sigma_v": 3.785652690888614e-07
+      },
+      "y": {
+       "k": 2.5,
+       "uv_capped": true,
+       "w": 3.0,
+       "L": 512,
+       "v_sites_per_time": 1.1805249548999053,
+       "sigma_v": 1.4080428790978207e-05
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 55.037335472573325,
+      "speed_y_rods_per_tick": 36.03643620544887,
+      "A_endo": 1.5272690994968985,
+      "sigma_A_endo": 0.01964825184231141
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 54.681020033166625,
+      "speed_y_rods_per_tick": 20.939109724044286,
+      "A_endo": 2.61143003469611,
+      "sigma_A_endo": 3.1582508367172506e-05
+     },
+     "battery": {
+      "front": {
+       "R": 1.5272690994968985,
+       "sigma": 0.01964825184231141,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 2.61143003469611,
+       "sigma": 3.1582508367172506e-05,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9243736376459502,
+       "sigma": 0.001848748199665307,
+       "detected": true,
+       "sigma_x_final": 3.7850494316356045,
+       "sigma_y_final": 2.140084281189395,
+       "stopped_at_t": 2.4193466200366522,
+       "tail_mass": 9.404737953883247e-31
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 4.0,
+     "observer": {
+      "eps": 4.0,
+      "rod_x": 2.2132112192658644,
+      "rod_y": 1.25502504752249,
+      "xi": 1.6666239874778144,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 6.683881747901717e-31,
+      "tick": 8.582990746292463,
+      "E0": -8.194410845413001,
+      "binding_energy": 0.19441084541300135
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.7097362931839553,
+       "uv_capped": false,
+       "w": 8.852844877063458,
+       "L": 512,
+       "v_sites_per_time": 3.903550512075971,
+       "sigma_v": 4.853785822827863e-07
+      },
+      "y": {
+       "k": 1.2516055595031843,
+       "uv_capped": false,
+       "w": 5.02010019008996,
+       "L": 512,
+       "v_sites_per_time": 1.8895730654832956,
+       "sigma_v": 1.8605799517903007e-07
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 23.02413207765613,
+      "speed_y_rods_per_tick": 13.894567898164436,
+      "A_endo": 1.6570599565530764,
+      "sigma_A_endo": 0.021318005684060243
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 15.13824691976159,
+      "speed_y_rods_per_tick": 12.922601160433,
+      "A_endo": 1.171455091109099,
+      "sigma_A_endo": 2.3502660982518833e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.6570599565530764,
+       "sigma": 0.021318005684060243,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.171455091109099,
+       "sigma": 2.3502660982518833e-06,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.984626239504978,
+       "sigma": 0.0019692534636359493,
+       "detected": false,
+       "sigma_x_final": 9.473901914565307,
+       "sigma_y_final": 5.456158892921827,
+       "stopped_at_t": 14.99923178443683,
+       "tail_mass": 2.2612590246685615e-29
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 3.0,
+     "observer": {
+      "eps": 3.0,
+      "rod_x": 5.438352330882164,
+      "rod_y": 3.1308198094620003,
+      "xi": 4.126318117687937,
+      "sigma_rod_rel": 1e-06,
+      "tail_mass": 6.733121463870874e-25,
+      "tick": 8.582990746292463,
+      "E0": -8.033350925452877,
+      "binding_energy": 0.033350925452877433
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.2888368077726393,
+       "uv_capped": false,
+       "w": 21.753409323528658,
+       "L": 512,
+       "v_sites_per_time": 1.708562693643985,
+       "sigma_v": 4.892901059687118e-08
+      },
+      "y": {
+       "k": 0.5017204509974089,
+       "uv_capped": false,
+       "w": 12.523279237848001,
+       "L": 512,
+       "v_sites_per_time": 0.9610974770788484,
+       "sigma_v": 7.33844974249959e-08
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 9.369982731490616,
+      "speed_y_rods_per_tick": 5.569796985440319,
+      "A_endo": 1.6822844272392945,
+      "sigma_A_endo": 0.02164251742386764
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 2.6965111667614377,
+      "speed_y_rods_per_tick": 2.6348021457901507,
+      "A_endo": 1.0234207418837444,
+      "sigma_A_endo": 2.0485422596904255e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.6822844272392945,
+       "sigma": 0.02164251742386764,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0234207418837444,
+       "sigma": 2.0485422596904255e-06,
+       "detected": true
+      },
+      "spreading": {
+       "R": 0.9975112586230508,
+       "sigma": 0.0019955893493241966,
+       "detected": false,
+       "sigma_x_final": 23.48914799882516,
+       "sigma_y_final": 13.556269394035844,
+       "stopped_at_t": 91.94310652514253,
+       "tail_mass": 5.672465799574901e-08
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "DETECTED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 2.5,
+     "observer": {
+      "eps": 2.5,
+      "rod_x": 11.221765174762158,
+      "rod_y": 6.474573926329625,
+      "xi": 8.52385758960747,
+      "sigma_rod_rel": 1.0000094743564444e-06,
+      "tail_mass": 9.47435644452109e-13,
+      "tick": 8.582990746292463,
+      "E0": -8.007907465116995,
+      "binding_energy": 0.007907465116995027
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.13997765078239477,
+       "uv_capped": false,
+       "w": 44.88706069904863,
+       "L": 512,
+       "v_sites_per_time": 0.8370687626120146,
+       "sigma_v": 5.753673556959087e-09
+      },
+      "y": {
+       "k": 0.24260999174124284,
+       "uv_capped": false,
+       "w": 25.8982957053185,
+       "L": 512,
+       "v_sites_per_time": 0.48038151409801594,
+       "sigma_v": 9.874659043307252e-09
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 4.540931541031614,
+      "speed_y_rods_per_tick": 2.6933093876315874,
+      "A_endo": 1.6860044233628755,
+      "sigma_A_endo": 0.021690375015381933
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 0.6402338073931116,
+      "speed_y_rods_per_tick": 0.6368156634100841,
+      "A_endo": 1.0053675563894326,
+      "sigma_A_endo": 2.0108722365340142e-06
+     },
+     "battery": {
+      "front": {
+       "R": 1.6860044233628757,
+       "sigma": 0.021690375015381937,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0053675563894326,
+       "sigma": 2.0108722365340142e-06,
+       "detected": false
+      },
+      "spreading": {
+       "R": 0.9994231827344514,
+       "sigma": 0.08805997071532337,
+       "detected": false,
+       "sigma_x_final": 48.53321578959233,
+       "sigma_y_final": 28.01816359621424,
+       "stopped_at_t": 392.3432003227079,
+       "tail_mass": 0.00861107945201978
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 2.0,
+     "observer": {
+      "eps": 2.0,
+      "rod_x": 33.30951014210529,
+      "rod_y": 19.229678706194246,
+      "xi": 25.308717428850546,
+      "sigma_rod_rel": 0.0005417631439348514,
+      "tail_mass": 5.407631439348513e-05,
+      "tick": 8.582990746292463,
+      "E0": -8.000900718153012,
+      "binding_energy": 0.0009007181530122921
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.04715759313461991,
+       "uv_capped": false,
+       "w": 133.23804056842116,
+       "L": 1024,
+       "v_sites_per_time": 0.28282253917449024,
+       "sigma_v": 2.000300763070138e-07
+      },
+      "y": {
+       "k": 0.08168604118637267,
+       "uv_capped": false,
+       "w": 76.91871482477698,
+       "L": 1024,
+       "v_sites_per_time": 0.16318675356753481,
+       "sigma_v": 9.85352236649222e-11
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 1.529811372509933,
+      "speed_y_rods_per_tick": 0.9068290221136749,
+      "A_endo": 1.6869898682159343,
+      "sigma_A_endo": 0.021779892026027425
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 0.07287598125044543,
+      "speed_y_rods_per_tick": 0.07283691096390967,
+      "A_endo": 1.0005364077913068,
+      "sigma_A_endo": 0.001084107730767026
+     },
+     "battery": {
+      "front": {
+       "R": 1.6869898682159343,
+       "sigma": 0.021779892026027425,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.000536407791307,
+       "sigma": 0.0010841077307670263,
+       "detected": false
+      },
+      "spreading": {
+       "R": 1.0003116803929604,
+       "sigma": 0.763809107631162,
+       "detected": false,
+       "sigma_x_final": 144.1672181679359,
+       "sigma_y_final": 83.20222886878535,
+       "stopped_at_t": 3458.8683606243776,
+       "tail_mass": 0.0761570348709533
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 1.75,
+     "observer": {
+      "eps": 1.75,
+      "rod_x": 72.47008094575594,
+      "rod_y": 41.839020731844535,
+      "xi": 55.06430076853727,
+      "sigma_rod_rel": 0.001134987791057103,
+      "tail_mass": 0.0001133987791057103,
+      "tick": 8.582990746292463,
+      "E0": -8.000190385853672,
+      "binding_energy": 0.00019038585367248118
+     },
+     "wavepacket_raw": {
+      "x": {
+       "k": 0.021675101038877577,
+       "uv_capped": false,
+       "w": 289.88032378302375,
+       "L": 2048,
+       "v_sites_per_time": 0.13004988574940143,
+       "sigma_v": 1.931110115188277e-08
+      },
+      "y": {
+       "k": 0.03754381195636664,
+       "uv_capped": false,
+       "w": 167.35608292737814,
+       "L": 2048,
+       "v_sites_per_time": 0.07506962092909389,
+       "sigma_v": 2.3627330577789815e-12
+      }
+     },
+     "A_endo_front": {
+      "speed_x_rods_per_tick": 0.7031490342375811,
+      "speed_y_rods_per_tick": 0.41678869227036763,
+      "A_endo": 1.6870636062781035,
+      "sigma_A_endo": 0.022039270577666
+     },
+     "A_endo_wavepacket": {
+      "speed_x_rods_per_tick": 0.015402452313789965,
+      "speed_y_rods_per_tick": 0.015400022526619254,
+      "A_endo": 1.0001577781569158,
+      "sigma_A_endo": 0.0022703337395352805
+     },
+     "battery": {
+      "front": {
+       "R": 1.6870636062781033,
+       "sigma": 0.022039270577665998,
+       "detected": true
+      },
+      "wavepacket": {
+       "R": 1.0001577781569158,
+       "sigma": 0.0022703337395352805,
+       "detected": false
+      },
+      "spreading": {
+       "R": 1.0012690410710945,
+       "sigma": 1.0239422780629057,
+       "detected": false,
+       "sigma_x_final": 313.9563652307454,
+       "sigma_y_final": 181.02613078719367,
+       "stopped_at_t": 16373.216983290848,
+       "tail_mass": 0.10206419808426737
+      }
+     },
+     "class_front": "DETECTED",
+     "class_wavepacket": "CANCELLED",
+     "battery_any_detected": true
+    },
+    {
+     "eps": 1.5,
+     "observer": {
+      "eps": 1.5,
+      "rod_x": 213.8874196670483,
+      "rod_y": 121.15967779191583,
+      "xi": 160.97990822026162,
+      "sigma_rod_rel": 0.3899156125174557,
+      "tail_mass": 0.038991461251745574,
+      "tick": 8.582990746292463,
+      "E0": -8.000024107851074,
+      "binding_energy": 2.4107851073651432e-05
+     },
+     "skipped": true
+    }
+   ]
+  }
+ ],
+ "params": {
+  "L_prop": 512,
+  "L_rod": 1024,
+  "eps_sweep": [
+   12.0,
+   8.0,
+   6.0,
+   4.0,
+   3.0,
+   2.5,
+   2.0,
+   1.75,
+   1.5
+  ]
+ }
+}

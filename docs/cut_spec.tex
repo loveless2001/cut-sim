@@ -1,0 +1,534 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=blue}
+
+% ---- status tags ----
+\newcommand{\est}{\textcolor{teal!70!black}{\textsf{\small[EST]}}}
+\newcommand{\fields}{\textcolor{violet}{\textsf{\small[FIELDS]}}}
+\newcommand{\asm}{\textcolor{blue!70!black}{\textsf{\small[ASM]}}}
+\newcommand{\conj}{\textcolor{orange!80!black}{\textsf{\small[CONJ]}}}
+\newcommand{\post}{\textcolor{purple!70!black}{\textsf{\small[POST]}}}
+\newcommand{\gap}{\textcolor{red!75!black}{\textsf{\small[GAP]}}}
+
+% ---- theorem environments ----
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{claim}{Claim}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{openproblem}{Open Problem}[section]
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{invariant}{Invariant I (necessity of partition)}
+
+\newtcolorbox{principlebox}{colback=gray!6, colframe=gray!40, boxrule=0.5pt, arc=2pt, left=6pt, right=6pt, top=5pt, bottom=5pt}
+
+\title{\textbf{A Formal Skeleton for the Cut}\\[4pt]
+\large Co-products of a partition, and a proof of what the formalism cannot select}
+\author{}
+\date{Working spec, v0.3}
+
+\begin{document}
+\maketitle
+
+\begin{principlebox}
+\noindent\textbf{Status.} This is a skeleton, not a finished theory. Every claim is tagged:
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=3pt]
+  \item \est{} --- established result in the literature, cited, not original here.
+  \item \fields{} --- due to Chris Fields (and collaborators); this framework assembles it, does not originate it.
+  \item \asm{} --- assembly: a combination or restatement of established pieces, possibly original in \emph{arrangement}, using no new mathematics.
+  \item \conj{} --- conjecture: plausible, not proved here, flagged as open.
+  \item \post{} --- postulate: a philosophical commitment of the framework's ontology, not a physics result; adopted, not derived.
+  \item \gap{} --- a deliberately stated limitation: something the formalism provably cannot do. These are the load-bearing honesty of the document.
+\end{itemize}
+\vspace{2pt}
+\noindent\textbf{Design principle.} Formalize the invariant core (the co-products) \emph{and} formalize the limit (the partition-selection gap) rather than papering over it. A clean system that silently selects a partition would hide the framework's central open problem inside a choice of tensor factorization. This spec refuses that by making the non-existence of a partition-selection operator an explicit result (\S\ref{sec:select}).
+
+\vspace{2pt}
+\noindent\textbf{Thesis (legibility, not creation).} The cut does not create physics from nothing. It makes state, symmetry, and interaction data locally \emph{legible} as entropy, flux, record, persistence, and observer-relative fact --- while no natural rule inside the closed formalism selects the cut itself. The cut is a \emph{legibility operator}: it turns global structure into local quantities, and the residues (the arrow, the choice of cut) are what legibility cannot supply.
+\end{principlebox}
+
+\section{Primitives and the one invariant}\label{sec:prim}
+
+Let $U$ be a closed quantum system with Hilbert space $\mathcal{H}_U$, global state $\lvert\Psi\rangle$, and total Hamiltonian $\hat{H}_U$, evolving unitarily. \est{}
+
+A \textbf{cut} is a choice of tensor factorization
+\[
+  \mathcal{H}_U \;\cong\; \mathcal{H}_A \otimes \mathcal{H}_B
+\]
+together with a designation of $A$ as ``subsystem'' and $B$ as ``complement.'' \fields{} (Fields calls the interface between them a \emph{holographic screen}; the factorization is the formal content.)
+
+\begin{definition}[trivial cut]
+The trivial cut is $A = U,\ B = \mathbb{C}$ (or $B = U,\ A = \mathbb{C}$): no genuine bipartition.
+\end{definition}
+
+\begin{invariant}[\asm]
+The \emph{cut-relative} quantities defined in \S2--\S4 (entropic time, local energy flux, registered information) are all \textbf{degenerate on the trivial cut and non-degenerate only for a genuine bipartition}: no complement exists to trace out, no boundary exists across which a flux can be assigned, and no complement channel exists for registration. (The global quantities themselves remain defined --- e.g.\ global entropy is zero, global energy conserved; it is their \emph{cut-relative} versions that degenerate.) This is the one structure invariant under \emph{which} non-trivial cut is chosen: that \emph{some} non-trivial cut is required.
+\end{invariant}
+
+\noindent The necessity of partition is primitive but silent: it is invariant (it holds for every genuine cut) and yet it does not select among them (see \S\ref{sec:select}).
+
+\section{Time as forgetting \quad{\normalsize\est\ assembly}\label{sec:time}}
+
+Given a cut $A\vert B$ and global state $\rho = \lvert\Psi\rangle\langle\Psi\rvert$, the reduced state of $A$ is
+\[
+  \rho_A \;=\; \operatorname{Tr}_B(\rho). \qquad \est
+\]
+Define the reduced entropy of $A$ (the von Neumann entropy of the reduced state),
+\[
+  S_A \;=\; -\operatorname{Tr}\!\big(\rho_A \log \rho_A\big), \qquad \est
+\]
+Three distinct objects must be kept apart, as conflating them is the main source of confusion in \S\ref{sec:spacetime}--\S\ref{sec:lorentz}:
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item $t$ --- the external/coordinate parameter in the formal dynamics. \est
+  \item $S_A$ --- the reduced (entanglement) entropy above. \est
+  \item $\tau_A$ --- an \emph{arrow-conditioned record-order}: a monotone reparametrization of $S_A$, defined only when coarse-graining and the past hypothesis (Turtle~1) make $S_A$ monotone enough to order records. \asm/\conj
+\end{itemize}
+The interpretive claim ``$\tau_A$ \emph{is} time --- the subsystem's forgetting of its complement'' is \asm/\conj, not \est: the entropy formula is established, but reading it as time is the interpretive move, and it is well-defined as an ordering only under Turtle~1.
+
+\begin{proposition}[global purity, local mixedness]{\normalfont\ \est}\label{prop:purity}
+If $\lvert\Psi\rangle$ is pure, then $S_U = 0$, while $S_A \ge 0$ with equality iff $A\vert B$ is unentangled. A genuinely entangled part has nonzero reduced entropy $S_A>0$; it can support a cut-relative entropic \emph{clock} only when $S_A$ changes monotonically enough under Turtle~1. Entanglement alone gives $S_A>0$, not a clock --- the clock needs usable ordered change, as the $\tau_A$ definition above requires. The whole, having no complement, has neither.
+\end{proposition}
+
+\begin{remark}[\gap\ --- direction]
+The growth of $S_A$ is \emph{not} derived to be monotone in any absolute sense. Unitary evolution is time-symmetric; $S_A(t)$ can decrease. Monotonicity --- the \emph{arrow} that turns $S_A$ into a usable $\tau_A$ --- is \textbf{not} produced by this construction. It requires an additional input (\S\ref{sec:turtles}, Turtle~1). This is stated, not hidden: the formalism gives the \emph{magnitude} of $S_A$-change, never its \emph{direction}.
+\end{remark}
+
+\section{Energy as broken symmetry \quad{\normalsize\est}\label{sec:energy}}
+
+By Noether's theorem, energy is the conserved charge of time-translation symmetry. \est{}
+
+Given a cut \textbf{and a chosen local Hamiltonian decomposition}
+\[
+  \hat{H}_U \;=\; \hat{H}_A\otimes I_B + I_A\otimes\hat{H}_B + \hat{H}_{AB}, \qquad \fields
+\]
+the interaction term $\hat{H}_{AB}$ defines boundary exchange. \textbf{The cut makes such a decomposition possible; it does not uniquely select it} --- the split into $\hat{H}_A$, $\hat{H}_B$, $\hat{H}_{AB}$ is a further choice, on top of the factorization, exactly as Claim~\ref{cl:noselect} says the factorization itself is a choice on top of $\mathcal{H}_U$.
+
+\begin{proposition}[local energy flux]{\normalfont\ \est}\label{prop:eflux}
+For a fixed split $\hat{H}_U = \hat{H}_A + \hat{H}_B + \hat{H}_{AB}$ with $\hat{H}_A$ time-independent and $[\hat{H}_A,\hat{H}_B]=0$, the instantaneous energy flux into $A$ is
+\[
+  \dot{E}_A \;=\; \frac{i}{\hbar}\big\langle [\hat{H}_{AB}, \hat{H}_A]\big\rangle.
+\]
+Hence $\hat{H}_{AB}=0$ is \emph{sufficient} for no exchange, but not necessary: local energy is generically non-conserved when the interaction fails to commute with the local Hamiltonian, whereas a coupling that commutes with $\hat{H}_A$ (or a special state) can give zero flux even with $\hat{H}_{AB}\neq 0$. Energy is a cut-relative quantity that generically crosses the cut, without ``$\hat{H}_{AB}\neq 0$'' alone being the criterion.
+\end{proposition}
+
+\begin{proposition}[whole has no energy-flow]{\normalfont\ \asm}
+On the trivial cut there is no $\hat{H}_{AB}$, hence no energy exchange; the ``energy'' that flows is strictly cut-relative. The global $\hat{H}_U$ conserves; only a part leaks.
+\end{proposition}
+
+\begin{remark}[\asm]
+Fields' construction makes the bits exchanged across the screen \emph{equal to} the energy transferred (the $\hat{H}_{AB}$ eigenvalue). This is the formal seam where energy and information coincide \emph{at the cut} --- not as a substance identity, but because both are the same boundary quantity.
+\end{remark}
+
+\section{Information as registered difference \quad{\normalsize\est}\label{sec:info}}
+
+Two layers, kept separate.
+
+\paragraph{4a. Shannon layer. \est}
+For a source with distribution $\{p_i\}$, information content is $-\log p_i$, and average surprise is $H = -\sum_i p_i \log p_i$. Identical in form to \S2's $S_A$ (von Neumann $=$ Shannon on the eigenvalue distribution of $\rho_A$). This is why ``information'' and ``entropic time'' are the \emph{same} quantity read two ways, not two coincidentally-similar ones.
+
+\paragraph{4b. Observer-registration layer.}
+Not all difference is information \emph{to a system}. Given an observer channel $K_B : \Omega \to \Omega_B$, a difference between source states $A, A'$ is \textbf{registered} iff
+\[
+  K_B(A) \;\neq\; K_B(A'),
+\]
+and registered \emph{above threshold} iff $d_B\big(K_B(A), K_B(A')\big) \ge \delta_B$.
+
+\begin{proposition}[whole registers nothing]{\normalfont\ \asm}
+A single global pure state has zero von Neumann entropy, and offers no \emph{complement}-relative distribution --- there is no $B$ to trace out, no external channel, and no $A'$ registered \emph{across a cut} to differ from $A$. (It still offers Born distributions relative to a choice of measurement; what is absent is cut-relative \emph{registered} information, not information as such.) So the whole has no cut-relative registered information, for the same structural reason it has no cut-relative entropic clock.
+\end{proposition}
+
+\begin{remark}[\gap\ --- which channel]
+$K_B$ is \emph{given}, not derived. Which channel an observer has --- its threshold $\delta_B$, its representation space $\Omega_B$ --- is an input. Note the parallel to \S\ref{sec:select}: just as the tensor factorization is chosen, the channel is chosen. Same gap, observer-side.
+\end{remark}
+
+\section{Reach: what else the cut defines, and what it does not}\label{sec:reach}
+
+The three quantities of \S2--\S4 are not the framework's ceiling. Four routes carry further physical quantities out of the same apparatus --- and one route provably does not run, which is as much a result as the others.
+
+\paragraph{Route 1 --- Noether charges, by the energy move. \est}
+Energy (\S3) was the conserved charge of \emph{time}-translation symmetry, made cut-relative through the boundary term $\hat{H}_{AB}$. Noether's theorem is general: every continuous symmetry yields a conserved charge, and — with the same caveat as the energy flux — each splits across the cut.
+
+\begin{proposition}[charge flux across the cut]{\normalfont\ \est}
+Energy is special: the Hamiltonian both \emph{is} the time-translation charge and \emph{generates} the dynamics. A generic Noether charge $\hat{Q}$ does not generate evolution. Its flux is generated by the \emph{Hamiltonian}:
+\[
+  \dot{Q}_A \;=\; \frac{i}{\hbar}\big\langle [\hat{H}_U, \hat{Q}_A]\big\rangle,
+\]
+and, when a local current $j_Q$ exists, equals a boundary flux $\dot{Q}_A = -\int_{\partial A} j_Q\!\cdot n$. So: for global symmetries with local current decompositions, subsystem charge changes are boundary fluxes generated by the Hamiltonian dynamics; $\hat{Q}_U$ may be globally conserved while $\hat{Q}_A$ is not. This covers momentum (space-translation), angular momentum / spin (rotation), and other global charges --- \emph{without} forcing each into the same generator role as energy. Energy is the case where the charge and the generator coincide, which is why it was examined first.
+\end{proposition}
+
+\begin{remark}[gauge charges are subtler]{\normalfont\ \est\ / \gap}
+Electric and other \emph{gauge} charges do \textbf{not} automatically fit the naive $\mathcal{H}_A\otimes\mathcal{H}_B$ split. Gauge constraints (Gauss's law) can obstruct simple Hilbert-space factorization across a spatial region; a gauge-invariant treatment requires local algebras, edge modes, or an extended Hilbert space (Casini--Huerta--Rosabal). Route~1 as stated applies cleanly to global symmetries with local currents; gauge symmetries need the algebraic/edge-mode version and are flagged here rather than claimed.
+\end{remark}
+
+\noindent This widens the base from ``three co-products'' to ``three co-products plus the entire conserved-charge algebra,'' at no new cost: it uses only the cut and the symmetries already assumed.
+
+\paragraph{Route 2 --- thermodynamic quantities, from the reduced entropy. \est\ (cut + arrow)}
+With $S(\rho_A)$ (\S2) and $\langle\hat{H}_A\rangle$ (\S3) in hand, standard relations deliver the thermodynamic quantities. Temperature is the marginal exchange rate between the information-face and the energy-face of the same cut,
+\[
+  \frac{1}{T} \;=\; \frac{\partial S(\rho_A)}{\partial \langle\hat H_A\rangle},
+\]
+and free energy, chemical potential, and pressure follow by the usual derivatives. \textbf{Caveat:} these presuppose equilibration, hence the second law, hence the arrow (Turtle~1). Thermodynamic quantities are therefore cut-relative \emph{and} arrow-dependent --- downstream of both turtles, unlike the Noether charges, which need only the cut.
+
+\paragraph{Route 3 --- invariants and geometry. \est\ / \conj}
+Two sub-cases of different status:
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt, topsep=2pt]
+  \item \textbf{Mass. \est} Rest mass is a Casimir invariant of the Poincar\'e group, $m^2 = E^2 - p^2$: \emph{frame}-invariant within a chosen subsystem representation. Given energy and momentum from Route~1, mass is their frame-invariant combination --- the feature of the energy--momentum content that does not vary under boosts. Note this is Lorentz-invariance, not cut-invariance: the mass/energy assigned to a subsystem still varies with binding, dressing, and boundary choice.
+  \item \textbf{Distance / geometry. \conj} In holographic settings (AdS/CFT), Ryu--Takayanagi relates the entanglement entropy of a boundary region to the area of a bulk extremal surface --- a specific relation, not a general ``mutual entanglement $=$ distance'' rule. More broadly, entanglement/geometry programs (Van~Raamsdonk) suggest connectivity and distance-like structure may be recoverable from entanglement patterns, with disentangling regions pinching spacetime apart. This framework is \emph{compatible} with that program but does not derive it, and does not assert the general rule.
+\end{itemize}
+
+\paragraph{Route 4 --- what the cut does NOT define. \gap}
+Not every physical quantity is a co-product of a cut, and marking the exclusions is a result, not an omission.
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt, topsep=2pt]
+  \item \textbf{The dimensionful constants} $(\hbar, G, \text{coupling constants})$ are fixed background: identical across every partition and observer, cut-\emph{invariant} in the strongest sense, and \emph{not generated} by the cut. (The status of $c$ is subtler and is treated in \S\ref{sec:lorentz}: as the observed relativistic \emph{conversion constant} between space- and time-units it is a convention/background scale, but an \emph{emergent maximum correlation speed} of a different, pre-geometric character may arise from the interaction structure. These are two distinct roles for the one symbol and must not be conflated.)
+  \item \textbf{The symmetry group and dimensionality} (which gauge group, why $3{+}1$ dimensions) are \emph{upstream} of the cut: Route~1 \emph{consumes} the symmetries as input and cannot produce them. Likewise the spacetime dimension.
+\end{itemize}
+
+\begin{proposition}[type boundary of the framework]{\normalfont\ \asm}\label{prop:typebound}
+The cut generates precisely the quantities that are \textbf{charges or correlations of a partition} --- Noether charges (Route~1), entropic and thermodynamic quantities (\S2, Route~2), their invariants (Route~3a), and possibly geometry (Route~3b). It does \textbf{not} generate the \emph{background structure that a partition presupposes}: the constants, the symmetry group, the dimensionality. Compactly: the cut gives everything that flows or correlates across a partition, and nothing that the partition presupposes.
+\end{proposition}
+
+\paragraph{Matter: the conserved side of the cut. \asm}
+The quantities so far are \emph{flowing} --- time (the rate of forgetting), energy (what leaks across $\hat{H}_{AB}$), information (what is registered and lost). Matter is their complement: the \emph{persisting} side.
+
+\begin{definition}[matter]\label{def:matter}
+The \textbf{matter} content of a subsystem $A$ is the conserved, boundary-holding structure of $A$ --- the invariant of $A$'s own evolution: what is preserved (protected by symmetry, commuting with the effective $\hat{H}_A$) while the correlations that decohere into $B$ are washed away. Where energy is what flows across the cut, matter is what stays.
+\end{definition}
+
+\noindent The definition is not ``the energy located in $\hat{H}_A$'' (that is a property matter \emph{has}, not what it \emph{is}). It is the \emph{fixed point of the forgetting}: the structure that persists across $S_A$-growth. This discharges, in the framework's own terms, the informal split \emph{form vs.\ variation} --- form is the conserved invariant, variation is the flow.
+
+\begin{proposition}[matter yields its own signatures]{\normalfont\ \asm}\label{prop:matter}
+Definition~\ref{def:matter} produces the expected properties of matter without being told them:
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item \textbf{Inertia / persistence} is not added; ``conserved under evolution'' is what resisting change \emph{means}.
+  \item \textbf{Localization}: a conserved charge in a region is a boundary --- it is what stays on $A$'s side while correlations leak.
+  \item \textbf{Trace-retention}: matter is what can register (O2, Def.~\ref{def:observer}). Strictly, a detector requires not exact conservation but a robust \emph{pointer subspace/subalgebra} whose records persist over the relevant timescale (decoherence / quantum Darwinism); ``persistent structure'' should be read in that sense, not as strict invariance.
+  \item \textbf{Mass coincidence}: by Route~3a, rest mass is the Poincar\'e Casimir --- \emph{frame}-invariant within a chosen subsystem representation. (It is not straightforwardly \emph{cut}-invariant: the mass/energy assigned to a subsystem varies with binding, dressing, and boundary choice.) With that scoping, mass being the \emph{frame-invariant} combination and matter being the \emph{persistent} aspect are aligned --- a consistency check, once the representation is fixed.
+\end{itemize}
+\end{proposition}
+
+\begin{remark}[three flags]{\normalfont\ \gap}
+(i)~\textbf{Cut-relative.} ``Conserved under $\hat{H}_A$'' needs an evolution, hence a cut; change the cut and different structure is conserved. There is \emph{no primitive matter} --- only cut-relative persistence. Matter is not more fundamental than the cut.
+(ii)~\textbf{Downstream of Turtle~1.} ``Persists across the forgetting'' presupposes forgetting, hence the arrow. Without direction, ``conserved across'' and ``conserved against'' evolution are symmetric and persistence loses meaning. The arrow is the condition for anything to \emph{last} --- and lasting is the condition for being a thing.
+(iii)~\textbf{Category, not content.} This defines matter-as-a-category (conserved boundary-holding structure), not the specific spectrum (why these particles). The particle content, like the symmetry group, is Route~4 background: consumed, not derived.
+\end{remark}
+
+\begin{remark}[the flowing / persisting split]{\normalfont\ \asm}
+The spec's quantities divide into two piles, separated by the arrow. \emph{Flowing}: time (rate of forgetting), energy (leak across $\hat{H}_{AB}$), information (registered and lost). \emph{Persisting}: matter, mass. Compactly: matter is what a cut keeps; energy is what a cut spends; time is the keeping-and-spending; and the arrow (Turtle~1) is what makes ``keep'' and ``spend'' mean different things at all.
+\end{remark}
+
+\section{Particles and forces \quad{\normalsize\asm\ / \conj}\label{sec:pf}}
+
+\paragraph{Particles: irreducible units of the persisting pile. \asm}
+Matter (Def.~\ref{def:matter}) is \emph{any} conserved, boundary-holding structure. A particle is its atom.
+
+\begin{definition}[particle]\label{def:particle}
+A \textbf{particle} is a minimal persistent charge-sector \emph{relative to the theory's representation content and operational regime}: an indivisible package of frame-invariant charges (mass, spin, internal charges) that is not decomposable, within that regime, into independently-persisting sub-sectors carrying the same conserved package.
+\end{definition}
+
+\noindent This lands on Wigner's classification (a relativistic particle type is an irreducible unitary representation of the Poincar\'e group, labelled by its Casimirs) from the persistence side: ``irreducible package of frame-invariant charges'' is ``irreducible representation.'' The regime-relativity is not a hedge but a fact about the word: ``particle'' already shifts meaning across asymptotic states, confinement, infraparticles, unstable resonances, quasiparticles, and partons. A rock is persistent but decomposable; a particle is persistent and irreducible \emph{within its regime}. As with matter, this defines particle-\emph{as-category}, not the spectrum (\emph{which} particles is the representation content of the \emph{specific} symmetry group --- Route~4 background).
+
+\paragraph{Forces: what moves charges across a cut. \asm/\est}
+A \textbf{force} is an interaction term $\hat{H}_{AB}$: the coupling that lets charges leak between the two sides of a cut (Prop.~\ref{prop:eflux}). This is the classical content --- force is interaction --- and it is shallow but solid.
+
+\paragraph{Gauge forces: the cost of a cut-relative symmetry. \conj}
+The deeper claim concerns \emph{fundamental} (gauge) forces. A \emph{global} symmetry is one the whole possesses (a Noether charge, Route~1). A \emph{gauge} symmetry is one whose internal reference-frame convention is choosable \textbf{independently at each cut} --- a per-partition choice, not a global fact. When the convention is cut-relative, something must reconcile it between adjacent cuts: a \emph{connection}. The connection is the gauge field; its irreducible quantum is the force-carrying particle (gauge boson). On this reading, a gauge force is what the cut-relativity of an internal symmetry \emph{costs}, and this ties three threads together: force as $\hat{H}_{AB}$, the cut-as-chosen (Claim~\ref{cl:noselect}), and the Aharonov--Bohm holonomy (the connection integrated around a loop encircling flux the particle never locally touches).
+
+\paragraph{Status: supported, warned, not owned.}
+This reading was tested against two independent settings, with a split result.
+
+\begin{itemize}[leftmargin=1.4em, itemsep=3pt, topsep=3pt]
+  \item \textbf{Aharonov--Bohm supports the topological / loop-relative half. \est-supported} The measured interference is periodic in the enclosed flux with period the flux quantum $h/e$, and depends on the enclosed flux even where the particle travels through a field-free region. This supports a \emph{holonomy / topological} reading: the observable is loop-relative and gauge-invariant, not a local force along the particle's path. It does \textbf{not} by itself decide the ontology of the potential (many potential-realists take AB as evidence \emph{for} the vector potential's physical significance), nor does it explain \emph{why} there is a connection; that is supplied, if at all, by the cut-relative symmetry story and the gauge-entanglement evidence below. AB has fixed geometry and cannot see the origin story.
+  \item \textbf{Gauge entanglement supports the origin-story half --- and over-delivers. \conj} In gauge theories the gauge-invariant Hilbert space does \emph{not} tensor-factorize across a region (Casini--Huerta--Rosabal): the constraints leave a \emph{center} in the regional algebra. There is no unique factorization; one must \emph{choose} a local algebra (electric-, magnetic-, or trivial-center), and different choices give different entanglement entropies, with the gap supplied by \emph{edge modes} on the interface. This is the discriminating signature the origin story predicts: the boundary gauge structure \textbf{depends on the choice of cut} --- edge modes are generated \emph{by} the act of cutting, exactly as ``the connection is the cost of cut-relative symmetry'' requires, and unlike a cut-independent fiber bundle. Recent work (relational quantum reference frames) recovers the electric/magnetic center algebras as the intersection of frame-dependent perspectives --- i.e.\ the same reading, made rigorous.
+\end{itemize}
+
+\begin{remark}[three honest flags on the gauge result]{\normalfont\ \conj/\gap}
+(i)~\textbf{Over-delivery / warning.} The cut-dependence is so strong that the entanglement entropy itself becomes prescription-ambiguous (boundary-dependent, sometimes divergent). This is \emph{more} than ``facts are perspectival'': the absolute quantity is genuinely ambiguous. The framework's real content must then retreat to the \emph{relational} quantities --- mutual information and relative entropy are \emph{not} ambiguous in the continuum limit --- which is consistent with the spec's spirit (relational facts real, absolute facts not) but is a retreat the naive version did not anticipate. It is, however, independent confirmation of Claim~\ref{cl:noselect}: in gauge theories the absence of a natural selector is not a labeling nicety but a physical ambiguity.
+(ii)~\textbf{Not owned.} The origin-story reading is an active, rigorous research program (relational QRF); the spec recovers it informally, it does not originate it. Credence is upgraded from \conj-untested to \conj-supported, not to \est.
+(iii)~\textbf{Category, not content.} Even granted, this yields force-\emph{as-category} (gauge connection from cut-relative symmetry), not \emph{which} gauge group or \emph{why} symmetries are local rather than rigid --- both Route~4 background. The framework explains what a gauge force \emph{is} given local symmetry; it does not explain why symmetries are gauged.
+\end{remark}
+
+\section{Worked example: black-hole information and the island cut \quad{\normalsize\asm, consistency check}\label{sec:bh}}
+
+This section is a \textbf{consistency check, not a contribution to black hole physics}. The framework \emph{frames} the paradox and its modern resolution as an instance of its own structure; it does \textbf{not} derive the island rule, the Page curve, or the quantum extremal surface (QES) formula --- those rest on the gravitational $\mathrm{Area}/4G$ term and holography, which are Route~4 background the framework consumes.\footnote{Standard references for the machinery cited here: Hawking (radiation, information loss); Page (the Page curve); Ryu--Takayanagi (holographic entanglement entropy, hep-th/0603001); Engelhardt--Wall / QES; Penington (entanglement-wedge reconstruction, 1905.08255); Almheiri--Engelhardt--Marolf--Maxfield and Almheiri--Mahajan--Maldacena--Zhao (island rule, 1905.08762 and follow-ups). The framework uses these results; it does not reproduce or derive them.} What is legitimate is the observation that the resolution is a worked instance of the spec's central claims.
+
+\paragraph{The paradox, in the framework's terms.}
+A black hole forms from a pure state and evaporates. Hawking's calculation makes the radiation's entanglement entropy rise monotonically, so the final radiation looks highly mixed --- apparently destroying information, violating unitarity. In the framework's vocabulary this is the error the spec was built to catch: \textbf{treating a cut-relative local mixedness as a cut-independent global fact}. It is the information-theoretic twin of the problem of time (``the whole has no time'' becomes ``the radiation has no cut-independent definite entropy'').
+
+\paragraph{The resolution is a worked instance of Prop.~\ref{prop:purity}.}
+The island / Page-curve resolution: the radiation's fine-grained entropy rises, peaks at the Page time, and falls back --- the Page curve --- because after the Page time a region \emph{inside} the horizon (the island) enters the \emph{entanglement wedge} of the radiation. The radiation entropy is computed by the dominant generalized-entropy saddle, extremized/minimized over candidate islands:
+\[
+  S(R) = \min_I\;\mathrm{ext}_I\Big[\tfrac{\mathrm{Area}(\partial I)}{4G_N} + S_{\text{bulk}}(R\cup I)\Big].
+\]
+The Page-time transition is exactly a \textbf{change in which saddle dominates} (a phase transition in the quantum RT surface). Three framework claims appear as the actual mechanism, not by analogy:
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt, topsep=2pt]
+  \item \textbf{Global purity, local mixedness (Prop.~\ref{prop:purity}).} The paradox is forgetting it; the resolution is that the radiation looks mixed relative to a naive cut, but relative to the dominant QES/island saddle its fine-grained entropy follows the Page curve, consistent with global unitarity. The framework \emph{diagnoses} the shape of both the confusion and the resolution: the paradox arises when a cut-relative entropy is treated as absolute, and the island resolution restores unitarity by changing the generalized-entropy saddle used to assign the radiation's fine-grained entropy.
+  \item \textbf{Cut-relativity with a chosen cut (Claim~\ref{cl:noselect}).} The physics does not merely permit cut-relative entropy; it \emph{computes the answer by extremizing over candidate islands / QES saddles}. Which saddle dominates changes over time.
+  \item \textbf{Retreat to relational quantities.} As in the gauge case (\S\ref{sec:pf}), the robust content is the fine-grained/relational entropy against the coarse-grained --- the same move, independently applicable in a second hard setting.
+\end{itemize}
+
+\paragraph{Where it strains and where it stops. \gap}
+The island is a \emph{geometrically disconnected} interior region that nonetheless belongs to the radiation's wedge. The framework can call this ``a non-obvious cut,'' but it has no machinery for \emph{why} the correct cut includes a spatially separated interior --- that comes from the $\mathrm{Area}/4G$ gravitational term, which the framework does not generate (Route~4). It cannot derive the QES formula, the value of the Bekenstein--Hawking entropy, or the interior-reconstruction / firewall structure; those are holography and the gravitational path integral, consumed not explained.
+
+\begin{remark}[the genuine nugget]{\normalfont\ \asm}
+Structurally, the information paradox is the problem-of-time move one level up: both dissolve by refusing to treat a cut-relative quantity as a cut-independent fact. The framework's claim is that these are the \emph{same category error}, resolved the same way --- and major modern island/QES calculations resolve the Page-curve version of the paradox, in controlled holographic and semiclassical models, in exactly the structural way the framework highlights (there remain live questions around interior reconstruction, state dependence, microscopic interpretation, and firewall-adjacent issues, as the ``where it stops'' paragraph notes). This is a genuine unification offered by the lens (two famously hard problems shown to share a structure, with the field's own resolution of one confirming the shape). It remains \emph{illuminating, not predictive}: the framework frames and unifies; it derives none of the gravitational content.
+\end{remark}
+
+
+\section{Spacetime as a $\tau$-indexed family, not a manifold \quad{\normalsize\est\ / \conj}\label{sec:spacetime}}
+
+The framework must recover the observed $3{+}1$ structure of spacetime without \emph{smuggling} the dimensional treatment of time --- i.e.\ without positing a four-manifold $M \cong \mathbb{R}^{3,1}$ at the outset, which would grant time a coordinate axis symmetric with the spatial ones before that symmetry has been earned. The type boundary (Prop.~\ref{prop:typebound}) forbids positing dimensionality; so the construction must build what it can and declare the rest as input. The result is that ``$3{+}1$'' is legitimate only as \emph{emergent local kinematics}, over an underlying structure in which the ``$3$'' and the ``$1$'' are objects of different type.
+
+\paragraph{The ``3'': space as a symmetry of the whole. \est\ / \gap-dimension}
+Space enters through momentum (Route~1): the conserved charge of translation symmetry. Spatial \emph{dimensionality} is the rank of the commuting translation subgroup ---
+\[
+  \dim_{\text{space}} \;=\; \operatorname{rank}\big(\text{translation generators of the symmetry group}\big).
+\]
+This is a property of the symmetry group, which by Route~4 is \textbf{background, not cut-derived}. The ``3'' is therefore \emph{located} (it is the translation-rank) but not \emph{derived}: it is an input, inherited from the symmetry structure the whole possesses.
+
+\paragraph{The ``1'': time as an ordering of a part, not an axis. \est}
+Time does \emph{not} enter as a fourth translation-charge. By \S2 it is $\tau_A$, the monotone reparametrization of $S(\rho_A)$ --- the forgetting of the cut. The whole has no such parameter ($S$ of a pure global state is static). Hence:
+
+\begin{proposition}[space and time are of different type]{\normalfont\ \asm}\label{prop:diftype}
+In this framework, space is a symmetry-property of the whole (the translation-charge, static, background) and time is a process-property of a part (the entropy growth $\tau_A$ of a cut). They are not two dimensions of one kind. The manifold picture $M = \text{space}\times\text{time}$ obscures this type difference by dressing both in coordinate-clothes; the Lorentzian signature's minus sign is its last visible trace.
+\end{proposition}
+
+\paragraph{Spacetime: an indexed family, not a product.}
+The correct object is not a four-manifold but a one-parameter family of spatial configurations, indexed by the forgetting-parameter:
+\[
+  \mathcal{S} \;=\; \big\{\, \Sigma(\tau_A) \,\big\}_{\tau_A},
+\]
+where each $\Sigma(\tau_A)$ is a configuration over the spatial (translation) structure, and $\tau_A$ is \textbf{an ordering index, not a coordinate.} The distinction is the entire anti-smuggle:
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item In a product manifold, $t$ is an axis one may traverse freely and \emph{reversibly}; nothing in the geometry forbids $-t$.
+  \item In a $\tau_A$-indexed family, the index \emph{is} the accumulated forgetting: monotone (by Turtle~1), part-relative (no global $\tau$), and non-traversable in reverse, because reversal would mean un-forgetting, which the arrow forbids.
+\end{itemize}
+Same ``$3{+}1$'' count; different ontology --- three symmetry-dimensions plus one ordering-process.
+
+\paragraph{Recovering dimension-like time: emergent local kinematics. \conj}
+Observed physics is Lorentz-invariant: time and space \emph{mix} under boosts (measured, e.g.\ time dilation). This must be reconciled with Prop.~\ref{prop:diftype}, which makes them different types. The reconciliation is a split:
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt, topsep=2pt]
+  \item \textbf{Kinematic level (mixes). \conj} For a \emph{single} subsystem's reduced coordinate description, one may set up local coordinates in which the clock-parameter $\tau_A$ and the spatial-charge labels transform into one another under a boost. Here the ``$+1$'' \emph{looks} dimension-like, and the manifold picture works as bookkeeping. This emergent Lorentz structure is \emph{local and cut-relative}, and its derivation is the open joint (below).
+  \item \textbf{Thermodynamic level (does not mix). \est / \gap} The arrow --- the monotonicity of $\tau_A$, Turtle~1 --- does not transform into a spatial direction under any boost. One may boost coordinates; one cannot boost out of the second law. Real time (the ordering asymmetry) stays outside the geometry.
+\end{itemize}
+
+\begin{proposition}[$3{+}1$ as emergent kinematics]{\normalfont\ \asm/\conj}\label{prop:threeone}
+The familiar dimensional, Lorentz-mixing ``$3{+}1$'' is recovered as \emph{emergent local kinematics for a single observer's coordinate description}: the ``$3$'' inherited from the translation symmetry (background), the ``$+1$'' the cut's forgetting-parameter appearing dimension-like only at the kinematic level. The arrow is kept strictly in the ordering (Turtle~1) and never in the manifold. The ``$+1$'' is never a fourth axis fundamentally; it is permitted only to \emph{look} like one, locally and kinematically, as a derived shadow of the cut.
+\end{proposition}
+
+\begin{remark}[the open joint]{\normalfont\ \conj/\gap}
+Proposition~\ref{prop:threeone} leans on the claim that $\tau_A$ and the spatial charges mix \emph{kinematically} into an emergent Lorentz structure. This is the weakest link: deriving Lorentz invariance from cut structure is an active research program. The anti-smuggle is clean down to the indexed-family construction (space-as-symmetry, time-as-ordering, spacetime-as-$\tau$-indexed-family --- all defensible). It becomes conjectural precisely at ``why does the ordering-parameter mix with space like a dimension.'' The next section (\S\ref{sec:lorentz}) does not close this joint, but it dissects it into components --- most of which the framework already supplies --- and isolates the single genuine obstruction (the \emph{isotropy} of the causal cone), for which it offers a mechanism.
+\end{remark}
+
+\section{Anatomy of emergent Lorentz invariance \quad{\normalsize\est\ / \conj}\label{sec:lorentz}}
+
+The ``$3{+}1$'' construction (\S\ref{sec:spacetime}) is legitimate only if the emergent kinematics is \emph{Lorentzian}. This section dissects Lorentz invariance into components, shows the framework already supplies most, isolates the one genuine obstruction, and offers a mechanism for it. It does not close the problem; it relocates it to a single, sharper, mechanistically-grounded conjecture.
+
+\paragraph{The five components.}
+Lorentz invariance bundles five distinct claims:
+\begin{enumerate}[leftmargin=1.6em, itemsep=1pt, topsep=2pt]
+  \item[\textbf{C1}] \textbf{An invariant finite speed} $c$ exists.
+  \item[\textbf{C2}] \textbf{Relativity principle:} no frame is privileged.
+  \item[\textbf{C3}] \textbf{Boost mixing:} space and time transform into one another under changes of velocity.
+  \item[\textbf{C4}] \textbf{Invariant interval} with Lorentzian ($-,+,+,+$) signature.
+  \item[\textbf{C5}] \textbf{Causal structure:} timelike / spacelike / null.
+\end{enumerate}
+
+\paragraph{What the framework already supplies.}
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt, topsep=2pt]
+  \item \textbf{C2 rhymes, but is not immediate. \conj} ``No privileged cut'' (Claim~\ref{cl:noselect}) is a meta-level underdetermination claim; the relativity principle is a physical covariance claim about inertial frames and laws. They are suggestively parallel, but not the same theorem, and identifying them requires further argument. Tagged \conj, not \asm.
+  \item \textbf{C5 is natural. \asm} Causal structure is the pattern of which cuts can exchange information: $\hat{H}_{AB}\neq 0$ supplies the dynamical channel through which correlations can generically propagate. Actual influence depends on the state, observables, and controllable interventions --- a nonzero interaction may still fail to transmit a given signal (commuting observables, symmetry or state restrictions). Causal order is the \emph{reach} of the interaction term, not a strict iff.
+  \item \textbf{C1 has a candidate. \est} A finite maximum rate of correlation propagation exists in any system with local interactions: the \textbf{Lieb--Robinson bound}. This is a proven theorem, and it supplies an emergent, finite, \emph{pre-geometric} speed scale --- the fastest one region can come to be correlated with another. This is \emph{not} the same object as the observed relativistic conversion constant of \S\ref{sec:reach} (Route~4); it is a model-dependent effective speed. Whether the two coincide (i.e.\ whether the emergent correlation speed \emph{is} the observed $c$) is part of what the isotropy problem below must settle. Its numerical value is in any case a unit convention.
+  \item \textbf{C3, C4 follow only with extra assumptions. \conj} Given an invariant finite speed (C1) and the relativity principle (C2), boost-mixing and the invariant interval follow \emph{only} with homogeneity, isotropy, linearity, and suitable group structure. Since isotropy is precisely the open obstruction below, this step cannot be leaned on as established; it is downgraded to conditional.
+\end{itemize}
+
+\paragraph{The single genuine obstruction: isotropy. \gap}
+The Lieb--Robinson speed is generically \textbf{anisotropic and frame-dependent}: on a structured interaction pattern, correlations propagate faster in some directions than others, and the pattern defines a preferred rest frame. A generic cut-structure therefore yields a causal cone that is \emph{lumpy and framed} --- a Galilean-with-speed-limit or aether structure, \textbf{not} Lorentzian. What C1 supplies for free is \emph{a} finite causal rate; what Lorentz invariance additionally requires is that the rate be \emph{isotropic and boost-invariant} --- a perfectly round cone, identical for every observer. This, not the value of $c$ and not the mere existence of a finite rate, is the entire content of the open joint.
+
+\paragraph{The mechanism: ruler cancellation (Route C). \asm/\conj}
+The obstruction is addressed by the definition of an observer (\S\ref{sec:observer}, below) --- specifically the condition that an observer's rulers are built from the same interaction structure it measures with. \textbf{The mechanism requires a strong condition, stated up front:} cancellation works only for \emph{universal} anisotropy --- all rods, clocks, signal processes, and dimensionless comparison experiments must inherit the \emph{same} effective metric/dispersion. It is \textbf{not} the case that any endogenous ruler cancels anisotropy: rod lengths depend on equilibrium potentials, masses, moduli, and lattice structure, and in anisotropic media internal observers can often detect the anisotropy through \emph{dimensionless} effects (birefringence, dispersion, mode splitting, orientation-dependent decay). So the correct claim is not ``endogenous rulers cancel anisotropy'' but ``universal fixed-point co-dispersion makes anisotropy operationally invisible.'' The sketch, under that universality condition:
+
+\begin{enumerate}[leftmargin=1.6em, itemsep=2pt, topsep=2pt]
+  \item To measure a speed in direction $d$, an observer $A$ needs a rod and a clock, both physical systems built from $A$'s own couplings.
+  \item \emph{If} rod, clock, and the measured process all share one effective dispersion, their common directional dependence enters every measurement in the same way.
+  \item The shared directional factor then cancels in the dimensionless ratio that constitutes a speed measurement, so $A$ measures the same speed in every direction.
+  \item Hence anisotropy is unregistrable --- \emph{provided} the co-dispersion is universal. If different sectors retain different anisotropies, the preferred structure becomes observable and the cancellation fails.
+\end{enumerate}
+
+\begin{proposition}[unregistrable anisotropy is not a fact]{\normalfont\ \post}\label{prop:unreg}
+By the framework's own criterion, a fact exists only relative to a cut that can register it (\S\ref{sec:info}). \emph{If} the substrate's preferred frame cannot be registered by any observer (universal co-dispersion, above), then by that criterion it is not a fact: it is real only from a view no observer occupies, and Lorentz invariance would be effective for the world of registrable facts. This is a \textbf{postulate} of the framework's observer-relative ontology, not a physics theorem: establishing it as \emph{exact} would require a model showing every \emph{dimensionless} Lorentz-violating observable cancels for every possible endogenous apparatus --- which is not provided here, and which the birefringence/mode-splitting counterexamples show is a nontrivial demand. The anisotropy is, on this postulate, exiled to the same unreachable ``view from nowhere'' as the whole's cut-relative time, energy, and information.
+\end{proposition}
+
+\paragraph{Exactness, and the unification of the two routes. \conj}
+The universal-co-dispersion condition is exactly what a \textbf{renormalization-group fixed point} supplies: distinct microscopic structures flow toward a common dispersion, at which the shared directional factor is universal and cancellation is exact. Hence:
+
+\begin{proposition}[Route B and Route C are one mechanism]{\normalfont\ \conj}\label{prop:routes}
+RG flow drives distinct microscopic structures toward a common dispersion (the emergent-Lorentz fixed point); \emph{at} that fixed point, ruler cancellation (Prop.~\ref{prop:unreg}) is exact. The RG washout (``Route B'') is \emph{why} one reaches the point where ruler cancellation (``Route C'') becomes exact; they are the same mechanism from two sides. Away from the fixed point, cancellation is approximate and residual anisotropy remains in principle.
+\end{proposition}
+
+\begin{remark}[a testable consequence]{\normalfont\ \conj}
+Pure RG washout predicts approximate isotropy with residual Lorentz-violating corrections. Ruler cancellation adds that the observer's own rulers sit at the same near-fixed-point, so the observer cannot register the residual with instruments that share it --- predicting that \emph{observed} Lorentz violation is suppressed \textbf{below} the naive RG estimate. This distinguishes the mechanism from pure washout and bears on the empirical puzzle that measured Lorentz invariance is ``too perfect.''
+\end{remark}
+
+\begin{remark}[honest status of this section]{\normalfont\ \conj/\gap}
+Three flags. (i)~Exact cancellation holds only \emph{at} the fixed point; establishing that the framework generically flows there, and that the coincidence of static and dynamic dispersion is exact rather than approximate, is unproved. (ii)~The observer definition (\S\ref{sec:observer}) that carries the cancellation must be \emph{independently motivated}, not reverse-engineered to produce it; the argument that it is (every real ruler is made of the local interactions; there is no structure-independent ruler) is given there, but the suspicion of defining-to-order should be held. (iii)~The whole construction is \textbf{downstream of Turtle~1}: an observer requires records, records require an ordering, the ordering is the arrow. Emergent Lorentz invariance here is therefore conditional on the past hypothesis, like intersubjectivity (\S\ref{sec:inter}). What this section changes: the open joint is no longer ``emergent Lorentz invariance is an unproved program we gesture at,'' but ``here is the specific obstruction (isotropy), a mechanism (ruler cancellation unifying with RG), and a testable prediction --- with exactness the single remaining conjecture.''
+\end{remark}
+
+\paragraph{Numerical test (the one empirical result). \est-in-model / \conj}
+The ruler-cancellation claim was tested directly in a simulation: 2D anisotropic tight-binding free fermions ($J_x\neq J_y$), exact correlation-matrix dynamics, with a god's-eye control (Lieb--Robinson cone in bare lattice units, verifiably elliptical) and an \emph{endogenous} observer whose rod is an impurity bound-state width and whose clock is a cavity beat period --- both built from the same couplings, never from lattice coordinates. A dimensionless detection battery was validated first (it detects the known anisotropy when fed god's-eye data, stays null on an isotropic substrate). The pre-registered verdict rules then fired as follows.
+
+\begin{itemize}[leftmargin=1.4em, itemsep=3pt, topsep=3pt]
+  \item \textbf{Naive claim falsified.} An endogenous observer timing its \emph{fastest} signal (the Lieb--Robinson front) against its own rods measures a direction-dependent speed at every coupling and every tuning, including arbitrarily close to the fixed point. ``No dimensionless internal experiment detects anisotropy'' is \textbf{false}, even at the fixed point. The battery detects the substrate axis.
+  \item \textbf{A new exact law, not anticipated by this spec.} Ballistic front speeds scale as $J_d$ (band-edge, UV); binding-length rods scale as $\sqrt{J_d}$. The observer therefore sees the anisotropy \emph{square-rooted}, not cancelled:
+  \[
+    A_{\text{endo}}(\text{front}) \to \sqrt{A_{\text{god}}}
+    \qquad(\text{measured } 1.4195 \text{ vs } \sqrt{2.0075}=1.4169).
+  \]
+  \item \textbf{Corrected claim supported, but IR-only.} Long-wavelength observables (wavepacket speeds, dispersion, birefringence) co-disperse with the rods and become exactly isotropic at the fixed point ($A_{\text{endo}}(\text{wp})\to 1.0002$ as the bound-state size $\xi\to 39$). This is the co-dispersion mechanism, numerically verified. But it holds for the \textbf{IR sector only}: the front (UV) observable never renormalizes.
+\end{itemize}
+
+\noindent The consequence for Prop.~\ref{prop:unreg}: emergent effective Lorentz invariance is an \textbf{infrared} phenomenon, exact only at a fixed point and only for fixed-point observables; an endogenous observer with UV access (its own light-cone) registers the substrate anisotropy at every scale. The open question is whether an \emph{interacting} fixed point makes the front itself renormalize (removing the UV leak) --- the natural next test, requiring tensor-network rather than Gaussian dynamics, and the honest current home of the framework's Lorentz claim: \emph{plausibly rescued at interacting fixed points, unproven, undecidable in a free theory}. This is the one place in the document backed by computation rather than argument, and it \emph{weakened and sharpened} the claim rather than confirming it --- which is the correct behaviour of a real test.
+
+\section{The observer, minimally defined \quad{\normalsize\asm}\label{sec:observer}}
+
+The ruler-cancellation mechanism (\S\ref{sec:lorentz}) requires a notion of observer, and it must be defined \emph{before} geometry, using only what the framework already has (cut, $\hat{H}_{AB}$, information, arrow) --- else the derivation of spacetime would presuppose observers that presuppose spacetime. The definition is deliberately minimal; enriching it (memory, representation, consciousness) would add structure irrelevant to the cancellation and reintroduce the circularity.
+
+\begin{definition}[minimal observer]\label{def:observer}
+A subsystem $A$ of a cut is an \textbf{observer} iff:
+\begin{enumerate}[leftmargin=1.6em, itemsep=1pt, topsep=2pt]
+  \item[\textbf{O1}] \textbf{It is one side of a cut.} It thereby has the three co-products (time, information, energy). Every part satisfies this; it is not yet sufficient.
+  \item[\textbf{O2}] \textbf{It registers.} It has internal degrees of freedom whose states become structured-correlated with $B$'s, so different states of $B$ leave different, retained marks in $A$. This distinguishes a detector (keeps marks) from a rock (washes out).
+  \item[\textbf{O3}] \textbf{Its rulers are endogenous.} Its clocks and length-standards are built from the same $\hat{H}_{AB}$-type couplings that govern the propagation it measures. It has no structure-independent ruler.
+\end{enumerate}
+\end{definition}
+
+\noindent No mention of mind, model, or complexity: a thermostat satisfies O1--O3. O3 is the load-bearing condition for \S\ref{sec:lorentz}; O2 is what makes ``fact'' (\S\ref{sec:info}) applicable to $A$.
+
+\begin{remark}[the observer is downstream of the arrow]{\normalfont\ \gap}
+O2 presupposes that $B$ has a \emph{history} to be recorded --- an ordering --- which is Turtle~1. No arrow, no records, no observer. The observer is therefore defined relative to the arrow, and everything built on it (Prop.~\ref{prop:unreg}, emergent Lorentz invariance) inherits that dependence.
+\end{remark}
+
+\begin{remark}[why not richer]{\normalfont\ \asm}
+The cancellation of \S\ref{sec:lorentz} is a statement about \emph{rulers}, not minds --- it turns on O3 alone. Defining the observer as ``a system with a world-model'' would add structure orthogonal to the cancellation and obscure that the effect is purely that rulers are made of the measured stuff. Minimality is not modesty here; it is what keeps the derivation non-circular.
+\end{remark}
+
+\section{What the formalism cannot select --- the core result \quad{\normalsize\gap}\label{sec:select}}
+
+Everything in \S2--\S4 presupposes a chosen cut: $\mathcal{H}_A\otimes\mathcal{H}_B$ in \S2--\S3, $K_B$ in \S4. The honest question is whether the formalism can \emph{select} its own cut. It cannot, and this deserves to be stated as sharply as a positive theorem.
+
+
+\begin{claim}[No natural partition-selection rule]\label{cl:noselect}{\normalfont\ \asm/\conj}
+There is no \textbf{basis-independent, unitary-equivariant, physically natural} operator, functional, or rule \emph{within the theory of} $(\mathcal{H}_U, \lvert\Psi\rangle, \hat{H}_U)$ that outputs a preferred non-trivial factorization $\mathcal{H}_A\otimes\mathcal{H}_B$. (The qualifier excludes physically meaningless coding tricks --- e.g.\ well-ordering the factorizations and taking the first --- which are rules but not equivariant ones.) Tensor factorizations are additional data, not intrinsic to a Hilbert space: for composite finite dimension, $\mathcal{H}_U$ admits many inequivalent factorizations and $(\lvert\Psi\rangle, \hat{H}_U)$ alone does not naturally distinguish one; for prime dimension no non-trivial factorization of this kind exists, and the infinite-dimensional case is different again.
+\end{claim}
+
+\noindent\emph{Support (not full proof).} \est{} This is closely related to known results:
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item The tensor-product structure is additional data, not fixed by $\mathcal{H}_U$ (factorization ambiguity / basis-dependence of entanglement).
+  \item Any candidate selection rule must reference \emph{something exogenous} --- a preferred set of observables, a locality structure, an interaction form, an observer. Each is itself a chosen structure, relocating the choice rather than eliminating it.
+\end{itemize}
+
+\begin{corollary}[formal counterpart of the regress]\label{cor:regress}{\normalfont\ \asm}
+Any actual selection of a cut is made relative to a further structure (preferred observables / an observer / a locality assignment), which is itself a chosen structure requiring its own selector. The theory contains no base case. This is the formal statement of the infinite observer-regress: \textbf{partition selection has no fixed point inside the theory.}
+\end{corollary}
+
+\begin{remark}[why this is a feature]
+A formalization that \emph{did} select a cut would have smuggled the choice into its axioms (typically: ``fix the tensor structure induced by spatial locality''). That is legitimate physics, but it \emph{assumes the answer} to the framework's central question. Stating Claim~\ref{cl:noselect} explicitly is what prevents this spec from formalizing the phenomenon by quietly fixing the very boundary that generates it --- the failure mode of any construction that recovers an ``internal time'' from a system whose partition was set, unremarked, by hand.
+\end{remark}
+
+\section{The two turtles, formally distinguished \quad{\normalsize\gap\ $\times 2$}\label{sec:turtles}}
+
+There are two irreducible residues, of different kinds. The formalism sharpens the distinction.
+
+\paragraph{Turtle 1 --- the arrow (brute fact). \gap}
+$S_A(t)$ is not monotone under unitary evolution (the direction remark in \S\ref{sec:time}). To obtain an arrow, one imposes a low-entropy boundary condition on $\lvert\Psi\rangle$ (the past hypothesis): a constraint that the initial global state is atypical / low-entropy with respect to the natural measure. This is
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item \textbf{not derivable} from $(\mathcal{H}_U, \hat{H}_U)$ alone \est{} (open problem);
+  \item a constraint on the \emph{state}, entering as an initial condition;
+  \item the sole source of directionality for all of \S2--\S4.
+\end{itemize}
+Formally: the arrow is an \textbf{external boundary condition} --- $\langle\Psi_0\vert \hat{S}_{\text{coarse}}\vert\Psi_0\rangle$ low for a chosen coarse-graining --- not a theorem.
+
+\paragraph{Turtle 2 --- the chosen cut (brute act). \gap}
+By Claim~\ref{cl:noselect}, the cut is selected exogenously and regressively (Cor.~\ref{cor:regress}). This is
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item \textbf{not a state constraint} but a \emph{selection}, made from a vantage;
+  \item not reducible to Turtle~1 --- fixing the initial state's entropy does not fix \emph{which factorization} you read it through.
+\end{itemize}
+
+\begin{proposition}[independence of the two turtles]\label{prop:indep}{\normalfont\ \asm}
+Turtle~1 constrains $\lvert\Psi_0\rangle$ (a state); Turtle~2 selects $\mathcal{H}_A\otimes\mathcal{H}_B$ (a factorization). A state constraint does not induce a factorization, and a factorization does not induce a state constraint. Hence the two gaps are logically independent: closing one leaves the other open.
+\end{proposition}
+
+\noindent This is the formal refutation of the ``single turtle'' picture, on which the framework would bottom out in one irreducible input rather than two.
+
+\section{Intersubjectivity is (almost) downstream of the arrow \quad{\normalsize\asm\ / \conj}\label{sec:inter}}
+
+If cuts are exogenously chosen (Turtle~2) and selection has no fixed point (Cor.~\ref{cor:regress}), it is not \emph{a priori} guaranteed that two observers with distinct cuts $(A\vert B)$ and $(A'\vert B')$ register a shared world. This section argues that the apparent third gap is not independent: it reduces to Turtle~1, conditioned on a residual thread of Turtle~2.
+
+\paragraph{The reduction.}
+\begin{enumerate}[leftmargin=1.6em, itemsep=2pt, topsep=3pt]
+  \item \textbf{Shareability requires redundancy.} \est{} (quantum Darwinism, Zurek). A registered fact is intersubjective --- readable by many observers who do \emph{not} share the same environment fragments --- exactly when the record has been proliferated redundantly into many degrees of freedom. Different cuts agree because each samples a different fragment of the \emph{same} redundant record.
+  \item \textbf{Redundant proliferation is the arrow.} \conj{} Proliferation of a pointer record into the environment \emph{is} decoherence running forward. It is monotone only because the environment began low-entropy and uncorrelated, leaving room to absorb and multiply the record. Reverse the arrow (environment already saturated) and there is no proliferation, no redundancy, no objective record. Hence redundancy --- and with it, shareability --- is a consequence of Turtle~1.
+\end{enumerate}
+
+\begin{proposition}[partial reduction of intersubjectivity]\label{prop:inter}{\normalfont\ \asm/\conj}
+\emph{Given} that observers cut along the quasi-classical (pointer) grain, mutual consistency of their registered facts is fully downstream of the arrow (Turtle~1): grant the low-entropy past, and redundant proliferation yields a shared world with no further posit. Intersubjectivity is therefore \textbf{not} a free-standing third residue.
+\end{proposition}
+
+\paragraph{The residual thread. \gap}
+Proposition~\ref{prop:inter} is conditioned on ``observers cut along the pointer grain.'' Quantum Darwinism explains why the \emph{pointer basis} is the one that proliferates; it does not \emph{compel} a given observer to cut along it. An observer whose factorization is skew to the quasi-classical structure reads a non-redundant, non-shareable set of facts. So a thread of dependence on Turtle~2 (which cut) remains. The honest statement is:
+\[
+  \text{intersubjectivity} \;\subseteq\; \text{Turtle 1} \;\big|\; \text{(pointer-aligned cuts)},
+\]
+i.e.\ the arrow does the work, along cuts the arrow \emph{prefers but does not compel}.
+
+\paragraph{Why observers concentrate --- and the shape of the concentration.}
+``Prefers but does not compel'' is a distributional claim: pointer-aligned cuts are not mandatory, but off-pointer cuts are dynamically rare. An observer assembled by the same decohering dynamics that define the pointer basis will, with overwhelming measure, carry a near-pointer cut. This is a \emph{concentration} of the observer population onto a shared grain --- which is what makes a shared world the generic case rather than a coincidence.
+
+\begin{remark}[the concentration is Boltzmann-type, not Gaussian]{\normalfont\ \conj}
+The distribution over cuts is a distribution over tensor factorizations / pointer bases --- points in a curved, bounded, non-translation-invariant space (a Grassmann/flag-type manifold), \emph{not} $\mathbb{R}^n$. Gaussian concentration is natural only on flat, unbounded, translation-invariant spaces; there is no reason to expect it here. The concentration is governed by the dynamics: cuts weighted by roughly $\exp\!\big(-\,\mathcal{C}_{\text{dec}}/\lambda\big)$, where $\mathcal{C}_{\text{dec}}$ is a decoherence cost minimized at the pointer basis and $\lambda$ a scale. This is a \textbf{Boltzmann-type} weighting --- pointer cuts at the minimum, skew cuts exponentially suppressed. It is Gaussian \emph{only} in the local quadratic neighborhood of the minimum (the quadratic approximation that makes normal distributions appear universal), and the global shape and tails are set by the interaction Hamiltonian $\hat{H}_{AB}$, not by any universal law. Different couplings give different concentration shapes. \textbf{Caveat:} until the measure on factorization space, the decoherence cost $\mathcal{C}_{\text{dec}}$, and the observer-population ensemble are given precise definitions, ``overwhelming measure'' and $\exp(-\mathcal{C}_{\text{dec}}/\lambda)$ are \emph{evocative, not formal}. The entire concentration story is \conj; quantum Darwinism supplies redundancy/objectivity once records proliferate, but the measure over cuts is open work.
+\end{remark}
+
+\begin{corollary}[the distribution is the two turtles\label{cor:dist}' joint output]{\normalfont\ \asm}
+The ``natural distribution of observers'' is not a new ingredient. Its \emph{existence} (that concentration happens at all) is Turtle~1: forward decoherence. Its \emph{shape} (the weighting over cuts) is Turtle~2's $\hat{H}_{AB}$. Intersubjectivity therefore introduces no third turtle; it is what Turtles~1 and~2 jointly produce.
+\end{corollary}
+
+\begin{remark}[what remains genuinely open]{\normalfont\ \conj/\gap}
+Two links above are physically motivated but not proved here: (i)~that redundancy \emph{requires} the arrow (step~2), and (ii)~that the concentration is Boltzmann-shaped in the decoherence cost. Making (ii) rigorous requires a natural measure on the space of tensor factorizations plus a proof that decoherence induces that weighting --- and defining such a measure is itself unsolved, tangled with the same measure problem that underlies the past hypothesis (Turtle~1). So intersubjectivity is: right in shape (concentration onto a shared grain), Boltzmann not Gaussian in detail, two-turtle-derived in structure, and conjectural in rigor. This is a near-reduction with a named residue, not a closed problem --- but it is no longer a free-standing wall of the kind relational quantum mechanics leaves open.
+\end{remark}
+
+\section{What this spec is and is not}\label{sec:isnot}
+
+\noindent\textbf{Is} \asm:
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item an assembly of partial trace (\S2), Noether (\S3), Shannon and Fields' GHP (\S3--\S4), and an observer-registration condition (\S4), under one organizing frame: three co-products of one chosen cut;
+  \item a formal statement of the framework's \emph{limits} --- Claim~\ref{cl:noselect} (no selection operator), Prop.~\ref{prop:indep} (two independent turtles), Prop.~\ref{prop:inter} (intersubjectivity near-reduced to the arrow) --- as results, not omissions.
+\end{itemize}
+
+\noindent\textbf{Is not:}
+\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item a derivation of the arrow (Turtle~1 is imported, \S\ref{sec:turtles});
+  \item a selection of the cut (Claim~\ref{cl:noselect} says none exists in-theory);
+  \item a \emph{closed} solution to intersubjectivity (\S\ref{sec:inter} gives a near-reduction to the arrow with a named, conjectural residue, not a proof);
+  \item new mathematics: every \est/\fields{} piece is prior work; the contribution is arrangement plus the explicit gap-statements.
+\end{itemize}
+
+\noindent\textbf{The two things that would be genuinely original if they hold:} (i)~Proposition~\ref{prop:indep} --- the formal \emph{independence} of the arrow-turtle and the cut-turtle, showing the framework bottoms out in \textbf{two} irreducible inputs of different type (a state constraint and a factorization selection), not one; checkable and falsifiable (exhibit a rule deriving a factorization from a state constraint and Prop.~\ref{prop:indep} fails). (ii)~Proposition~\ref{prop:inter} with Corollary~\ref{cor:dist} --- that intersubjectivity is not a third turtle but the joint output of the first two (the arrow drives the concentration of observers onto a shared grain; the interaction Hamiltonian sets its Boltzmann-type shape), leaving only a named conjectural residue rather than a free-standing wall.
+
+\section{Immediate next steps (if pursued)}\label{sec:next}
+
+\begin{enumerate}[leftmargin=1.6em, itemsep=2pt, topsep=3pt]
+  \item \textbf{Tighten Claim~\ref{cl:noselect}} from \asm/\conj{} toward \est{} by citing the precise factorization-ambiguity literature (Zanardi et al.\ on tensor-product structures; observable-induced factorization results). If a clean no-go already exists, cite it; if not, this is the one place real theorem-work is needed.
+  \item \textbf{Make Prop.~\ref{prop:indep} rigorous} --- the independence claim is the original nugget; state the categories (states vs.\ factorizations) precisely enough that independence is a lemma, not a gesture.
+  \item \textbf{Make \S\ref{sec:inter} rigorous.} The near-reduction of intersubjectivity to the arrow (Prop.~\ref{prop:inter}, Cor.~\ref{cor:dist}) rests on two conjectural links: that redundancy requires the arrow, and that the observer-concentration is Boltzmann-shaped in the decoherence cost. The second needs a natural measure on the space of tensor factorizations --- itself unsolved and entangled with the measure problem behind Turtle~1. Closing this would upgrade Prop.~\ref{prop:inter} from \asm/\conj{} toward \est{} and firmly establish that the framework bottoms out in exactly two turtles, not three.
+\end{enumerate}
+
+\end{document}
