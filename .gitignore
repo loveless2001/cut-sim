@@ -1,0 +1,5 @@
+spec.md
+plans/
+.venv/
+.claude/
+__pycache__/
