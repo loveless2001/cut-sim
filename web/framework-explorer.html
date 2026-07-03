@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Framework Explorer — The Cut</title>
+<link rel="stylesheet" href="assets/cut-theme.css">
+<style>
+  .claim { border-top: 1px solid var(--line); padding: 10px 0 4px; }
+  .claim h4 { margin: 0 0 .3em; font-size: 1rem; }
+  .claim p { margin: .3em 0; font-size: .93rem; }
+  .filters { position: sticky; top: 46px; z-index: 8; }
+  .filters button { margin: 2px 2px; }
+  .hidden { display: none; }
+  .count { font-family: Consolas, monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Framework Explorer</h1>
+<p class="muted">Every claim of the spec, tagged with its epistemic status. Use the filters to interrogate the framework — the <span class="tag gap">GAP</span> view shows everything it admits it cannot do; the <span class="tag est">EST</span> view shows what it borrows from established physics.</p>
+
+<div class="controls filters" id="filters">
+  <span><strong>Show:</strong></span>
+  <button data-tag="all" class="toggled">All</button>
+  <button data-tag="est">EST</button>
+  <button data-tag="fields">FIELDS</button>
+  <button data-tag="asm">ASM</button>
+  <button data-tag="conj">CONJ</button>
+  <button data-tag="post">POST</button>
+  <button data-tag="gap">GAP</button>
+  <span class="count muted" id="count"></span>
+</div>
+
+<div id="content"></div>
+
+<footer>Distilled from <code>docs/cut_spec.tex</code> (v0.3). Wording compressed; tags preserved exactly. The spec itself remains the authority.</footer>
+</div>
+
+<script>
+// Each section: {title, intro?, claims: [{t: title, tags: [...], b: body-html}]}
+const SECTIONS = [
+{ title: "1 · Primitives and the one invariant", claims: [
+  { t: "The cut", tags: ["fields"], b: "A <b>cut</b> is a choice of tensor factorization <code>ℋ<sub>U</sub> ≅ ℋ<sub>A</sub> ⊗ ℋ<sub>B</sub></code> plus a designation of A as “subsystem” and B as “complement.” Fields calls the interface a <em>holographic screen</em>; the factorization is the formal content. The trivial cut (A = everything) is no bipartition at all." },
+  { t: "Invariant I — necessity of partition", tags: ["asm"], b: "All cut-relative quantities (entropic time, energy flux, registered information) are degenerate on the trivial cut and non-degenerate only for a genuine bipartition: no complement → nothing to trace out, no boundary for flux, no channel for registration. This is the one structure invariant under <em>which</em> cut is chosen: that <em>some</em> non-trivial cut is required. It is primitive but silent — it demands a cut without selecting one." },
+]},
+{ title: "2 · Time as forgetting", claims: [
+  { t: "Three objects, kept apart", tags: ["est","asm","conj"], b: "<code>t</code> — the external coordinate parameter <span class='tag est'>EST</span>. <code>S<sub>A</sub> = −Tr(ρ<sub>A</sub> log ρ<sub>A</sub>)</code> — the reduced entanglement entropy of <code>ρ<sub>A</sub> = Tr<sub>B</sub> ρ</code> <span class='tag est'>EST</span>. <code>τ<sub>A</sub></code> — an <em>arrow-conditioned record-order</em>: a monotone reparametrization of S<sub>A</sub>, defined only when the past hypothesis makes S<sub>A</sub> monotone enough to order records. Reading τ<sub>A</sub> as “time — the subsystem's forgetting of its complement” is the interpretive move <span class='tag asm'>ASM</span>/<span class='tag conj'>CONJ</span>." },
+  { t: "Global purity, local mixedness", tags: ["est"], b: "If |Ψ⟩ is pure, S<sub>U</sub> = 0 while S<sub>A</sub> &gt; 0 for any entangled part. A part can carry an entropic clock (when its entropy changes usably); the whole, having no complement, cannot. <em>Try it live in the <a href='time-as-forgetting-lab.html'>Time Lab</a>.</em>" },
+  { t: "Direction is not derived", tags: ["gap"], b: "Unitary evolution is time-symmetric; S<sub>A</sub>(t) can decrease. Monotonicity — the <em>arrow</em> that makes τ<sub>A</sub> usable — is <b>not</b> produced by this construction; it requires Turtle 1. The formalism gives the <em>magnitude</em> of S<sub>A</sub>-change, never its <em>direction</em>." },
+]},
+{ title: "3 · Energy as broken symmetry", claims: [
+  { t: "Local decomposition and boundary exchange", tags: ["est","fields"], b: "Energy is the Noether charge of time-translation <span class='tag est'>EST</span>. Given a cut <b>and a chosen split</b> <code>Ĥ<sub>U</sub> = Ĥ<sub>A</sub> + Ĥ<sub>B</sub> + Ĥ<sub>AB</sub></code> <span class='tag fields'>FIELDS</span>, the interaction term defines boundary exchange. The cut makes the decomposition possible; it does not uniquely select it — a further choice on top of the factorization." },
+  { t: "Local energy flux", tags: ["est"], b: "<code>Ė<sub>A</sub> = (i/ℏ)⟨[Ĥ<sub>AB</sub>, Ĥ<sub>A</sub>]⟩</code>. Local energy is generically non-conserved when the coupling fails to commute with the local Hamiltonian. Ĥ<sub>AB</sub> = 0 suffices for no exchange but isn't necessary — energy is cut-relative and generically crosses the cut." },
+  { t: "The whole has no energy-flow", tags: ["asm"], b: "On the trivial cut there is no Ĥ<sub>AB</sub>, hence no exchange. The global Ĥ<sub>U</sub> conserves; only a part leaks. In Fields' construction the bits exchanged across the screen <em>equal</em> the energy transferred — energy and information coincide <em>at the cut</em>, as the same boundary quantity." },
+]},
+{ title: "4 · Information as registered difference", claims: [
+  { t: "Shannon layer", tags: ["est"], b: "Average surprise <code>H = −Σ p<sub>i</sub> log p<sub>i</sub></code> is identical in form to S<sub>A</sub> (von Neumann = Shannon on the spectrum of ρ<sub>A</sub>). “Information” and “entropic time” are the <em>same quantity read two ways</em>, not two coincidentally similar ones." },
+  { t: "Registration layer", tags: ["asm"], b: "Not all difference is information <em>to a system</em>. Given an observer channel K<sub>B</sub>, a difference between source states is <b>registered</b> iff <code>K<sub>B</sub>(A) ≠ K<sub>B</sub>(A′)</code> (above threshold δ<sub>B</sub>). A single global pure state offers no complement-relative registration — the whole registers nothing, for the same structural reason it has no clock." },
+  { t: "Which channel?", tags: ["gap"], b: "K<sub>B</sub> is <em>given</em>, not derived. Which channel an observer has — its threshold, its representation space — is an input. The same gap as cut-selection, observer-side." },
+]},
+{ title: "5 · Reach — what else the cut defines, and what it does not", claims: [
+  { t: "Route 1 — all Noether charges", tags: ["est"], b: "Every continuous symmetry yields a conserved charge that splits across the cut: <code>Q̇<sub>A</sub> = (i/ℏ)⟨[Ĥ<sub>U</sub>, Q̂<sub>A</sub>]⟩</code>, a boundary flux when a local current exists. Covers momentum, angular momentum, spin. Gauge charges are subtler — Gauss constraints obstruct naive factorization (needs local algebras / edge modes) <span class='tag gap'>GAP</span>." },
+  { t: "Route 2 — thermodynamics", tags: ["est"], b: "<code>1/T = ∂S(ρ<sub>A</sub>)/∂⟨Ĥ<sub>A</sub>⟩</code>: temperature is the marginal exchange rate between the information-face and the energy-face of the same cut. Free energy, chemical potential, pressure follow. Caveat: presupposes equilibration, hence the arrow — cut-relative <em>and</em> arrow-dependent." },
+  { t: "Route 3 — invariants and geometry", tags: ["est","conj"], b: "<b>Mass</b> <span class='tag est'>EST</span>: the Poincaré Casimir <code>m² = E² − p²</code>, frame-invariant within a chosen representation (not cut-invariant — binding, dressing, boundary choice all move it). <b>Geometry</b> <span class='tag conj'>CONJ</span>: Ryu–Takayanagi / entanglement-geometry programs suggest distance-like structure from entanglement patterns; the framework is compatible but does not derive it." },
+  { t: "Route 4 — what the cut does NOT define", tags: ["gap"], b: "The dimensionful constants (ℏ, G, couplings), the symmetry group, and the dimensionality are <b>upstream</b> of the cut: consumed as background, never generated. Marking the exclusions is a result, not an omission." },
+  { t: "Type boundary of the framework", tags: ["asm"], b: "The cut generates precisely the quantities that are <b>charges or correlations of a partition</b> — and nothing that the partition presupposes." },
+  { t: "Matter: the conserved side of the cut", tags: ["asm","gap"], b: "<b>Matter</b> is the conserved, boundary-holding structure of A — the fixed point of the forgetting: what persists while correlations decohere into B. This yields inertia (“conserved under evolution” <em>is</em> resisting change), localization, trace-retention, and the mass coincidence — without being told them. Flags <span class='tag gap'>GAP</span>: matter is cut-relative (no primitive matter), downstream of the arrow (no direction → nothing “lasts”), and a category, not a particle spectrum. Compactly: <em>matter is what a cut keeps; energy is what a cut spends; time is the keeping-and-spending.</em>" },
+]},
+{ title: "6 · Particles and forces", claims: [
+  { t: "Particle = irreducible persistence", tags: ["asm"], b: "A particle is a minimal persistent charge-sector: an indivisible package of frame-invariant charges, relative to a regime. This lands on Wigner's classification (particle = irreducible representation of the Poincaré group) from the persistence side. Category, not spectrum — <em>which</em> particles is Route-4 background." },
+  { t: "Force = interaction across a cut", tags: ["asm","est"], b: "A force is an Ĥ<sub>AB</sub>: the coupling that lets charges leak between the sides. Shallow but solid." },
+  { t: "Gauge forces: the cost of cut-relative symmetry", tags: ["conj"], b: "A gauge symmetry is one whose internal convention is choosable <b>independently at each cut</b>. Something must reconcile adjacent conventions: a <em>connection</em> — the gauge field, whose quantum is the force carrier. A gauge force is what the cut-relativity of an internal symmetry <em>costs</em>." },
+  { t: "Evidence: Aharonov–Bohm and gauge entanglement", tags: ["est","conj"], b: "AB interference is loop-relative and gauge-invariant — supports the holonomy half <span class='tag est'>EST</span>. In gauge theories the gauge-invariant Hilbert space does <em>not</em> tensor-factorize across a region (Casini–Huerta–Rosabal): one must <em>choose</em> a local algebra, different choices give different entanglement entropies, and edge modes are generated <em>by the act of cutting</em> — the discriminating signature the origin story predicts <span class='tag conj'>CONJ</span>." },
+  { t: "Over-delivery warning", tags: ["conj","gap"], b: "The cut-dependence is so strong that absolute entanglement entropy becomes prescription-ambiguous. The framework's content must retreat to <em>relational</em> quantities (mutual information, relative entropy) — consistent with its spirit, but a retreat the naive version didn't anticipate. Independent confirmation that the absence of a natural cut-selector is physical, not a labeling nicety." },
+]},
+{ title: "7 · Worked example: black-hole information (consistency check)", claims: [
+  { t: "The paradox, in framework terms", tags: ["asm"], b: "Hawking's rising radiation entropy “destroying information” is the error the spec was built to catch: <b>treating a cut-relative local mixedness as a cut-independent global fact</b> — the information-theoretic twin of the problem of time." },
+  { t: "The island resolution as a worked instance", tags: ["asm"], b: "The Page curve arises because the entropy is computed by extremizing over candidate islands/QES saddles — <code>S(R) = min ext [Area(∂I)/4G + S<sub>bulk</sub>(R∪I)]</code> — and <em>which saddle dominates changes over time</em>. Global purity/local mixedness, cut-relativity with a chosen cut, and the retreat to relational quantities all appear as the actual mechanism, not by analogy." },
+  { t: "Where it stops", tags: ["gap"], b: "The framework cannot say <em>why</em> the correct cut includes a disconnected interior region — that comes from the gravitational Area/4G term, holography, and the path integral: Route-4 background, consumed not derived. Illuminating, not predictive." },
+]},
+{ title: "8 · Spacetime as a τ-indexed family, not a manifold", claims: [
+  { t: "Space and time are of different type", tags: ["asm"], b: "Space is a symmetry-property of the whole (translation charges; the “3” is the rank of the translation subgroup — located, not derived). Time is a process-property of a part (τ<sub>A</sub>, the forgetting of a cut). The manifold picture dresses both in coordinate-clothes; the Lorentzian minus sign is the last visible trace of the type difference." },
+  { t: "Spacetime = indexed family", tags: ["asm"], b: "The correct object is <code>𝒮 = {Σ(τ<sub>A</sub>)}</code> — a one-parameter family of spatial configurations indexed by accumulated forgetting. An index, not an axis: monotone (by Turtle 1), part-relative, non-traversable in reverse. Same “3+1” count; different ontology." },
+  { t: "The open joint", tags: ["conj","gap"], b: "Observed physics mixes time and space under boosts. The reconciliation: the “+1” is permitted to <em>look</em> dimension-like locally and kinematically, while the arrow stays outside the geometry (you can boost coordinates; you cannot boost out of the second law). Why the ordering-parameter mixes with space like a dimension is the weakest link — dissected in §9." },
+]},
+{ title: "9 · Anatomy of emergent Lorentz invariance", claims: [
+  { t: "Five components", tags: ["asm"], b: "C1 an invariant finite speed; C2 no privileged frame; C3 boost mixing; C4 invariant Lorentzian interval; C5 causal structure. The framework supplies C5 naturally (causal order = reach of Ĥ<sub>AB</sub>), has a candidate for C1 (the Lieb–Robinson bound: a proven, finite, pre-geometric maximum correlation speed <span class='tag est'>EST</span>), rhymes with C2 (“no privileged cut” ≠ relativity principle, tagged <span class='tag conj'>CONJ</span>), and gets C3–C4 only with extra assumptions." },
+  { t: "The single genuine obstruction: isotropy", tags: ["gap"], b: "The Lieb–Robinson speed is generically <b>anisotropic and frame-dependent</b> — a lumpy, framed cone, not a Lorentzian one. What Lorentz invariance needs is a perfectly round cone for every observer. This, not the value of c, is the entire content of the open joint. <em>See the lumpy cone live in the <a href='lieb-robinson-cone-lab.html'>Cone Lab</a>.</em>" },
+  { t: "The mechanism: ruler cancellation", tags: ["asm","conj"], b: "An observer's rods and clocks are built from the same couplings as the signals it measures; <em>if</em> rod, clock, and signal share one effective dispersion, the directional factor cancels in every dimensionless speed ratio. Requires <b>universality</b> — birefringence/mode-splitting counterexamples show endogenous rulers do not cancel anisotropy generically. RG flow supplies the universality: at a fixed point, co-dispersion is exact — Route B (RG washout) and Route C (ruler cancellation) are one mechanism seen from two sides." },
+  { t: "Unregistrable anisotropy is not a fact", tags: ["post"], b: "By the framework's own criterion, a fact exists only relative to a cut that can register it. <em>If</em> no observer can register the preferred frame, it is not a fact — exiled to the same “view from nowhere” as the whole's time. A postulate of the ontology, not a physics theorem." },
+  { t: "The numerical test — and what it did to the claim", tags: ["conj"], b: "Tested in an exact free-fermion simulation with pre-registered verdict rules. <b>Naive claim falsified</b>: an observer timing its fastest signal (the LR front) against its own rods detects the anisotropy at every coupling and every tuning. <b>New exact law</b>: rods scale as √J<sub>d</sub>, fronts as J<sub>d</sub>, so the observer sees the anisotropy <em>square-rooted</em>: A<sub>endo</sub> → √A<sub>god</sub>. <b>Corrected claim IR-only</b>: long-wavelength observables co-disperse and become exactly isotropic at the fixed point. The test <em>weakened and sharpened</em> the claim — the correct behaviour of a real test. <em>Full data in the <a href='ruler-cancellation-verdict-lab.html'>Verdict Lab</a>.</em>" },
+]},
+{ title: "10 · The observer, minimally defined", claims: [
+  { t: "Definition (minimal observer)", tags: ["asm"], b: "A subsystem A is an <b>observer</b> iff: <b>O1</b> it is one side of a cut (has the three co-products); <b>O2</b> it registers — internal states become structured-correlated with B's and are retained (a detector keeps marks; a rock washes out); <b>O3</b> its rulers are endogenous — clocks and length-standards built from the same couplings that govern what it measures. No mind, model, or complexity: a thermostat qualifies. O3 is what carries the Lorentz mechanism; minimality is what keeps the derivation non-circular." },
+  { t: "Downstream of the arrow", tags: ["gap"], b: "O2 presupposes that B has a history to record — an ordering — which is Turtle 1. No arrow, no records, no observer. Everything built on the observer inherits this dependence." },
+]},
+{ title: "11 · What the formalism cannot select — the core result", claims: [
+  { t: "No natural partition-selection rule", tags: ["asm","conj"], b: "There is no basis-independent, unitary-equivariant, physically natural rule within the theory of (ℋ<sub>U</sub>, |Ψ⟩, Ĥ<sub>U</sub>) that outputs a preferred factorization. Tensor structures are additional data; any candidate selector must reference something exogenous — a preferred observable set, a locality structure, an observer — each itself a chosen structure. The choice is relocated, never eliminated." },
+  { t: "The regress has no fixed point", tags: ["asm"], b: "Any actual selection is made relative to a further chosen structure requiring its own selector. The theory contains no base case: <b>partition selection has no fixed point inside the theory.</b> A formalization that <em>did</em> select a cut would have smuggled the answer into its axioms — stating this explicitly is what keeps the spec honest." },
+]},
+{ title: "12 · The two turtles, formally distinguished", claims: [
+  { t: "Turtle 1 — the arrow (brute fact)", tags: ["gap"], b: "To get an arrow one imposes the past hypothesis: a low-entropy initial condition, not derivable from (ℋ<sub>U</sub>, Ĥ<sub>U</sub>) alone. A constraint on the <b>state</b>, and the sole source of directionality for everything." },
+  { t: "Turtle 2 — the chosen cut (brute act)", tags: ["gap"], b: "The cut is selected exogenously and regressively. Not a state constraint but a <b>selection</b>, made from a vantage." },
+  { t: "Independence — the original nugget", tags: ["asm"], b: "A state constraint does not induce a factorization, and a factorization does not induce a state constraint. The two gaps are logically independent: closing one leaves the other open. The framework bottoms out in <b>two</b> irreducible inputs of different type, not one — checkable and falsifiable (exhibit a rule deriving a factorization from a state constraint, and this fails)." },
+]},
+{ title: "13 · Intersubjectivity is (almost) downstream of the arrow", claims: [
+  { t: "The reduction", tags: ["est","conj"], b: "Shareability requires redundancy (quantum Darwinism <span class='tag est'>EST</span>): different observers agree because each samples a fragment of the <em>same</em> redundantly proliferated record. Redundant proliferation <em>is</em> decoherence running forward — it needs a low-entropy environment, hence the arrow <span class='tag conj'>CONJ</span>. Given pointer-aligned cuts, a shared world follows from Turtle 1 with no further posit: intersubjectivity is <b>not</b> a third turtle." },
+  { t: "The residual thread and the concentration", tags: ["gap","conj"], b: "Nothing <em>compels</em> an observer to cut along the pointer grain — a skew-cut observer reads non-shareable facts. But off-pointer cuts are dynamically rare: observers concentrate onto the shared grain with Boltzmann-type weighting exp(−𝒞<sub>dec</sub>/λ) — pointer cuts at the minimum, skew cuts exponentially suppressed, shape set by Ĥ<sub>AB</sub>, Gaussian only near the minimum. Until the measure on factorization space is defined, this is <em>evocative, not formal</em>." },
+  { t: "The distribution is the two turtles' joint output", tags: ["asm"], b: "That concentration happens at all is Turtle 1 (forward decoherence); its shape is Turtle 2's Ĥ<sub>AB</sub>. A near-reduction with a named residue — no longer a free-standing wall." },
+]},
+{ title: "14 · What this spec is and is not", claims: [
+  { t: "Is", tags: ["asm"], b: "An assembly of partial trace, Noether, Shannon, and Fields' construction under one organizing frame — three co-products of one chosen cut — plus formal statements of the framework's <em>limits</em> as results, not omissions." },
+  { t: "Is not", tags: ["gap"], b: "A derivation of the arrow (imported); a selection of the cut (none exists in-theory); a closed solution to intersubjectivity (near-reduction with a named residue); new mathematics (the contribution is arrangement plus explicit gap-statements)." },
+  { t: "Next steps", tags: ["conj"], b: "Tighten the no-selection claim toward EST via the factorization-ambiguity literature (Zanardi et al.); make the two-turtle independence a lemma, not a gesture; make the observer-concentration measure rigorous — entangled with the same measure problem behind the past hypothesis." },
+]},
+];
+
+const TAGS = { est:"EST", fields:"FIELDS", asm:"ASM", conj:"CONJ", post:"POST", gap:"GAP" };
+const content = document.getElementById("content");
+content.innerHTML = SECTIONS.map((sec, si) => `
+  <h2>${sec.title}</h2>
+  ${sec.claims.map(c => `
+    <div class="claim" data-tags="${c.tags.join(" ")}">
+      <h4>${c.t} ${c.tags.map(t => `<span class="tag ${t}">${TAGS[t]}</span>`).join("")}</h4>
+      <p>${c.b}</p>
+    </div>`).join("")}
+`).join("");
+
+const buttons = document.querySelectorAll("#filters button");
+const claims = document.querySelectorAll(".claim");
+const countEl = document.getElementById("count");
+function applyFilter(tag) {
+  let shown = 0;
+  claims.forEach(c => {
+    const ok = tag === "all" || c.dataset.tags.split(" ").includes(tag);
+    c.classList.toggle("hidden", !ok);
+    if (ok) shown++;
+  });
+  // hide section headings with no visible claims
+  document.querySelectorAll("#content h2").forEach(h2 => {
+    let el = h2.nextElementSibling, any = false;
+    while (el && el.tagName !== "H2") { if (el.classList.contains("claim") && !el.classList.contains("hidden")) any = true; el = el.nextElementSibling; }
+    h2.style.display = any ? "" : "none";
+  });
+  countEl.textContent = `${shown}/${claims.length} claims`;
+  buttons.forEach(b => b.classList.toggle("toggled", b.dataset.tag === tag));
+}
+buttons.forEach(b => b.addEventListener("click", () => applyFilter(b.dataset.tag)));
+applyFilter("all");
+</script>
+<script src="assets/site-nav.js" data-page="framework"></script>
+</body>
+</html>
