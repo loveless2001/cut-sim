@@ -11,14 +11,16 @@ Simultaneously, `A_endo` for the observer's *long-wavelength* signals sits betwe
 `A_god` and flows to 1 approaching the continuum fixed point → the **corrected
 (fixed-point co-dispersion) claim is SUPPORTED, but only for the IR observable class**.
 The observer's *fastest* signal (the Lieb-Robinson front) remains a dimensionless internal
-experiment that detects the axis at **every** tuning value, including arbitrarily close to
-the fixed point. The corrected claim survives only if "dimensionless internal experiment"
-is restricted to observables that flow to the fixed point; the strong reading ("no
-dimensionless internal experiment detects anisotropy") is dead.
+experiment that plateaus at a non-cancelled value and is detected throughout the
+large-rod / near-fixed-point regime. The corrected claim survives only if
+"dimensionless internal experiment" is restricted to observables that flow to the fixed
+point; the strong reading ("no dimensionless internal experiment detects anisotropy") is
+dead.
 
 ## Quantitative law found (not in the spec's expectations)
 
-The endogenous rods (impurity bound-state widths) absorb **exactly half** the anisotropy:
+The endogenous rods (impurity bound-state widths) absorb half the anisotropy in the
+continuum scaling law:
 
 ```
 rod_x / rod_y → sqrt(Jx/Jy)      (measured 1.4142 at r=2, 1.7321 at r=3 — 4-digit match)
@@ -30,10 +32,10 @@ Ballistic front speeds scale as `J_d`, binding lengths as `sqrt(J_d)`, so
 A_endo(front) → sqrt(A_god)      (measured 1.4195 vs sqrt(2.0075)=1.4169 at r=2)
 ```
 
-— a clean partial-cancellation law: the observer sees the anisotropy *square-rooted*, not
+— a clean partial-cancellation law in the continuum regime: the observer sees the anisotropy *square-rooted*, not
 cancelled. Low-energy wavepacket speeds scale as `J_d·k_d` with `k_d ∝ 1/rod_d ∝ 1/sqrt(J_d)`,
-so for IR signals both sides scale as `sqrt(J_d)` and the ratio cancels exactly — this is
-the mechanism of fixed-point co-dispersion, verified numerically below.
+so for IR signals both sides scale as `sqrt(J_d)` and the ratio cancels at the fixed
+point — this is the mechanism of fixed-point co-dispersion, verified numerically below.
 
 ## Setup (details in README / code)
 
@@ -79,21 +81,24 @@ on all three tests at r=2 and stays null at r=1. Its endogenous nulls are theref
 | 8.94      | 1.419        | 1.0030            | 0.9997      |
 | 39.3      | 1.4195       | 1.0002            | 1.0000      |
 
-Exactly the spec's "expected honest result" — for IR observables: `A_endo(wp)` ≈ A_god at
+The data show the spec's "expected honest result" for IR observables: `A_endo(wp)` ≈ A_god at
 lattice scale, → 1 approaching the fixed point (deviation shrinking roughly as 1/ξ²), and
-the spreading/birefringence test goes null the same way. **But the front experiment never
-renormalizes**: it saturates at √A_god = 1.42 and stays 5σ-DETECTED at every ξ, because
-the LR front velocity is set by band-edge (UV) modes that do not flow — while the rods do.
+the spreading/birefringence central value also approaches 1, though its largest-rod error
+bars are tail-limited. **But the front experiment never renormalizes**: after the tightest
+rod points it saturates at √A_god = 1.42 and is 5σ-DETECTED throughout the large-ξ regime,
+because the LR front velocity is set by band-edge (UV) modes that do not flow — while the
+rods do.
 
 ## Interpretation
 
 1. **Naive claim (any endogenous observer is blind to substrate anisotropy): FALSIFIED.**
    An observer that times its fastest signals against its binding-length rods measures a
-   direction-dependent "speed of light", ratio √(Jx/Jy), at any coupling and any tuning.
+   direction-dependent "speed of light", tending to ratio √(Jx/Jy) in the continuum
+   rod regime.
 2. **Corrected claim (co-dispersion at the RG fixed point): SUPPORTED, with a sharp
    scope restriction.** Everything built from long-wavelength physics — wavepacket
    speeds, dispersion/birefringence, packet shapes — co-disperses with the rods and
-   becomes exactly isotropic at the fixed point. Emergent effective Lorentz invariance
+   becomes isotropic at the fixed point. Emergent effective Lorentz invariance
    holds for the IR sector only.
 3. **The loophole is physical, not numerical:** rods renormalize as √J (bound-state
    scaling), ballistic fronts as J (band edge). Any observable mixing the two scales
@@ -108,8 +113,12 @@ the LR front velocity is set by band-edge (UV) modes that do not flow — while 
 
 - Front velocities carry a ~1%/axis Airy-edge systematic (threshold-front estimator),
   folded into σ; it slightly biases A_endo(front) at r=3 (1.687 vs √3=1.732, consistent
-  within the stated systematics). Conclusions never hinge on <2% margins except where
-  the pre-registered criteria demand it, and those points sit 10–30σ away.
+  within the stated systematics). The front conclusion relies on the large-ξ plateau,
+  not on the tightest-rod points where the front-only test can fall below the 5σ
+  detection criterion.
+- The spreading/birefringence central values flow toward 1, but the largest-rod
+  spreading runs have large tail-based uncertainties; the strongest IR cancellation
+  evidence is the endogenous wavepacket ratio.
 - Mid-sweep wavepacket spikes (e.g. R=2.61 at r=3, ξ=0.67) occur where the endogenous
   wavelength hits the Brillouin-zone edge (UV cap engaged, flagged `uv_capped`) — the
   observer's continuum experiment degenerating at lattice scale, itself a detection.

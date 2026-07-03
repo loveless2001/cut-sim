@@ -61,11 +61,11 @@
 <h2>What the experiment established</h2>
 <div class="cardgrid">
   <div class="card"><h3>1 · Naive claim falsified</h3>
-  <p class="small">An observer timing its <em>fastest</em> signal against its own rods measures a direction-dependent speed at every coupling and every ξ — including arbitrarily close to the fixed point. "No dimensionless internal experiment detects anisotropy" is <strong>false</strong>. The front is a UV probe pinned to the band edge; it never renormalizes.</p></div>
-  <div class="card"><h3>2 · A new exact law</h3>
-  <p class="small">Rods scale as <code>√J<sub>d</sub></code> (measured rod ratios match √r to four decimals); ballistic fronts scale as <code>J<sub>d</sub></code>. So the observer sees the anisotropy <strong>square-rooted</strong>: <code>A<sub>endo</sub>(front) → √A<sub>god</sub></code> — e.g. 1.4195 measured vs √2.0075 = 1.4169. The rods absorb exactly half the anisotropy, never all of it.</p></div>
+  <p class="small">An observer timing its <em>fastest</em> signal against its own rods measures a direction-dependent speed that plateaus at a non-cancelled value near the fixed point. "No dimensionless internal experiment detects anisotropy" is <strong>false</strong>. The front is a UV probe pinned to the band edge; it never renormalizes.</p></div>
+  <div class="card"><h3>2 · A continuum scaling law</h3>
+  <p class="small">Rods scale as <code>√J<sub>d</sub></code> (measured rod ratios match √r to four decimals at large ξ); ballistic fronts scale as <code>J<sub>d</sub></code>. So the observer sees the anisotropy <strong>square-rooted</strong>: <code>A<sub>endo</sub>(front) → √A<sub>god</sub></code> — e.g. 1.4195 measured vs √2.0075 = 1.4169. The rods absorb half the anisotropy in the continuum regime, never all of it.</p></div>
   <div class="card"><h3>3 · Corrected claim survives — IR only</h3>
-  <p class="small">Long-wavelength observables (wavepacket speeds, dispersion, birefringence) co-disperse with the rods and become exactly isotropic at the fixed point (A<sub>endo</sub> → 1.0002 at ξ ≈ 39). Emergent Lorentz invariance is real but <strong>infrared</strong>: exact only at the fixed point, and only for observables that flow to it.</p></div>
+  <p class="small">Long-wavelength wavepacket observables co-disperse with the rods and become isotropic at the fixed point (A<sub>endo</sub> → 1.0002 at ξ ≈ 39). Spreading central values move the same way but are tail-limited at the largest rods. Emergent Lorentz invariance is real but <strong>infrared</strong>: exact only at the fixed point, and only for observables that flow to it.</p></div>
   <div class="card"><h3>4 · The open question</h3>
   <p class="small">Free theories can't close the loophole: the UV front simply doesn't renormalize. Whether an <em>interacting</em> fixed point makes the front itself co-disperse — removing the UV leak — is the natural next test, needing tensor-network rather than Gaussian dynamics. Honest status of the framework's Lorentz claim: <em>plausibly rescued at interacting fixed points, unproven, undecidable in a free theory.</em></p></div>
 </div>
@@ -75,7 +75,7 @@
 <tr><th>r = J<sub>x</sub>/J<sub>y</sub></th><th>A_god measured</th><th>rod_x/rod_y</th><th>√r</th><th>A_endo front</th><th>√A_god</th><th>A_endo wavepacket</th><th>battery</th></tr>
 </table></div>
 
-<footer>Data: <code>results/results.json</code> from the pre-registered experiment (see <code>docs/results-writeup.md</code>). Verdict thresholds shown here mirror the pre-registered rules (cancelled: |A−1| &lt; 2% and &lt; |A_god−1|/5). Slider values between measured ξ points are log-interpolated; the measured points are drawn as dots.</footer>
+<footer>Data: <code>results/results.json</code> from the pre-registered experiment (see <code>docs/results-writeup.md</code>). Verdict labels use the nearest measured point's backend classification, whose detection rule is |A−1| &gt; max(2%, 5σ). Slider values between measured ξ points are log-interpolated; the measured points are drawn as dots.</footer>
 </div>
 
 <script src="assets/experiment-data.js"></script>
@@ -83,6 +83,24 @@
 const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
 const rsel = document.getElementById("rsel"), xiSlider = document.getElementById("xi");
 const byR = {}; CUT_EXPERIMENT_DATA.ratios.forEach(d => byR[d.r] = d);
+const DETECTION_BY_R = {
+  1.25: {
+    front: ["CANCELLED", "APPROXIMATE", "APPROXIMATE", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED"],
+    wavepacket: ["CANCELLED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "CANCELLED", "CANCELLED", "CANCELLED"]
+  },
+  1.5: {
+    front: ["APPROXIMATE", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED"],
+    wavepacket: ["DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "CANCELLED", "CANCELLED", "CANCELLED"]
+  },
+  2: {
+    front: ["APPROXIMATE", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED"],
+    wavepacket: ["DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "CANCELLED", "CANCELLED", "CANCELLED", "CANCELLED"]
+  },
+  3: {
+    front: ["DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED"],
+    wavepacket: ["DETECTED", "DETECTED", "DETECTED", "DETECTED", "DETECTED", "CANCELLED", "CANCELLED", "CANCELLED"]
+  }
+};
 
 function current() { return byR[+rsel.value]; }
 // interpolate a per-point array at slider position (log-xi space)
@@ -94,10 +112,8 @@ function interp(d, arr, frac) {
   return { v: arr[i] + u * (arr[i + 1] - arr[i]), xi: Math.exp(x), i: u < .5 ? i : i + 1 };
 }
 
-function classify(A, Agod) {
-  if (Math.abs(A - 1) < 0.02 && Math.abs(A - 1) < Math.abs(Agod - 1) / 5) return "CANCELLED";
-  if (Math.abs(A - 1) > 0.02) return "DETECTED";
-  return "APPROXIMATE";
+function classify(d, kind, i) {
+  return DETECTION_BY_R[d.r][kind][i];
 }
 
 function drawEllipses(Agod, rodr, Afront, Awp) {
@@ -167,14 +183,16 @@ function update() {
   document.getElementById("batt").style.color = d.batteryDetected[F.i] ? css("--gapc") : css("--est");
   drawEllipses(d.A_god, Rr.v, F.v, Wp.v);
   drawSweep(d, F.xi);
-  const cf = classify(F.v, d.A_god), cw = classify(Wp.v, d.A_god);
+  const cf = classify(d, "front", F.i), cw = classify(d, "wavepacket", Wp.i);
+  const note = cw === "CANCELLED" && cf === "DETECTED"
+    ? "The IR sector has reached co-dispersion — yet the observer can still detect the substrate axis with its fastest signal. Verdict rule 2: <strong>naive claim falsified</strong>; corrected fixed-point claim holds for the IR sector only."
+    : d.batteryDetected[F.i]
+      ? "At this measured point the battery still detects the axis, though the responsible test depends on scale. Slide ξ right to see the large-rod front plateau and the wavepacket cancellation."
+      : "This measured point is null under the backend battery; move through the measured ξ points to compare the scale-dependent verdicts.";
   document.getElementById("verdict").innerHTML =
-    `<p><strong>At r = ${d.r}, ξ = ${F.xi.toFixed(1)}:</strong> the front measurement is <strong>${cf}</strong> ` +
+    `<p><strong>At r = ${d.r}, ξ = ${F.xi.toFixed(1)}:</strong> the nearest measured front classification is <strong>${cf}</strong> ` +
     `(A = ${F.v.toFixed(3)} vs √A<sub>god</sub> = ${Math.sqrt(d.A_god).toFixed(3)}); the wavepacket measurement is ` +
-    `<strong>${cw}</strong> (A = ${Wp.v.toFixed(3)}). ` +
-    (cw === "CANCELLED"
-      ? "The IR sector has reached co-dispersion — yet the observer can still detect the substrate axis with its fastest signal. Verdict rule 2: <strong>naive claim falsified</strong>; corrected fixed-point claim holds for the IR sector only."
-      : "This far from the fixed point even long-wavelength experiments betray the axis — the anisotropy is fully registrable from inside. Slide ξ right to approach the fixed point.");
+    `<strong>${cw}</strong> at the nearest measured point (A = ${Wp.v.toFixed(3)}). ${note}`;
 }
 
 // results table (largest-xi point per r)
