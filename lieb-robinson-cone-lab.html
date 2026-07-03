@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cone Lab — the god's-eye anisotropic light-cone</title>
+<link rel="stylesheet" href="assets/cut-theme.css">
+</head>
+<body>
+<div class="wrap">
+
+<h1>The Lieb–Robinson Cone <span class="tag est">EST</span></h1>
+<p>Any quantum system with local interactions has a maximum speed at which correlations can spread — the <strong>Lieb–Robinson bound</strong>, a proven theorem. This is the framework's candidate for component C1 of Lorentz invariance: an emergent, finite, <em>pre-geometric</em> speed of light.</p>
+<p>But here is the obstruction <span class="tag gap">GAP</span>: on a structured substrate that speed is generically <strong>direction-dependent</strong>. Below, a 128×128 quantum lattice evolves <em>exactly</em> in your browser (FFT propagator — the same method as the research code). A single-site excitation is released at the center; set J<sub>x</sub> ≠ J<sub>y</sub> and watch the "light-cone" come out <strong>elliptical</strong>. This is the god's-eye view: distances counted in lattice sites, time in the global parameter — the external ruler no inhabitant of the lattice possesses.</p>
+
+<div class="controls">
+  <label>J<sub>x</sub> <input type="range" id="jx" min="0.5" max="3" step="0.05" value="2"><output id="jxv">2.00</output></label>
+  <label>J<sub>y</sub> <input type="range" id="jy" min="0.5" max="3" step="0.05" value="1"><output id="jyv">1.00</output></label>
+  <label><input type="checkbox" id="ellipse" checked> show v·t ellipse</label>
+  <button id="play" class="primary">Pause</button>
+  <button id="reset">Restart</button>
+</div>
+
+<div class="canvasbox">
+  <canvas id="lattice" width="512" height="512"></canvas>
+  <p class="small muted" style="margin:6px 0 2px">log<sub>10</sub> |ψ(x,y,t)|² — brighter = more probability. Dashed ellipse: the exact front prediction (v<sub>d</sub> = 2J<sub>d</sub>)·t.</p>
+</div>
+
+<div class="readouts">
+  <div class="readout"><div class="k">v_x (= 2J_x)</div><div class="v" id="vx">4.00</div></div>
+  <div class="readout"><div class="k">v_y (= 2J_y)</div><div class="v" id="vy">2.00</div></div>
+  <div class="readout"><div class="k">A_god = v_x / v_y</div><div class="v" id="agod">2.00</div></div>
+  <div class="readout"><div class="k">t</div><div class="v" id="tval">0.0</div></div>
+</div>
+
+<h2>Why this matters to the framework</h2>
+<div class="card">
+<p><strong>The cone is real, finite — and lumpy.</strong> A finite maximum correlation speed comes for free from local interactions (C1 ✓). But Lorentz invariance needs more: a <em>perfectly round</em> cone, identical for every observer. What you see instead is an ellipse with a preferred rest frame — "Galilean with a speed limit," not Lorentzian. The ratio <code>A<sub>god</sub> = v<sub>x</sub>/v<sub>y</sub> = J<sub>x</sub>/J<sub>y</sub></code> quantifies the lumpiness that any emergence story must somehow hide.</p>
+<p><strong>The measurement smuggles in a ruler.</strong> Calling this cone elliptical uses site-counting and the global clock — a "view from nowhere." The framework's question is whether an observer <em>built out of this same lattice</em>, with rods and clocks made of the same couplings, could ever measure that ellipticity. That test — with its measured verdict — is the <a href="ruler-cancellation-verdict-lab.html">Verdict Lab</a>.</p>
+</div>
+
+<footer>Physics: 2D anisotropic tight-binding dispersion E(k) = −2J<sub>x</sub>cos k<sub>x</sub> − 2J<sub>y</sub>cos k<sub>y</sub>, exact evolution ψ(t) = IFFT[e<sup>−iE(k)t</sup>], periodic boundaries. JS port of <code>src/lattice-model-exact-fft-evolution.py</code>.</footer>
+</div>
+
+<script src="assets/fft-free-fermion-engine.js"></script>
+<script>
+const L = 128, SCALE = 4;
+let sim = new ConeQuenchSim(L, 2, 1);
+let t = 0, playing = true;
+const cv = document.getElementById("lattice"), ctx = cv.getContext("2d");
+const img = ctx.createImageData(L, L);
+const off = document.createElement("canvas"); off.width = off.height = L;
+const octx = off.getContext("2d");
+const jx = document.getElementById("jx"), jy = document.getElementById("jy");
+const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+
+// magma-like colormap, log scale over [1e-12, 1e-2]
+function color(p) {
+  const v = Math.max(0, Math.min(1, (Math.log10(p + 1e-30) + 12) / 10));
+  return [
+    Math.round(255 * Math.min(1, 2.6 * v * v + 0.15 * v)),
+    Math.round(255 * Math.max(0, 1.6 * v - 0.45) * 1.4),
+    Math.round(255 * (v < .5 ? .35 + 1.2 * v : 1.6 - 1.35 * v)),
+  ];
+}
+
+function readCouplings() {
+  const Jx = +jx.value, Jy = +jy.value;
+  document.getElementById("jxv").value = Jx.toFixed(2);
+  document.getElementById("jyv").value = Jy.toFixed(2);
+  document.getElementById("vx").textContent = (2 * Jx).toFixed(2);
+  document.getElementById("vy").textContent = (2 * Jy).toFixed(2);
+  document.getElementById("agod").textContent = (Jx / Jy).toFixed(2);
+  return [Jx, Jy];
+}
+function restart() { const [Jx, Jy] = readCouplings(); sim.setCouplings(Jx, Jy); t = 0; }
+jx.addEventListener("input", restart);
+jy.addEventListener("input", restart);
+document.getElementById("reset").addEventListener("click", restart);
+document.getElementById("play").addEventListener("click", e => {
+  playing = !playing; e.target.textContent = playing ? "Pause" : "Play";
+});
+
+function frame() {
+  if (playing) {
+    // stop before the front wraps around the periodic boundary
+    const tmax = (L / 2 - 4) / (2 * Math.max(sim.Jx, sim.Jy));
+    t = t >= tmax ? 0 : t + tmax / 220;
+    const P = sim.probability(t);
+    // draw with source shifted to the center (fftshift)
+    for (let x = 0; x < L; x++) for (let y = 0; y < L; y++) {
+      const sx = (x + L / 2) % L, sy = (y + L / 2) % L;
+      const [r, g, b] = color(P[sx * L + sy]);
+      const o = 4 * (y * L + x);              // canvas x = lattice x, canvas y = lattice y
+      img.data[o] = r; img.data[o + 1] = g; img.data[o + 2] = b; img.data[o + 3] = 255;
+    }
+    octx.putImageData(img, 0, 0);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(off, 0, 0, L * SCALE, L * SCALE);
+    if (document.getElementById("ellipse").checked) {
+      ctx.strokeStyle = css("--accent2"); ctx.lineWidth = 1.6; ctx.setLineDash([6, 5]);
+      ctx.beginPath();
+      ctx.ellipse(L * SCALE / 2, L * SCALE / 2, 2 * sim.Jx * t * SCALE, 2 * sim.Jy * t * SCALE, 0, 0, 7);
+      ctx.stroke(); ctx.setLineDash([]);
+    }
+    document.getElementById("tval").textContent = t.toFixed(1);
+  }
+  requestAnimationFrame(frame);
+}
+readCouplings();
+requestAnimationFrame(frame);
+</script>
+<script src="assets/site-nav.js" data-page="cone"></script>
+</body>
+</html>

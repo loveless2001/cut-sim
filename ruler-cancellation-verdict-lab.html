@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verdict Lab — the ruler-cancellation experiment</title>
+<link rel="stylesheet" href="assets/cut-theme.css">
+<style>
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font: .75rem Verdana, sans-serif; justify-content:center; margin-top:6px; }
+  .swatch { display:inline-block; width:22px; height:3px; vertical-align:middle; margin-right:5px; border-radius:2px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>The Ruler-Cancellation Experiment <span class="tag conj">CONJ</span> → measured</h1>
+<p>The framework's mechanism for hiding the <a href="lieb-robinson-cone-lab.html">lumpy cone</a>: an observer's rods and clocks are <em>made of</em> the same couplings as the signals it measures, so the directional factor should cancel in every dimensionless speed ratio. That is falsifiable — so it was tested, adversarially, with verdict rules fixed <em>before</em> running. Everything on this page is <strong>measured data</strong> from that experiment (exact free-fermion dynamics, 2D lattice with J<sub>x</sub> ≠ J<sub>y</sub>).</p>
+
+<div class="card small">
+<p><strong>The honest construction.</strong> The observer's <b>rod</b> in each direction is the width of an impurity bound state — a static binding length, never site-counting, never "the distance light travels" (that would make the answer 1 by definition). Its <b>clock</b> is a cavity beat period — one shared tick. Its <b>signals</b>: (a) the quench front — its fastest signal; (b) a wavepacket whose wavelength it sets with its own rods. The tuning knob is the binding strength: weak binding → rod size ξ → ∞ = approach to the continuum (an RG fixed point, "criticality"). A detection battery was calibrated first on god's-eye data, where it <em>must</em> flag the known anisotropy — and did.</p>
+</div>
+
+<div class="controls">
+  <label>Substrate anisotropy r = J<sub>x</sub>/J<sub>y</sub>
+    <select id="rsel"><option>1.25</option><option>1.5</option><option selected>2</option><option>3</option></select>
+  </label>
+  <label>Rod size ξ (→ fixed point) <input type="range" id="xi" min="0" max="100" value="100"><output id="xiv"></output></label>
+</div>
+
+<div class="canvasbox">
+  <canvas id="ellipses" width="780" height="290"></canvas>
+  <div class="legend">
+    <span><span class="swatch" style="background:var(--cone)"></span>substrate cone (god's-eye, A<sub>god</sub>)</span>
+    <span><span class="swatch" style="background:var(--rod)"></span>observer's rods (bound-state widths)</span>
+    <span><span class="swatch" style="background:var(--seen)"></span>cone as the observer measures it</span>
+  </div>
+  <p class="small muted">Shapes normalized to equal area. Left: fastest-signal (front) measurement. Right: wavepacket (long-wavelength) measurement. Slide ξ toward the fixed point and watch the right one become a perfect circle — while the left one never does.</p>
+</div>
+
+<div class="readouts">
+  <div class="readout"><div class="k">A_god (external)</div><div class="v" id="agod"></div></div>
+  <div class="readout"><div class="k">rod_x / rod_y</div><div class="v" id="rodr"></div></div>
+  <div class="readout"><div class="k">A_endo · front</div><div class="v" id="afront"></div></div>
+  <div class="readout"><div class="k">A_endo · wavepacket</div><div class="v" id="awp"></div></div>
+  <div class="readout"><div class="k">battery</div><div class="v" id="batt"></div></div>
+</div>
+
+<h2>The tuning sweep — lattice scale → fixed point</h2>
+<div class="canvasbox">
+  <canvas id="sweep" width="780" height="360"></canvas>
+  <div class="legend">
+    <span><span class="swatch" style="background:var(--cone)"></span>A<sub>endo</sub> front</span>
+    <span><span class="swatch" style="background:var(--rod)"></span>A<sub>endo</sub> wavepacket</span>
+    <span class="muted">dotted: A<sub>god</sub>, √A<sub>god</sub>, 1</span>
+  </div>
+</div>
+
+<div class="callout verdict" id="verdict"></div>
+
+<h2>What the experiment established</h2>
+<div class="cardgrid">
+  <div class="card"><h3>1 · Naive claim falsified</h3>
+  <p class="small">An observer timing its <em>fastest</em> signal against its own rods measures a direction-dependent speed at every coupling and every ξ — including arbitrarily close to the fixed point. "No dimensionless internal experiment detects anisotropy" is <strong>false</strong>. The front is a UV probe pinned to the band edge; it never renormalizes.</p></div>
+  <div class="card"><h3>2 · A new exact law</h3>
+  <p class="small">Rods scale as <code>√J<sub>d</sub></code> (measured rod ratios match √r to four decimals); ballistic fronts scale as <code>J<sub>d</sub></code>. So the observer sees the anisotropy <strong>square-rooted</strong>: <code>A<sub>endo</sub>(front) → √A<sub>god</sub></code> — e.g. 1.4195 measured vs √2.0075 = 1.4169. The rods absorb exactly half the anisotropy, never all of it.</p></div>
+  <div class="card"><h3>3 · Corrected claim survives — IR only</h3>
+  <p class="small">Long-wavelength observables (wavepacket speeds, dispersion, birefringence) co-disperse with the rods and become exactly isotropic at the fixed point (A<sub>endo</sub> → 1.0002 at ξ ≈ 39). Emergent Lorentz invariance is real but <strong>infrared</strong>: exact only at the fixed point, and only for observables that flow to it.</p></div>
+  <div class="card"><h3>4 · The open question</h3>
+  <p class="small">Free theories can't close the loophole: the UV front simply doesn't renormalize. Whether an <em>interacting</em> fixed point makes the front itself co-disperse — removing the UV leak — is the natural next test, needing tensor-network rather than Gaussian dynamics. Honest status of the framework's Lorentz claim: <em>plausibly rescued at interacting fixed points, unproven, undecidable in a free theory.</em></p></div>
+</div>
+
+<h2>Headline numbers (largest rod, most-continuum point)</h2>
+<div class="tablebox"><table id="restable">
+<tr><th>r = J<sub>x</sub>/J<sub>y</sub></th><th>A_god measured</th><th>rod_x/rod_y</th><th>√r</th><th>A_endo front</th><th>√A_god</th><th>A_endo wavepacket</th><th>battery</th></tr>
+</table></div>
+
+<footer>Data: <code>results/results.json</code> from the pre-registered experiment (see <code>docs/results-writeup.md</code>). Verdict thresholds shown here mirror the pre-registered rules (cancelled: |A−1| &lt; 2% and &lt; |A_god−1|/5). Slider values between measured ξ points are log-interpolated; the measured points are drawn as dots.</footer>
+</div>
+
+<script src="assets/experiment-data.js"></script>
+<script>
+const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+const rsel = document.getElementById("rsel"), xiSlider = document.getElementById("xi");
+const byR = {}; CUT_EXPERIMENT_DATA.ratios.forEach(d => byR[d.r] = d);
+
+function current() { return byR[+rsel.value]; }
+// interpolate a per-point array at slider position (log-xi space)
+function interp(d, arr, frac) {
+  const lx = d.xi.map(Math.log);
+  const x = lx[0] + frac * (lx[lx.length - 1] - lx[0]);
+  let i = 0; while (i < lx.length - 2 && lx[i + 1] < x) i++;
+  const u = (x - lx[i]) / (lx[i + 1] - lx[i]);
+  return { v: arr[i] + u * (arr[i + 1] - arr[i]), xi: Math.exp(x), i: u < .5 ? i : i + 1 };
+}
+
+function classify(A, Agod) {
+  if (Math.abs(A - 1) < 0.02 && Math.abs(A - 1) < Math.abs(Agod - 1) / 5) return "CANCELLED";
+  if (Math.abs(A - 1) > 0.02) return "DETECTED";
+  return "APPROXIMATE";
+}
+
+function drawEllipses(Agod, rodr, Afront, Awp) {
+  const cv = document.getElementById("ellipses"), ctx = cv.getContext("2d");
+  const W = cv.width, H = cv.height; ctx.clearRect(0, 0, W, H);
+  ctx.font = "12px Verdana"; ctx.textAlign = "center";
+  const panels = [[W * .27, "front signal", Afront], [W * .73, "wavepacket signal", Awp]];
+  for (const [cx, label, Aseen] of panels) {
+    const cy = H / 2 + 8, R = 88;
+    const draw = (ratio, color, dash) => {
+      const a = R * Math.sqrt(ratio), b = R / Math.sqrt(ratio);  // equal area
+      ctx.strokeStyle = color; ctx.lineWidth = 2.2; ctx.setLineDash(dash);
+      ctx.beginPath(); ctx.ellipse(cx, cy, a, b, 0, 0, 7); ctx.stroke(); ctx.setLineDash([]);
+    };
+    draw(Agod, css("--cone"), []);
+    draw(rodr, css("--rod"), [4, 4]);
+    draw(Aseen, css("--seen"), []);
+    ctx.fillStyle = css("--muted");
+    ctx.fillText(label + "  —  observer measures A = " + Aseen.toFixed(3), cx, H - 6);
+  }
+}
+
+function drawSweep(d, curXi) {
+  const cv = document.getElementById("sweep"), ctx = cv.getContext("2d");
+  const W = cv.width, H = cv.height, padL = 50, padR = 14, padT = 14, padB = 40;
+  ctx.clearRect(0, 0, W, H);
+  const lx = d.xi.map(Math.log);
+  const xmin = lx[0], xmax = lx[lx.length - 1];
+  const ymin = 0.93, ymax = Math.max(d.A_god * 1.12, ...d.Afront, ...d.Awp) * 1.04;
+  const X = x => padL + (W - padL - padR) * (Math.log(x) - xmin) / (xmax - xmin);
+  const Y = y => H - padB - (H - padB - padT) * (y - ymin) / (ymax - ymin);
+  ctx.font = "11px Verdana"; ctx.textAlign = "left";
+  // reference lines
+  const refs = [[1, "1 (cancellation)"], [Math.sqrt(d.A_god), "√A_god"], [d.A_god, "A_god"]];
+  for (const [v, lab] of refs) {
+    ctx.strokeStyle = css("--line"); ctx.setLineDash([3, 4]);
+    ctx.beginPath(); ctx.moveTo(padL, Y(v)); ctx.lineTo(W - padR, Y(v)); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = css("--muted"); ctx.fillText(lab, padL + 4, Y(v) - 4);
+  }
+  // axes labels
+  ctx.fillStyle = css("--muted");
+  ctx.fillText("rod size ξ (sites, log) — right = toward continuum fixed point", W / 2 - 150, H - 8);
+  d.xi.forEach((x, i) => { if (i % 2 === 0) ctx.fillText(x < 1 ? x.toFixed(1) : Math.round(x), X(x) - 6, H - 24); });
+  // series
+  const series = [[d.Afront, css("--cone")], [d.Awp, css("--rod")]];
+  for (const [arr, color] of series) {
+    ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath();
+    arr.forEach((v, i) => i ? ctx.lineTo(X(d.xi[i]), Y(v)) : ctx.moveTo(X(d.xi[i]), Y(v)));
+    ctx.stroke();
+    ctx.fillStyle = color;
+    arr.forEach((v, i) => { ctx.beginPath(); ctx.arc(X(d.xi[i]), Y(v), 3.4, 0, 7); ctx.fill(); });
+  }
+  // current-xi marker
+  ctx.strokeStyle = css("--seen"); ctx.lineWidth = 1.4; ctx.setLineDash([2, 3]);
+  ctx.beginPath(); ctx.moveTo(X(curXi), Y(ymin)); ctx.lineTo(X(curXi), padT); ctx.stroke(); ctx.setLineDash([]);
+}
+
+function update() {
+  const d = current(), frac = xiSlider.value / 100;
+  const F = interp(d, d.Afront, frac), Wp = interp(d, d.Awp, frac), Rr = interp(d, d.rodRatio, frac);
+  document.getElementById("xiv").value = F.xi.toFixed(F.xi < 3 ? 2 : 1);
+  document.getElementById("agod").textContent = d.A_god.toFixed(3);
+  document.getElementById("rodr").textContent = Rr.v.toFixed(3);
+  document.getElementById("afront").textContent = F.v.toFixed(3);
+  document.getElementById("awp").textContent = Wp.v.toFixed(3);
+  document.getElementById("batt").textContent = d.batteryDetected[F.i] ? "DETECTS axis" : "null";
+  document.getElementById("batt").style.color = d.batteryDetected[F.i] ? css("--gapc") : css("--est");
+  drawEllipses(d.A_god, Rr.v, F.v, Wp.v);
+  drawSweep(d, F.xi);
+  const cf = classify(F.v, d.A_god), cw = classify(Wp.v, d.A_god);
+  document.getElementById("verdict").innerHTML =
+    `<p><strong>At r = ${d.r}, ξ = ${F.xi.toFixed(1)}:</strong> the front measurement is <strong>${cf}</strong> ` +
+    `(A = ${F.v.toFixed(3)} vs √A<sub>god</sub> = ${Math.sqrt(d.A_god).toFixed(3)}); the wavepacket measurement is ` +
+    `<strong>${cw}</strong> (A = ${Wp.v.toFixed(3)}). ` +
+    (cw === "CANCELLED"
+      ? "The IR sector has reached co-dispersion — yet the observer can still detect the substrate axis with its fastest signal. Verdict rule 2: <strong>naive claim falsified</strong>; corrected fixed-point claim holds for the IR sector only."
+      : "This far from the fixed point even long-wavelength experiments betray the axis — the anisotropy is fully registrable from inside. Slide ξ right to approach the fixed point.");
+}
+
+// results table (largest-xi point per r)
+const tbl = document.getElementById("restable");
+CUT_EXPERIMENT_DATA.ratios.filter(d => d.r > 1).forEach(d => {
+  const n = d.xi.length - 1, row = tbl.insertRow();
+  [d.r, d.A_god.toFixed(4), d.rodRatio[n].toFixed(4), Math.sqrt(d.r).toFixed(4),
+   d.Afront[n].toFixed(4), Math.sqrt(d.A_god).toFixed(4), d.Awp[n].toFixed(4),
+   d.batteryDetected[n] ? "DETECTS" : "null"].forEach(v => row.insertCell().textContent = v);
+});
+
+rsel.addEventListener("change", update);
+xiSlider.addEventListener("input", update);
+update();
+</script>
+<script src="assets/site-nav.js" data-page="verdict"></script>
+</body>
+</html>

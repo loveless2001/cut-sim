@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cut — an explorable framework</title>
+<link rel="stylesheet" href="assets/cut-theme.css">
+</head>
+<body>
+<div class="wrap">
+
+<h1>The Cut</h1>
+<p class="muted" style="margin-top:-.4em">Co-products of a partition — an explorable companion to the working spec (v0.3) and its one numerical experiment.</p>
+
+<div class="callout">
+<p><strong>The thesis in one paragraph.</strong> Take a closed quantum universe: one Hilbert space, one pure state, one Hamiltonian, evolving unitarily. Nothing in there flows, leaks, or forgets. Now draw a <em>cut</em> — split the universe into a subsystem <em>A</em> and its complement <em>B</em>. Suddenly three quantities exist that didn't before: <strong>time</strong> (the growth of <em>A</em>'s entanglement entropy — its forgetting of <em>B</em>), <strong>energy flux</strong> (what leaks across the boundary coupling), and <strong>information</strong> (differences in <em>B</em> that leave registered marks in <em>A</em>). The cut doesn't create physics from nothing — it makes global structure locally <em>legible</em>. And the framework's central honesty: <em>nothing inside the theory selects the cut itself</em>, and nothing gives the arrow of time a direction. Those two residues — the chosen cut and the imposed arrow — are the "two turtles" the whole construction stands on.</p>
+</div>
+
+<h2>How to read the claims</h2>
+<p>Every claim in the spec carries a status tag. This is the framework's load-bearing honesty — filtering by tag is the fastest way to see what is established versus what is hoped:</p>
+<div class="card small">
+<p><span class="tag est">EST</span> — established result in the literature; not original here.</p>
+<p><span class="tag fields">FIELDS</span> — due to Chris Fields and collaborators; assembled, not originated, by this framework.</p>
+<p><span class="tag asm">ASM</span> — assembly: established pieces combined, possibly original in <em>arrangement</em>; no new mathematics.</p>
+<p><span class="tag conj">CONJ</span> — conjecture: plausible, not proved, flagged open.</p>
+<p><span class="tag post">POST</span> — postulate: a philosophical commitment of the ontology, adopted rather than derived.</p>
+<p><span class="tag gap">GAP</span> — a deliberately stated limitation: something the formalism provably cannot do.</p>
+</div>
+
+<h2>Explore</h2>
+<div class="cardgrid">
+  <a class="cardlink" href="framework-explorer.html"><div class="card">
+    <h3>Framework Explorer</h3>
+    <p class="small">The full spec, section by section, as tagged claim cards. Filter by status tag — e.g. show only the <span class="tag gap">GAP</span>s — to see exactly where the framework admits it stops.</p>
+  </div></a>
+  <a class="cardlink" href="time-as-forgetting-lab.html"><div class="card">
+    <h3>Time Lab <span class="muted small">· live simulation</span></h3>
+    <p class="small">"Time is a subsystem's forgetting of its complement." Watch the entanglement entropy S<sub>A</sub>(t) of a real fermion chain grow after a quench — then watch it <em>come back down</em>, which is why the arrow of time must be imported (Turtle 1).</p>
+  </div></a>
+  <a class="cardlink" href="lieb-robinson-cone-lab.html"><div class="card">
+    <h3>Cone Lab <span class="muted small">· live simulation</span></h3>
+    <p class="small">The god's-eye view. An exact 2D quantum lattice evolving in your browser: set the couplings J<sub>x</sub> ≠ J<sub>y</sub> and watch correlations spread in an <em>elliptical</em> light-cone. This substrate really has a preferred direction.</p>
+  </div></a>
+  <a class="cardlink" href="ruler-cancellation-verdict-lab.html"><div class="card">
+    <h3>Verdict Lab <span class="muted small">· real experiment data</span></h3>
+    <p class="small">The make-or-break test: can an observer <em>made of</em> the anisotropic lattice detect its anisotropy from inside? Explore the measured verdict — the naive claim died, a √-law appeared, and Lorentz invariance survived only in the infrared.</p>
+  </div></a>
+</div>
+
+<h2>The two turtles</h2>
+<p>The framework claims everything above bottoms out in exactly <strong>two irreducible inputs of different type</strong> — and that this pair is genuinely two, not one:</p>
+<div class="cardgrid">
+  <div class="card">
+    <h3>Turtle 1 — the arrow <span class="tag gap">GAP</span></h3>
+    <p class="small">Unitary evolution is time-symmetric: S<sub>A</sub>(t) can decrease (see the <a href="time-as-forgetting-lab.html">Time Lab</a>). The direction of time is an external boundary condition — a low-entropy past — <em>imposed</em> on the state, never derived. A constraint on the <strong>state</strong>.</p>
+  </div>
+  <div class="card">
+    <h3>Turtle 2 — the chosen cut <span class="tag gap">GAP</span></h3>
+    <p class="small">No basis-independent, physically natural rule inside the theory selects a preferred factorization ℋ<sub>A</sub> ⊗ ℋ<sub>B</sub>. Every candidate selector references something exogenous, relocating the choice. A selection of a <strong>factorization</strong> — and state constraints don't induce factorizations, so the two turtles are independent.</p>
+  </div>
+</div>
+
+<h2>Why there's a simulation here at all</h2>
+<p>The spec's weakest joint is emergent Lorentz invariance: a generic lattice has a lumpy, direction-dependent maximum signal speed, yet observed physics has a perfectly round light-cone. The framework's proposed mechanism — <em>ruler cancellation</em> — says an observer whose rods and clocks are built from the same couplings as the signals it measures cannot register the anisotropy. That is a falsifiable physics claim, so it was tested: an exact free-fermion simulation with a deliberately anisotropic substrate, an honestly-constructed endogenous observer, and pre-registered verdict rules. The result <strong>falsified the naive claim, uncovered an exact square-root law, and confirmed a corrected, infrared-only version</strong> — the full story is in the <a href="ruler-cancellation-verdict-lab.html">Verdict Lab</a>.</p>
+
+<footer>
+Companion to <code>docs/cut_spec.tex</code> (working spec v0.3) and the ruler-cancellation experiment in this repository. Simulations on these pages run the same exact free-fermion dynamics as the research code — nothing is a canned animation. Framework assembles results due to Fields, Zurek, Lieb–Robinson, Casini–Huerta–Rosabal, Ryu–Takayanagi and others; see the spec for tags and citations.
+</footer>
+
+</div>
+<script src="assets/site-nav.js" data-page="index"></script>
+</body>
+</html>
