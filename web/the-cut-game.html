@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cut — a god's-eye / partition explorer game</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✂</text></svg>">
+<link rel="stylesheet" href="assets/cut-theme.css">
+<style>
+  /* ---- game chrome ---- */
+  .gamebar { position: sticky; top: 42px; z-index: 8; display: flex; flex-wrap: wrap; gap: 10px 18px;
+    align-items: center; background: var(--bg2); border-bottom: 1px solid var(--line);
+    padding: 8px 20px; font-family: Verdana, sans-serif; font-size: .78rem; }
+  .viewtoggle { display: flex; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; }
+  .viewtoggle button { border: 0; border-radius: 0; padding: 7px 16px; background: transparent; }
+  .viewtoggle button.on { background: var(--accent); color: var(--bg2); }
+  #levelNav { display: flex; gap: 6px; flex-wrap: wrap; }
+  #levelNav button { padding: 5px 10px; border-radius: 8px; }
+  #levelNav button.here { outline: 2px solid var(--accent); }
+  #levelNav button.done::after { content: " ✓"; color: var(--est); }
+  #badgeShelf { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; }
+  #badgeShelf span { border: 1px solid var(--conj); color: var(--conj); border-radius: 9px;
+    padding: 1px 8px; font-size: .62rem; font-weight: bold; letter-spacing: .04em; }
+  /* ---- view gating ---- */
+  body.view-gods [data-view="cut"] { display: none !important; }
+  body.view-cut  [data-view="gods"] { display: none !important; }
+  .unregistrable { position: relative; }
+  body.view-cut .unregistrable { pointer-events: none; }
+  body.view-cut .unregistrable > * { filter: blur(2.5px) grayscale(.9); opacity: .35; }
+  body.view-cut .unregistrable::after { content: "unregistrable from here"; position: absolute;
+    inset: 0; display: flex; align-items: center; justify-content: center;
+    font: bold .72rem Verdana, sans-serif; color: var(--gapc); letter-spacing: .05em; }
+  /* ---- iris transition ---- */
+  #iris { position: fixed; inset: 0; z-index: 40; pointer-events: none; background: var(--ink);
+    opacity: 0; transition: opacity .18s ease; }
+  #iris.in { opacity: .92; }
+  /* ---- levels ---- */
+  .level { display: none; }
+  .level.active { display: block; animation: lvfade .4s ease; }
+  @keyframes lvfade { from { opacity: 0; transform: translateY(6px); } }
+  .quest { border: 1px dashed var(--conj); border-radius: 10px; padding: 10px 16px; margin: 14px 0;
+    font-family: Verdana, sans-serif; font-size: .82rem; background: var(--bg2); }
+  .quest .qtitle { font-weight: bold; letter-spacing: .05em; color: var(--conj); font-size: .68rem; }
+  .honesty { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 20px 0; }
+  .honesty .card { margin: 0; }
+  .honesty h4 { margin: 0 0 6px; font-family: Verdana, sans-serif; font-size: .7rem; letter-spacing: .06em; }
+  .honesty .yes h4 { color: var(--est); } .honesty .no h4 { color: var(--gapc); }
+  .honesty ul { margin: 0; padding-left: 18px; font-size: .88rem; }
+  .coproducts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 14px 0; }
+  .coproduct { background: var(--bg2); border: 1px solid var(--line); border-radius: 10px; padding: 12px;
+    text-align: center; opacity: 0; transform: scale(.85); }
+  .coproduct.reveal { animation: pop .8s ease forwards; }
+  @keyframes pop { 40% { opacity: 1; transform: scale(1.06); } 100% { opacity: 1; transform: scale(1); } }
+  .meterbar { height: 12px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; margin-top: 6px; }
+  .meterbar i { display: block; height: 100%; background: var(--accent2); width: 0; transition: width .2s; }
+  .chip { display: inline-block; margin: 4px; padding: 6px 12px; border: 1px solid var(--line);
+    border-radius: 16px; cursor: pointer; font: .78rem Verdana, sans-serif; background: var(--bg2); }
+  .chip.sel { outline: 2px solid var(--accent); }
+  .chip.placed { opacity: .55; cursor: default; }
+  .bins { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 12px 0; }
+  .bin { border: 2px dashed var(--line); border-radius: 10px; min-height: 90px; padding: 10px; cursor: pointer; }
+  .bin h4 { margin: 0 0 6px; font: bold .7rem Verdana, sans-serif; letter-spacing: .05em; }
+  .bin.flow h4 { color: var(--accent2); } .bin.keep h4 { color: var(--accent); }
+  .bin .chip { cursor: default; }
+  .toast { font: .8rem Verdana, sans-serif; padding: 8px 12px; border-radius: 8px; margin: 8px 0;
+    background: var(--code-bg); min-height: 1.4em; }
+  .l6grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+  .badgeaward { color: var(--conj); font: bold .78rem Verdana, sans-serif; }
+  .nextrow { margin: 18px 0; }
+</style>
+</head>
+<body class="view-gods">
+
+<div class="gamebar">
+  <div class="viewtoggle" title="The whole point of the game">
+    <button id="viewGods" class="on">God's-eye</button><button id="viewCut">Cut</button>
+  </div>
+  <div id="levelNav"></div>
+  <div id="badgeShelf"></div>
+</div>
+<div id="iris"></div>
+
+<div class="wrap">
+
+<h1>The Cut — the game</h1>
+<p>One universe, two views. <strong>God's-eye</strong> sees the whole — the full state, the substrate, the facts no inhabitant can reach. <strong>Cut</strong> makes you a subsystem: you see only what a subsystem can register. The toggle above is the entire game. Everything below runs on the same exact free-fermion physics as the research code (<a href="index.html">overview</a>), and Level 5 uses the <em>measured data</em> from the <a href="ruler-cancellation-verdict-lab.html">pre-registered experiment</a> — nothing there is faked.</p>
+<div class="callout gap"><strong>How to win.</strong> You don't, mostly. This framework's integrity comes from its limits — two irreducible "turtles" and one falsified claim. The gaps are playable here: some levels are unwinnable <em>by design</em>, and the badges you collect are limits found, not victories. If you finish thinking "that was honest," the game worked.</div>
+
+<!-- ============================ LEVEL 1 ============================ -->
+<section class="level" id="lv1">
+<h2>Level 1 — The frozen whole</h2>
+<p>Below is a whole universe: a chain of 32 quantum sites in one pure state <span class="tag est" title="EST: established physics — see Framework Explorer">EST</span>. You are looking at it from nowhere in particular.</p>
+
+<div data-view="gods">
+  <div class="canvasbox">
+    <canvas id="l1-block" width="820" height="300"></canvas>
+    <p class="small muted">The whole, seen from nowhere: a single static object. The vertical direction is an internal <em>parameter</em> — a direction in the block, not a flow. Nothing here is "happening."</p>
+  </div>
+  <div class="readouts">
+    <div class="readout"><div class="k">global entropy S_U</div><div class="v">0 — forever</div></div>
+    <div class="readout"><div class="k">total energy</div><div class="v" id="l1-e">—</div></div>
+    <div class="readout"><div class="k">particle number</div><div class="v" id="l1-n">—</div></div>
+    <div class="readout"><div class="k">global clock</div><div class="v muted">none exists</div></div>
+  </div>
+  <div class="quest"><span class="qtitle">FIRST TASK</span><br>
+    Find <em>when</em> something happens in this universe.
+    <button id="l1-when">ask "when?"</button>
+    <div class="toast" id="l1-whenOut">&nbsp;</div>
+  </div>
+  <div class="quest"><span class="qtitle">SECOND TASK</span><br>
+    <span id="l1-cuthint">Give up on "when." Instead, <strong>click between two columns of the block</strong> to cut the universe into a part A and a rest B.</span>
+  </div>
+</div>
+
+<div data-view="cut">
+  <div id="l1-nocut" class="callout"><p><strong>You are nowhere yet.</strong> Before a cut there is no inside to stand in — no subsystem, no perspective, nothing registering anything. Toggle to god's-eye and draw a cut.</p></div>
+  <div id="l1-cutui" style="display:none">
+    <p>You are subsystem A now. The moment you cut, three things <em>appeared</em> — not revealed, <strong>created</strong>:</p>
+    <div class="coproducts">
+      <div class="coproduct" id="l1-cp-time"><div class="k small muted">TIME</div>
+        <canvas id="l1-clock" width="120" height="120"></canvas>
+        <div class="small">τ_A ∝ S_A — the clock <em>is</em> your entropy</div></div>
+      <div class="coproduct" id="l1-cp-info"><div class="k small muted">INFORMATION</div>
+        <div class="v" id="l1-bits" style="font:bold 1.5rem Consolas,monospace">0.00</div>
+        <div class="small">bits you lack about B</div><div class="meterbar"><i id="l1-infobar"></i></div></div>
+      <div class="coproduct" id="l1-cp-energy"><div class="k small muted">ENERGY</div>
+        <div class="v" id="l1-cur" style="font:bold 1.5rem Consolas,monospace">0.00</div>
+        <div class="small">leak across your boundary</div><div class="meterbar"><i id="l1-leakbar"></i></div></div>
+    </div>
+    <div class="canvasbox"><canvas id="l1-chain" width="820" height="80"></canvas>
+      <p class="small muted">Your side of the cut. B is fog: you hold no facts about it beyond the leak.</p></div>
+    <div class="quest"><span class="qtitle">THIRD TASK</span><br>
+      Your clock is running. Now toggle back to <strong>god's-eye</strong> and check what your new time did to the whole. <span id="l1-checked" class="badgeaward"></span></div>
+  </div>
+</div>
+
+<div class="honesty">
+  <div class="card yes"><h4>WHAT THIS SHOWS</h4><ul>
+    <li>The global state stays pure — S_U = 0 at every slice; "happening" (registered change) needs a cut <span class="tag est">EST</span>.</li>
+    <li>Clock, information deficit, and energy leak appear <em>together, at the cut</em> — co-products of partition <span class="tag conj" title="framework reading — CONJ">CONJ</span>.</li>
+    <li>No cut you draw ever gives the <em>whole</em> a clock: god's-eye stays a block.</li></ul></div>
+  <div class="card no"><h4>WHAT THIS DOES NOT SHOW</h4><ul>
+    <li>The block was computed using an external parameter — the same "gauge" parameter the framework itself needs. "Frozen" means <em>no internal record of it</em>, not that the math has no t.</li>
+    <li>Which reparametrization of S_A is "the" time — not derived, chosen.</li>
+    <li>That S_A grows forever. It doesn't (Level 4).</li></ul></div>
+</div>
+<div class="nextrow"><button class="primary nextlv" data-next="2">Level 2 →</button></div>
+</section>
+
+<!-- ============================ LEVEL 2 ============================ -->
+<section class="level" id="lv2">
+<h2>Level 2 — What you keep, what you spend</h2>
+<p>Same kind of universe, cut already drawn, clock already running. Your ledger as subsystem A has two columns: things that <strong>flow across the cut</strong> (spent — they exist as flux) and things that <strong>persist</strong> (kept — conserved structure). Sort the phenomena.</p>
+
+<div data-view="gods">
+  <div class="callout"><p>From nowhere there is no ledger: no boundary, so nothing counts as "leaking" and nothing as "kept." The bookkeeping below only exists in the cut view. Toggle to <strong>Cut</strong> to play.</p></div>
+</div>
+
+<div data-view="cut">
+  <div class="controls">
+    <label>Cut position ℓ <input type="range" id="l2-cut" min="4" max="20" value="12"><output id="l2-cutv">12</output></label>
+  </div>
+  <div class="canvasbox"><canvas id="l2-chain" width="820" height="90"></canvas></div>
+  <div class="readouts">
+    <div class="readout"><div class="k">S_A (growing)</div><div class="v" id="l2-sa">—</div></div>
+    <div class="readout"><div class="k">boundary current</div><div class="v" id="l2-leak">—</div></div>
+    <div class="readout"><div class="k">total N (whole)</div><div class="v" id="l2-ntot">—</div></div>
+    <div class="readout"><div class="k">total E (whole)</div><div class="v" id="l2-etot">—</div></div>
+  </div>
+  <div class="quest"><span class="qtitle">TASK</span><br>Click a phenomenon, then click the pile it belongs to.</div>
+  <div id="l2-chips">
+    <span class="chip" data-kind="flow">A's clock ticking (τ_A)</span>
+    <span class="chip" data-kind="flow">energy current through the boundary</span>
+    <span class="chip" data-kind="flow">bits A lacks about B</span>
+    <span class="chip" data-kind="keep">total particle number</span>
+    <span class="chip" data-kind="keep">total energy of the whole</span>
+    <span class="chip" data-kind="keep">the lattice itself — sites and bonds</span>
+  </div>
+  <div class="bins">
+    <div class="bin flow" id="l2-binflow"><h4>FLOWS ACROSS THE CUT (spent)</h4></div>
+    <div class="bin keep" id="l2-binkeep"><h4>PERSISTS (kept)</h4></div>
+  </div>
+  <div class="toast" id="l2-feedback">&nbsp;</div>
+  <div class="quest"><span class="qtitle">THE LIMIT</span><br>
+    Watch the highlighted bond, then <strong>move the cut</strong> past it.
+    <div class="toast" id="l2-bond">&nbsp;</div></div>
+</div>
+
+<div class="honesty">
+  <div class="card yes"><h4>WHAT THIS SHOWS</h4><ul>
+    <li>The flowing/persisting split is real and computable for any given cut: currents and entropy growth vs. exact conservation laws <span class="tag est">EST</span>.</li>
+    <li>The same microscopic fact (one bond's current) is "spending" for one cut and mere internal metabolism for another — the ledger is <em>cut-relative</em>.</li></ul></div>
+  <div class="card no"><h4>WHAT THIS DOES NOT SHOW</h4><ul>
+    <li>A right place to cut. Recutting reshuffles the ledger and nothing says which bookkeeping is true — that's Level 3.</li>
+    <li>A general definition of "matter" — "persisting structure" here means the conserved quantities and the lattice, a modest stand-in <span class="tag conj">CONJ</span>.</li></ul></div>
+</div>
+<div class="nextrow"><button class="primary nextlv" data-next="3">Level 3 →</button></div>
+</section>
+
+<!-- ============================ LEVEL 3 ============================ -->
+<section class="level" id="lv3">
+<h2>Level 3 — You cannot find the true cut</h2>
+<p>Every cut you drew so far produced a valid clock, a valid ledger. So which one is <em>the</em> cut — the partition the universe itself endorses? This level asks you to find it.</p>
+
+<div class="quest"><span class="qtitle">QUEST (read the fine print later)</span><br>
+  Locate the canonical partition. Move the cut, inspect its co-products, and fire a <strong>selector</strong> — a rule that would pick the true cut. The gauge certifies when you find it.</div>
+
+<div class="controls">
+  <label>Candidate cut ℓ <input type="range" id="l3-cut" min="1" max="23" value="12"><output id="l3-cutv">12</output></label>
+  <span class="small muted" id="l3-survey"></span>
+</div>
+<div class="readouts">
+  <div class="readout"><div class="k">this cut's S_A</div><div class="v" id="l3-sa">—</div></div>
+  <div class="readout"><div class="k">its clock rate</div><div class="v" id="l3-rate">—</div></div>
+  <div class="readout"><div class="k">its energy leak</div><div class="v" id="l3-leak">—</div></div>
+  <div class="readout"><div class="k">valid?</div><div class="v" style="color:var(--est)">yes — they all are</div></div>
+</div>
+<div class="canvasbox"><canvas id="l3-gauge" width="360" height="120"></canvas>
+  <p class="small muted">Canonicalness gauge. The needle moves when a selector fires; the CANONICAL zone certifies the true cut.</p></div>
+<div class="controls" id="l3-selectors">
+  <button class="l3-sel" data-sel="rate">selector: fastest clock</button>
+  <button class="l3-sel" data-sel="leak">selector: smallest leak</button>
+  <button class="l3-sel" data-sel="sym">selector: symmetry</button>
+  <button class="l3-sel" data-sel="records">selector: most records</button>
+</div>
+<div class="toast" id="l3-result">&nbsp;</div>
+<div id="l3-reveal" style="display:none">
+  <div class="callout gap"><p><strong>The quest is unwinnable, and that is the lesson.</strong> The framework searched for a partition selector and reports none: no eigen-decomposition, no symmetry, no variational rule inside the theory picks a preferred cut (its Claim 10.1 <span class="tag gap" title="GAP: acknowledged unresolved">GAP</span> — "Turtle 2"). Every cut is as valid as any other; "which cut" is an input, not an output. The only winning move:</p>
+  <button id="l3-accept" class="primary">Accept: every cut is as valid as any other</button></div>
+</div>
+
+<div class="honesty">
+  <div class="card yes"><h4>WHAT THIS SHOWS</h4><ul>
+    <li>Concrete selector candidates fail for concrete reasons on a real system: instability in time, degeneracy, or smuggled god's-eye facts.</li>
+    <li>The absence of a canonical cut is a load-bearing <em>gap</em> the framework states about itself, made playable.</li></ul></div>
+  <div class="card no"><h4>WHAT THIS DOES NOT SHOW</h4><ul>
+    <li>A proof that no selector can exist — four failed selectors on one lattice is an illustration, not a theorem <span class="tag gap">GAP</span>.</li>
+    <li>That cut-relativity makes physics arbitrary: given a cut, everything downstream is fixed and exact.</li></ul></div>
+</div>
+<div class="nextrow"><button class="primary nextlv" data-next="4">Level 4 →</button></div>
+</section>
+
+<!-- ============================ LEVEL 4 ============================ -->
+<section class="level" id="lv4">
+<h2>Level 4 — Which way is forward?</h2>
+<p>You have a cut and a clock: S_A changes along the block's parameter. One more thing seems missing — a <em>direction</em>. This level hands you a subsystem sitting at an entropy minimum and asks you to point time's arrow. From inside.</p>
+
+<div class="canvasbox"><canvas id="l4-plot" width="820" height="300"></canvas>
+  <p class="small muted">Exact S_A along the internal parameter s, both directions from where you stand (s = 0). Axis deliberately unlabeled: which side is "the future" is precisely what's at stake.</p></div>
+
+<div data-view="cut">
+  <div class="quest"><span class="qtitle">TASK</span><br>
+    Set the arrow of time from inside your subsystem.
+    <button id="l4-fwd">point arrow →</button>
+    <button id="l4-bwd">point arrow ←</button>
+    <button class="l4-probe" data-p="dyn">probe: is the dynamics asymmetric?</button>
+    <button class="l4-probe" data-p="ent">probe: does entropy pick a side?</button>
+    <div class="toast" id="l4-msg">&nbsp;</div></div>
+  <div class="unregistrable"><div class="quest"><span class="qtitle">PAST-HYPOTHESIS LEVER</span><br>
+    place the low-entropy condition: <label><input type="radio" name="l4x" disabled> left</label>
+    <label><input type="radio" name="l4x" disabled> center</label> <label><input type="radio" name="l4x" disabled> right</label></div></div>
+  <p class="small muted">The lever above exists — you can even see its shape — but it is not yours. Toggle to <strong>god's-eye</strong> to reach it.</p>
+</div>
+
+<div data-view="gods">
+  <div class="quest"><span class="qtitle">PAST-HYPOTHESIS LEVER (god's-eye only)</span><br>
+    Place the low-entropy boundary condition on the block:
+    <label><input type="radio" name="l4lever" value="left"> left end</label>
+    <label><input type="radio" name="l4lever" value="center" checked> center</label>
+    <label><input type="radio" name="l4lever" value="right"> right end</label>
+    <div class="toast" id="l4-godsmsg">The condition currently sits mid-block: entropy grows <em>away from it in both directions</em> — two arrows, back to back. (This two-headed configuration is a live proposal in real cosmology.)</div></div>
+</div>
+
+<div class="honesty">
+  <div class="card yes"><h4>WHAT THIS SHOWS</h4><ul>
+    <li>The dynamics is unitary and time-symmetric, and the plotted S_A(−s) = S_A(s) exactly — from the minimum, no internal experiment distinguishes the two directions <span class="tag est">EST</span>.</li>
+    <li>The arrow appears only when a low-entropy condition is imposed from outside the subsystem's reach — imported, not derived ("Turtle 1" <span class="tag gap">GAP</span>).</li></ul></div>
+  <div class="card no"><h4>WHAT THIS DOES NOT SHOW</h4><ul>
+    <li>Where the real universe's past hypothesis comes from. Nobody has derived it; this framework explicitly declines to <span class="tag gap">GAP</span>.</li>
+    <li>That entropy defines duration robustly — on this small chain it revives and fluctuates; the clock reading of Level 1 needs the arrow it cannot supply.</li></ul></div>
+</div>
+<div class="nextrow"><button class="primary nextlv" data-next="5">Level 5 →</button></div>
+</section>
+
+<!-- ============================ LEVEL 5 ============================ -->
+<section class="level" id="lv5">
+<h2>Level 5 — The observer that can't see straight</h2>
+<p>The centerpiece, and the one level backed by a <strong>real computational result</strong>: every number your instruments return below is a measured data point from the pre-registered ruler-cancellation experiment (log-interpolated between measured ξ, exactly like the <a href="ruler-cancellation-verdict-lab.html">Verdict Lab</a>). The cone animation is the exact FFT dynamics, live.</p>
+
+<div class="controls">
+  <label>Substrate anisotropy r = J<sub>x</sub>/J<sub>y</sub>
+    <select id="l5-r"><option>1.25</option><option>1.5</option><option selected>2</option><option>3</option></select></label>
+</div>
+
+<div data-view="gods">
+  <div class="canvasbox"><canvas id="l5-cone" width="384" height="384"></canvas>
+    <p class="small muted">God's-eye: the substrate's correlation front, live and <em>elliptical</em>. The crosshair is the preferred frame — the axes the couplings themselves single out.</p></div>
+  <div class="readouts">
+    <div class="readout"><div class="k">A_god (measured)</div><div class="v" id="l5-agod">—</div></div>
+    <div class="readout"><div class="k">preferred frame</div><div class="v">visible</div></div>
+  </div>
+  <div id="l5-compare" style="display:none">
+    <h3>Comparison panel — a god's-eye fact</h3>
+    <p class="small">Only from here can measurements be compared to the substrate truth. This is the comparison no endogenous observer can perform.</p>
+    <div class="canvasbox"><canvas id="l5-sweep" width="780" height="330"></canvas>
+      <p class="small muted">Measured sweep at this r: A_endo(front) and A_endo(wavepacket) vs rod size ξ. Dotted: 1, √A_god, A_god.</p></div>
+    <div class="toast" id="l5-comparemsg">&nbsp;</div>
+  </div>
+</div>
+
+<div data-view="cut">
+  <p>You are now <strong>made of the lattice</strong>. Your rod in each direction is an impurity bound-state width; your clock is a cavity beat. You never see sites or the global parameter — only <em>rods per tick</em>.</p>
+  <div class="controls">
+    <label>Instrument scale — rod size ξ (→ continuum fixed point) <input type="range" id="l5-xi" min="0" max="100" value="40"><output id="l5-xiv">—</output></label>
+  </div>
+  <div class="coproducts">
+    <div class="coproduct reveal"><div class="k small muted">YOUR RODS</div><canvas id="l5-rods" width="150" height="110"></canvas><div class="small">bound-state widths, per axis</div></div>
+    <div class="coproduct reveal"><div class="k small muted">YOUR CLOCK</div><div class="v" id="l5-tick" style="font:bold 1.6rem Consolas,monospace">·</div><div class="small">cavity beat — one shared tick</div></div>
+    <div class="coproduct reveal"><div class="k small muted">SUBSTRATE TRUTH</div><div class="unregistrable"><div class="v" style="font:bold 1.4rem Consolas,monospace">A_god</div><div class="small">the ellipse itself</div></div></div>
+  </div>
+  <div class="quest"><span class="qtitle">MISSION</span><br><span id="l5-quest">Measure the substrate's preferred direction — with instruments made of the substrate. Time your two signals along both axes.</span></div>
+  <div class="controls">
+    <button id="l5-front" class="primary">measure: fastest signal (front)</button>
+    <button id="l5-wp" class="primary">measure: slow wavepacket</button>
+    <button id="l5-batt">run full detection battery</button>
+  </div>
+  <div class="toast" id="l5-out">&nbsp;</div>
+  <h3>Your lab notebook</h3>
+  <div class="tablebox"><table id="l5-notebook">
+    <tr><th>ξ</th><th>signal</th><th>anisotropy you measured</th><th>verdict at nearest measured point</th></tr></table></div>
+  <div class="canvasbox"><canvas id="l5-mychart" width="780" height="240"></canvas>
+    <p class="small muted">Your own measurements vs your rod scale ξ. The only reference line you can draw from inside: 1 (isotropy).</p></div>
+</div>
+
+<div class="callout verdict" id="l5-verdict" style="display:none"></div>
+
+<div class="honesty">
+  <div class="card yes"><h4>WHAT THIS SHOWS (measured, pre-registered)</h4><ul>
+    <li>Your rods absorb exactly half the anisotropy: rod ratio → √r, so your fastest signal reads √A_god — you see the substrate <em>square-rooted</em>, never full, never zero.</li>
+    <li>Toward the fixed point your slow instruments read perfect isotropy: emergent Lorentz invariance is real — but IR-only.</li>
+    <li>Your own light-front leaks the axis back in at every scale: the naive "no internal experiment detects it" claim is <strong>falsified</strong>.</li></ul></div>
+  <div class="card no"><h4>WHAT THIS DOES NOT SHOW</h4><ul>
+    <li>What happens with interactions. Whether an interacting fixed point makes the front itself co-disperse is open — undecidable in this free theory <span class="tag gap">GAP</span>.</li>
+    <li>The ontological postulate ("unregistrable ⟹ not a fact") — philosophy, untested by design <span class="tag post" title="POST: postulated, not derived">POST</span>.</li>
+    <li>A clean win. You partly see the substrate and partly don't. That <em>is</em> the result.</li></ul></div>
+</div>
+<div class="nextrow"><button class="primary nextlv" data-next="6">Level 6 →</button></div>
+</section>
+
+<!-- ============================ LEVEL 6 ============================ -->
+<section class="level" id="lv6">
+<h2>Level 6 — Two views of one paradox</h2>
+<div class="callout"><p><strong>Analogy only, stated up front:</strong> this level illustrates a <em>shape</em>, it derives nothing. In particular it does not derive the island rule or solve either paradox <span class="tag conj">CONJ</span>. It shows that two famous puzzles have the same grammatical form: a cut-relative quantity mistaken for an absolute one.</p></div>
+
+<div class="l6grid">
+  <div class="card"><h3>The problem of time</h3>
+    <p class="small">The universe's global state satisfies its constraint exactly — like your Level-1 block, it just sits there. S_U = 0. <em>Where did time go?</em></p>
+    <button class="l6-demand" data-p="time">demand: the absolute time of the whole</button>
+    <button class="l6-move" data-p="time">the move: ask relative to a cut</button>
+    <div class="toast" id="l6-time-out">&nbsp;</div></div>
+  <div class="card"><h3>The information paradox</h3>
+    <p class="small">Radiation from an evaporating black hole looks thermal — entropy rising past every bound. <em>Where did the information go?</em></p>
+    <button class="l6-demand" data-p="bh">demand: the absolute entropy of the radiation</button>
+    <button class="l6-move" data-p="bh">the move: optimize over cuts</button>
+    <div class="toast" id="l6-bh-out">&nbsp;</div></div>
+</div>
+
+<div class="honesty">
+  <div class="card yes"><h4>WHAT THIS SHOWS</h4><ul>
+    <li>Both puzzles dissolve their sting the same way: stop demanding a cut-independent fact, ask the cut-relative question instead.</li>
+    <li>In the black-hole case, the entropy that follows the Page curve is computed by <em>optimizing over cuts</em> (the island prescription) — discovered independently of this framework, and credited below.</li></ul></div>
+  <div class="card no"><h4>WHAT THIS DOES NOT SHOW</h4><ul>
+    <li>Any derivation. The island rule comes from gravitational path integrals; Page–Wootters time from constraint quantization. This level borrows their <em>shape</em>.</li>
+    <li>That the analogy is exact — treating it as such would be precisely the overclaiming this game exists to avoid.</li></ul></div>
+</div>
+<div class="nextrow"><button class="primary nextlv" data-next="7">Finish →</button></div>
+</section>
+
+<!-- ============================ FINALE ============================ -->
+<section class="level" id="lv7">
+<h2>Where the seams are</h2>
+<p>You did not solve physics. Neither does the framework — it dissolves some questions and marks its own limits. What a finished player holds:</p>
+<div id="finale-list"></div>
+<div class="callout gap"><p><strong>The two turtles stand.</strong> The arrow of time is imported (Level 4) and the cut is unchosen (Level 3). The one falsifiable mechanism tested so far came back <em>partly</em> falsified, partly supported (Level 5). That is the honest state of the art here — boundaries understood as clearly as claims.</p></div>
+
+<h2>Credits &amp; further reading</h2>
+<p class="small">None of these ideas are sui generis. The framework synthesizes, and this game inherits from:</p>
+<div class="cardgrid">
+  <div class="card small"><h3>Relational time</h3>Page &amp; Wootters, evolution without evolution; Rovelli's relational QM; DeWitt's frozen formalism and the problem of time.</div>
+  <div class="card small"><h3>Observers as physical systems</h3>Quantum reference frames (Giacomini, Castro-Ruiz, Brukner); C. Fields on observers and boundaries.</div>
+  <div class="card small"><h3>Geometry from entanglement</h3>Ryu–Takayanagi; Van Raamsdonk; the island prescription (Penington; Almheiri–Engelhardt–Marolf–Maxfield) — Level 6's borrowed shape.</div>
+  <div class="card small"><h3>Arrow &amp; cones</h3>Boltzmann and the past hypothesis (see D. Albert, <em>Time and Chance</em>); two-headed-arrow cosmologies (Carroll–Chen); Lieb–Robinson bounds; emergent Lorentz invariance literature.</div>
+</div>
+<p class="small muted">Simulation methods and measured data: this repository (<code>src/</code>, <code>results/results.json</code>, <code>docs/results-writeup.md</code>). Every claim card's epistemic tag is in the <a href="framework-explorer.html">Framework Explorer</a>.</p>
+</section>
+
+<footer>The Cut — the game. Physics: exact free-fermion dynamics in your browser; Level 5 data measured, pre-registered, not faked. Tags: <span class="tag est">EST</span> established · <span class="tag conj">CONJ</span> framework reading · <span class="tag post">POST</span> postulate · <span class="tag gap">GAP</span> acknowledged gap — full legend in the <a href="framework-explorer.html">Framework Explorer</a>.</footer>
+</div>
+
+<script src="assets/fft-free-fermion-engine.js"></script>
+<script src="assets/experiment-data.js"></script>
+<script src="assets/game-shell-view-toggle-and-levels.js"></script>
+<script src="assets/game-level-1-frozen-whole.js"></script>
+<script src="assets/game-level-2-keep-vs-spend.js"></script>
+<script src="assets/game-level-3-no-canonical-cut.js"></script>
+<script src="assets/game-level-4-arrow-imported.js"></script>
+<script src="assets/game-level-5-endogenous-observer.js"></script>
+<script src="assets/game-level-6-one-paradox-twice.js"></script>
+<script>CutGame.start();</script>
+<script src="assets/site-nav.js" data-page="game"></script>
+</body>
+</html>

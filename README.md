@@ -35,6 +35,9 @@ no build step, no external dependencies, works from disk or any static host
 (e.g. GitHub Pages: serve the `web/` directory). Light/dark theme aware.
 
 - `index.html` — overview: thesis, status-tag legend, the two turtles
+- `the-cut-game.html` — **the game** (`game-spec.md`): six levels behind a God's-eye ⇄ Cut
+  toggle; Levels 1–4 run the live exact sims, Level 5 replays the real measured data,
+  and the framework's gaps (the two turtles, the falsified claim) are playable
 - `framework-explorer.html` — the full spec as claim cards, filterable by epistemic tag
 - `time-as-forgetting-lab.html` — live 1D fermion chain: S_A(t) after a quench (exact)
 - `lieb-robinson-cone-lab.html` — live 2D anisotropic lattice: the elliptical cone (exact)

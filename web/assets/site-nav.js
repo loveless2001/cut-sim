@@ -3,6 +3,7 @@
   const page = document.currentScript.dataset.page;
   const links = [
     ["index", "index.html", "Overview"],
+    ["game", "the-cut-game.html", "The Game"],
     ["framework", "framework-explorer.html", "Framework Explorer"],
     ["time", "time-as-forgetting-lab.html", "Time Lab"],
     ["cone", "lieb-robinson-cone-lab.html", "Cone Lab"],
