@@ -3,13 +3,19 @@
 Fulfills `orientation-test.md`. Spec is the requirements doc; this plan fixes the design,
 conventions, thresholds and verdict criteria BEFORE any experiment code is written or run.
 
+**OUTCOME (2026-07-20):** all phases complete, gates G0–G9 all pass. **P7.2a HOLDS**
+(max D_internal(O+ vs O−, g=0) = 2.0e−15 across the full sweep) and **P7.2b HOLDS**
+(1.4e−14; theorem demonstrated, stated as such), with all positive controls firing.
+Crossover law found: orientation onset ∝ g², purification onset ∝ g — see
+`docs/results-writeup-orientation.md`. One pre-run amendment (A1, clock parity kick).
+
 ## Status
-- [ ] Phase 1: TFD Gaussian state machinery (`src/tfd-gaussian-state-construction.py`)
-- [ ] Phase 2: exact O+/O- evolution + coupling window (`src/orientation-flip-evolution.py`)
-- [ ] Phase 3: internal side-R battery (`src/internal-battery-side-r.py`)
-- [ ] Phase 4: god's-eye discriminators (`src/gods-eye-discriminators.py`)
-- [ ] Phase 5: gates G0–G9 (`src/validate-orientation-gates.py`)
-- [ ] Phase 6: sweep driver + plots → results, write-up
+- [x] Phase 1: TFD Gaussian state machinery (`src/tfd-gaussian-state-construction.py`)
+- [x] Phase 2: exact O+/O- evolution + coupling window (`src/orientation-flip-evolution.py`)
+- [x] Phase 3: internal side-R battery (`src/internal-battery-side-r.py`)
+- [x] Phase 4: god's-eye discriminators (`src/gods-eye-discriminators.py`)
+- [x] Phase 5: gates G0–G9 (`src/validate-orientation-gates.py`)
+- [x] Phase 6: sweep driver + plots → results, write-up
 
 ## Model & conventions (fixed here, used everywhere)
 1D tight-binding free fermions per side, N sites, PBC, `h[i,i±1] = -J`, J = 1.
@@ -122,6 +128,14 @@ Geometry scales with N: all centres at N/2; fixed device sizes (W=16, ℓ=8/13, 
 - `src/run-orientation-gauge-experiment.py` — gates → sweep → verdict → results/
   results-orientation.json + plots (plot code in `src/generate-orientation-plots.py`)
 - `docs/results-writeup-orientation.md` — honest verdict, g-crossover, theorem-status caveat
+
+## Amendments (logged before the experiment run)
+- **A1 (gate G6 failure, 2026-07-20):** the bare two-mode cavity coherence z(0) vanishes
+  exactly by a parity selection rule (thermal ring correlator is reflection-symmetric about
+  the cavity centre; the two lowest cavity modes have opposite parity). Fix: the clock run
+  now includes an R-local preparation kick e^{iθ n_x}, θ = 0.5, on the LEFT HALF of each
+  cavity (the observer winds its clock). Gaussian, side-R only, applied identically to every
+  variant. No battery item removed; thresholds unchanged.
 
 ## Risks
 - Item 1 scalar ratio may be resolution-limited at small g (phase fit is exact at g=0, so the

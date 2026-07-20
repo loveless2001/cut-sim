@@ -6,6 +6,18 @@ substrate's anisotropy through any dimensionless internal experiment.* The frame
 spec is `docs/cut_spec.tex` (§9 states the claim and this experiment's result); the
 verdict rules and outcome are in `docs/results-writeup.md`.
 
+**Second experiment (Prop 7.2 candidate):** orientation-gauge test on a two-sided
+fermion TFD — can an observer inside side R detect a flip of side L's time direction,
+or a swap of its mirror partner for a scrambled purification, at zero cross-cut
+coupling? Spec: `orientation-test.md`; pre-registration:
+`plans/260720-2257-orientation-gauge-sim/plan.md`; verdict (both claims HOLD at float
+precision, crossover law D ∝ g² / g found): `docs/results-writeup-orientation.md`.
+
+```bash
+.venv/bin/python3 src/validate-orientation-gates.py        # gates G0–G9 must ALL pass
+.venv/bin/python3 src/run-orientation-gauge-experiment.py  # → results/results-orientation.json + plots
+```
+
 ## Model
 
 2D anisotropic tight-binding free fermions (`Jx ≠ Jy`), periodic boundaries.
@@ -58,5 +70,17 @@ from `results/results.json`.
 - `src/validate-physics-sanity-checks.py` — pre-registered sanity gates
 - `plans/260703-1555-ruler-cancellation-sim/plan.md` — design + pre-registered verdict criteria
 - `docs/results-writeup.md` — honest verdict write-up (deliverable 5)
+
+Orientation-gauge experiment (two-sided TFD):
+
+- `src/tfd-gaussian-state-construction.py` — TFD + scrambled purification, Majorana ⇄
+  Nambu correlation machinery, Θ_L, entropies
+- `src/orientation-flip-evolution.py` — exact O+/O- evolution, coupling window, two-time
+  correlators, Impl-B Θ_L path
+- `src/internal-battery-side-r.py` — rod, cavity clock, the six dimensionless items
+- `src/gods-eye-discriminators.py` — MI, cross-phase, complement discriminators
+- `src/validate-orientation-gates.py` — gates G0–G9 (incl. dense Fock-space cross-check)
+- `src/run-orientation-gauge-experiment.py` — sweep driver → `results/results-orientation.json`
+- `src/generate-orientation-plots.py` — result plots
 
 Kebab-case module files are loaded via an importlib bootstrap in the driver scripts.
