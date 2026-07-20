@@ -16,6 +16,8 @@ precision, crossover law D ∝ g² / g found): `docs/results-writeup-orientation
 ```bash
 .venv/bin/python3 src/validate-orientation-gates.py        # gates G0–G9 must ALL pass
 .venv/bin/python3 src/run-orientation-gauge-experiment.py  # → results/results-orientation.json + plots
+.venv/bin/python3 src/validate-orientation-artifacts.py    # result/doc/web consistency checks
+.venv/bin/python3 src/export-web-orientation-data.py       # → web/assets/orientation-experiment-data.js
 ```
 
 ## Model
@@ -81,6 +83,7 @@ Orientation-gauge experiment (two-sided TFD):
 - `src/gods-eye-discriminators.py` — MI, cross-phase, complement discriminators
 - `src/validate-orientation-gates.py` — gates G0–G9 (incl. dense Fock-space cross-check)
 - `src/run-orientation-gauge-experiment.py` — sweep driver → `results/results-orientation.json`
+- `src/validate-orientation-artifacts.py` — fast result/doc/web consistency checks
 - `src/generate-orientation-plots.py` — result plots
 
 Kebab-case module files are loaded via an importlib bootstrap in the driver scripts.

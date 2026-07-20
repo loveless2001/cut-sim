@@ -42,7 +42,17 @@ TOL_NULL = 1e-9
 CURVE_COMBO = (256, 1.0)          # combo whose curves are stored for plots/web
 
 
-def run_variant(N, state, s, g, cls=oe.VariantEvolution):
+def classify_verdict(null_distance, controls_ok, tol=TOL_NULL):
+    """Apply the pre-registered verdict order.
+
+    A dead calibration/positive control voids the test, even if a g=0 distance is large.
+    """
+    if not controls_ok:
+        return "INCONCLUSIVE"
+    return "HOLDS" if null_distance < tol else "FALSIFIED"
+
+
+def run_variant(N, state, s, g, rod, cls=oe.VariantEvolution):
     """Build the three protocols for one variant and compute its battery."""
     mk = lambda **kw: oe.build_variant_h1(N, s, g, **kw)
     evo_main = cls(mk(), state["G"], state["F"])
@@ -50,7 +60,7 @@ def run_variant(N, state, s, g, cls=oe.VariantEvolution):
               for V in QUENCH_VS}
     Gk, Fk = bt.apply_clock_kick(state["G"], state["F"], N)
     evo_clk = cls(mk(carve=True), Gk, Fk)
-    items, meta = bt.compute_internal_items(evo_main, evo_qs, evo_clk, N)
+    items, meta = bt.compute_internal_items(evo_main, evo_qs, evo_clk, N, rod)
     quench_curves = {V: items[f"quench-arrow-V{V}"] for V in QUENCH_VS}
     return evo_main, items, meta, quench_curves
 
@@ -65,7 +75,7 @@ def run_combo(N, beta, gs, rod):
         data = {}
         for s, comp, state in ((+1, "mirror", st), (-1, "mirror", st),
                                (+1, "scrambled", scr), (-1, "scrambled", scr)):
-            evo, items, meta, qc = run_variant(N, state, s, g)
+            evo, items, meta, qc = run_variant(N, state, s, g, rod)
             key = f"O{'+' if s > 0 else '-'}{comp}"
             data[key] = {"items": items, "meta": meta, "qcurves": qc,
                          "evo": evo if comp == "mirror" else None}
@@ -98,7 +108,7 @@ def run_combo(N, beta, gs, rod):
                 "ticks": {k: v["meta"]["tick"] for k, v in data.items()},
             }
             # Theta_L Impl-B battery for O- : verdicts must match Impl A
-            _, items_b, _, _ = run_variant(N, st, -1, g, cls=oe.ImplBEvolution)
+            _, items_b, _, _ = run_variant(N, st, -1, g, rod, cls=oe.ImplBEvolution)
             d_b, D_b = bt.battery_distances(data["O+mirror"]["items"], items_b)
             d_a = axes["orientation-mirror"]["items"]
             rec["impl_b_check"] = {
@@ -128,10 +138,14 @@ def crossover_summary(recs):
             fired = [r["g"] for r in sweep if r["g"] > 0
                      and r["internal"][axis]["items"][k] > ge.THETA_FIRE]
             first_fire[k] = min(fired) if fired else None
-        gpos = [r["g"] for r in sweep if r["g"] > 0]
-        Dpos = [r["internal"][axis]["D"] for r in sweep if r["g"] > 0]
-        slope = float(np.polyfit(np.log(gpos), np.log(Dpos), 1)[0])
-        out[axis] = {"first_firing_g": first_fire, "smallg_slope_D": slope,
+        positive = [(r["g"], r["internal"][axis]["D"]) for r in sweep if r["g"] > 0]
+        gpos = [g for g, _ in positive]
+        Dpos = [D for _, D in positive]
+        all_slope = float(np.polyfit(np.log(gpos), np.log(Dpos), 1)[0])
+        smallg_slope = float(np.log(Dpos[1] / Dpos[0]) / np.log(gpos[1] / gpos[0]))
+        out[axis] = {"first_firing_g": first_fire, "smallg_slope_D": smallg_slope,
+                     "all_nonzero_slope_D": all_slope,
+                     "smallg_slope_window": [gpos[0], gpos[1]],
                      "D_vs_g": dict(zip(map(str, gpos), Dpos))}
     return out
 
@@ -155,17 +169,30 @@ def main():
     D72a = max(r["internal"]["orientation-mirror"]["D"] for r in nulls)
     D72a_scr = max(r["internal"]["orientation-scrambled"]["D"] for r in nulls)
     D72b = max(r["internal"]["purification"]["D"] for r in nulls)
-    ge_ok = all(all(r["ge_fires"].values()) for r in nulls)
+    ge_orientation_ok = all(r["ge_fires"]["ge-mi"] and r["ge_fires"]["ge-cross-phase"]
+                            for r in nulls)
+    ge_complement_ok = all(r["ge_fires"]["ge-complement"] for r in nulls)
+    ge_ok = ge_orientation_ok and ge_complement_ok
     implb = [r["impl_b_check"] for r in recs if "impl_b_check" in r]
-    implb_ok = all(c["null_verdict_agrees"] for c in implb)
+    implb_ok = bool(implb) and all(c["null_verdict_agrees"] for c in implb)
+    control_rows = [r for r in recs if r["g"] == 0.1]
+    positive_controls_ok = bool(control_rows) and all(
+        all(v > ge.THETA_FIRE for v in r["internal"]["orientation-mirror"]["items"].values())
+        and all(v > ge.THETA_FIRE for v in r["internal"]["purification"]["items"].values())
+        for r in control_rows)
+    controls72a = ge_orientation_ok and positive_controls_ok and implb_ok
+    controls72b = ge_complement_ok and positive_controls_ok
 
     verdict = {
-        "P7.2a": "HOLDS" if (D72a < TOL_NULL and ge_ok and implb_ok) else "FALSIFIED",
-        "P7.2b": "HOLDS" if (D72b < TOL_NULL and ge_ok) else "FALSIFIED",
+        "P7.2a": classify_verdict(D72a, controls72a),
+        "P7.2b": classify_verdict(D72b, controls72b),
         "D_internal_max_orientation_g0": D72a,
         "D_internal_max_orientation_scrambled_g0": D72a_scr,
         "D_internal_max_purification_g0": D72b,
         "gods_eye_all_fire": ge_ok, "gates_all_pass": True,
+        "gods_eye_orientation_fire": ge_orientation_ok,
+        "gods_eye_complement_fire": ge_complement_ok,
+        "positive_controls_fire": positive_controls_ok,
         "theta_impl_AB_verdicts_agree": implb_ok,
         "tolerance_null": TOL_NULL, "theta_fire": ge.THETA_FIRE,
         "crossover": crossover_summary(recs),

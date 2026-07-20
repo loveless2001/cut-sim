@@ -19,7 +19,7 @@ oe = sys.modules["orientation_evolution"]
 
 ROD_EPS0 = 1.5
 ROD_LATTICE = 4096
-PROBE_OFFSETS = np.array([0, 2, 4, 8, 12, 18, 24, 32])
+PROBE_OFFSETS_RODS = np.array([0, 2, 4, 8, 12, 18, 24, 32], dtype=float)
 SUBREGION_HALF = 12          # A = 24 sites centred at the quench site
 SPECTRUM_TOP_K = 8
 CLOCK_TIMES = np.linspace(0.0, 300.0, 1200)
@@ -42,6 +42,12 @@ def rod_length(J=1.0, eps0=ROD_EPS0, L=ROD_LATTICE):
     p = psi**2 / np.sum(psi**2)
     x = np.fft.fftfreq(L, d=1.0 / L)
     return float(np.sqrt(np.sum(p * x**2)))
+
+
+def probe_offsets_sites(rod):
+    """Nearest lattice representatives for the pre-registered probe offsets in rods."""
+    sites = np.rint(PROBE_OFFSETS_RODS * float(rod)).astype(int)
+    return np.maximum(sites, 0)
 
 
 CLOCK_KICK_THETA = 0.5
@@ -102,10 +108,10 @@ def clock_items(evo_clock, N):
             "clock-traces": np.concatenate(traces)}
 
 
-def two_time_item(evo_main, N, tick):
+def two_time_item(evo_main, N, tick, rod):
     """Item 2: C<(x, t) on R probes, t sampled in ticks (0..2 ticks, 1/16-tick step)."""
     c = N // 2
-    rows = N + ((c + PROBE_OFFSETS) % N)
+    rows = N + ((c + probe_offsets_sites(rod)) % N)
     tt = np.arange(33) * tick / 16.0
     Cl, _, _ = evo_main.two_time(tt, rows, N + c)
     return Cl.flatten()
@@ -162,7 +168,7 @@ def coherence_floor_item(evo_main, N, tick):
     return np.concatenate(out)
 
 
-def compute_internal_items(evo_main, evo_quenches, evo_clock, N):
+def compute_internal_items(evo_main, evo_quenches, evo_clock, N, rod=1.0):
     """Full battery for one variant. evo_quenches = {V: VariantEvolution}."""
     clk = clock_items(evo_clock, N)
     tick = clk["tick"]
@@ -170,14 +176,16 @@ def compute_internal_items(evo_main, evo_quenches, evo_clock, N):
     items = {
         "clock-ratio": clk["clock-ratio"],
         "clock-traces": clk["clock-traces"],
-        "two-time": two_time_item(evo_main, N, tick),
+        "two-time": two_time_item(evo_main, N, tick, rod),
         "kms-beta": kms,
         "coherence-floor": coherence_floor_item(evo_main, N, tick),
     }
     for V, evq in evo_quenches.items():
         items[f"quench-arrow-V{V}"] = quench_arrow_item(evq, N, tick)
     return items, {"tick": tick, "beta_hat": beta_hat,
-                   "clock_z0": (clk["m1"]["z0_abs"], clk["m2"]["z0_abs"])}
+                   "clock_z0": (clk["m1"]["z0_abs"], clk["m2"]["z0_abs"]),
+                   "probe_offsets_rods": PROBE_OFFSETS_RODS.tolist(),
+                   "probe_offsets_sites": probe_offsets_sites(rod).tolist()}
 
 
 def distance(X, Y):

@@ -5,12 +5,13 @@
 
 ## TL;DR — which verdict rule fired
 
-**P7.2a (orientation gauge) HOLDS.** Across the full sweep (N ∈ {64, 128, 256, 512},
-β ∈ {0.5, 1, 4}, quench V ∈ {1, 3}), the maximum internal battery distance between O+ and
+**P7.2a (orientation gauge) HOLDS.** Across the g = 0 null sweep
+(N ∈ {64, 128, 256, 512}, β ∈ {0.5, 1, 4}, quench V ∈ {1, 3}), the maximum internal battery distance between O+ and
 O− at g = 0 is **D_internal = 2.0×10⁻¹⁵** — float noise, six decades under the
 pre-registered 10⁻⁹ tolerance — while every god's-eye discriminator fires (d = 0.4–1.4)
-on the same data and every internal item fires at g = 0.1 (d = 0.02–1.1). The relative
-time-orientation of the two sides is gauge for internal observers in this construction.
+on the same data and every internal item fires on the tested g = 0.1 control grid
+(d = 0.006–1.23). beta = 0.5 was a null-only stress point. The relative time-orientation
+of the two sides is gauge for internal observers in this construction.
 
 **P7.2b (purification indistinguishability) HOLDS — as a theorem demonstrated, not a
 discovery.** Max internal distance mirror vs scrambled at g = 0: **1.4×10⁻¹⁴**; the
@@ -48,7 +49,8 @@ Endogenous side-R observer: rod = impurity bound-state RMS width (0.943 sites at
 ε₀ = 1.5); tick = measured beat period of the two lowest modes of a carved 8-site cavity
 (τ̂ = 18.09 at J = 1, matching the analytic two-mode gap to 2×10⁻¹⁶). Battery (all
 dimensionless, side-R data only): clock-ratio + coherence traces, two-time correlator
-C<(x,t) in rods/ticks, KMS-extracted β̂/tick, quench entropy arrow S_A(t), coherence
+C<(x,t) at rod offsets {0,2,4,8,12,18,24,32} mapped to nearest lattice sites
+{0,2,4,8,11,17,23,30}, KMS-extracted β̂/tick, quench entropy arrow S_A(t), coherence
 floor (purity + entanglement spectrum). D_internal = max item distance,
 d(X,Y) = ‖X−Y‖/max(‖X‖,‖Y‖).
 
@@ -67,7 +69,7 @@ Nulls at g = 0 (D_internal; tolerance 10⁻⁹) and traversable controls at g = 
 | 256 | 1.0 | 3.4e−16          | 3.7e−16           | 1.23        | 1.13           | 0.83 / 1.4 / 0.61 |
 | 256 | 4.0 | 2.0e−15          | 1.2e−14           | 1.08        | 1.00           | 0.92 / 1.3 / 0.83 |
 | 256 | 0.5 | 1.5e−15          | 2.4e−15           | —           | —              | 0.81 / 1.4 / 0.39 |
-| 64  | 1.0 | 2.5e−16          | 9.8e−15           | 0.80        | 1.21           | 0.51 / 1.4 / 0.61 |
+| 64  | 1.0 | 2.5e−16          | 9.8e−15           | 0.80        | 1.20           | 0.51 / 1.4 / 0.61 |
 | 128 | 1.0 | 3.2e−16          | 3.8e−16           | 1.13        | 0.89           | 0.73 / 1.4 / 0.61 |
 | 512 | 1.0 | 3.8e−16          | 1.4e−14           | 1.20        | 1.22           | 0.83 / 1.4 / 0.61 |
 
@@ -85,8 +87,10 @@ Crossover (N = 256, β = 1; plot `results/orientation-null-and-crossover.png`):
 | 10⁻²  | 5.8e−2      | 4.8e−1        |
 | 10⁻¹  | 1.23        | 1.13          |
 
-Smallest firing g for **every** individual battery item, both axes: 10⁻³ (the smallest
-nonzero g in the sweep). β = 4 numbers are within 10% of the β = 1 numbers throughout.
+Smallest firing g for **every** individual battery item, both axes, in the N = 256
+crossover sweeps: 10⁻³ (the smallest nonzero g in the sweep). The β = 4 sweep has the
+same firing pattern and orientation-axis scale as β = 1; the purification-axis magnitude
+is larger near g = 10⁻² but does not change the verdict or onset classification.
 
 Consistency numbers riding along: the internally extracted KMS temperature is
 |β̂| = 0.993 at β = 1 and 3.98 at β = 4, identical across all four variants at g = 0

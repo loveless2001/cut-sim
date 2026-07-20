@@ -116,6 +116,7 @@ def main():
     N, beta = N_GATE, BETA_GATE
     st = ts.build_tfd(N, beta)
     Lix, Rix = np.arange(N), np.arange(N, 2 * N)
+    rod = bt.rod_length()
 
     # G1 thermal R block
     thermal = st["phi"] @ np.diag(st["n"]) @ st["phi"].T
@@ -187,7 +188,7 @@ def main():
         clk = oe.VariantEvolution(oe.build_variant_h1(N, s, g, carve=True), Gk8, Fk8)
         q = N // 2
         items, meta = bt.compute_internal_items(
-            mk(), {V: mk(quench=(q, V)) for V in (1.0, 3.0)}, clk, N)
+            mk(), {V: mk(quench=(q, V)) for V in (1.0, 3.0)}, clk, N, rod)
         return items
 
     it_pm = battery(st, +1, 0.1)

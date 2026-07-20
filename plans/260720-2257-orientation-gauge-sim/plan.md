@@ -5,7 +5,7 @@ conventions, thresholds and verdict criteria BEFORE any experiment code is writt
 
 **OUTCOME (2026-07-20):** all phases complete, gates G0–G9 all pass. **P7.2a HOLDS**
 (max D_internal(O+ vs O−, g=0) = 2.0e−15 across the full sweep) and **P7.2b HOLDS**
-(1.4e−14; theorem demonstrated, stated as such), with all positive controls firing.
+(1.4e−14; theorem demonstrated, stated as such), with the tested positive controls firing.
 Crossover law found: orientation onset ∝ g², purification onset ∝ g — see
 `docs/results-writeup-orientation.md`. One pre-run amendment (A1, clock parity kick).
 
@@ -62,15 +62,16 @@ Per variant, three exact runs (all report side-R data only to the battery):
   only; identical across variants by construction (it is the unit, not the signal).
 - **Clock/tick**: measured per variant per run: coherence `z_m(t) = <a†_1 a_2>(t)` of the two
   lowest modes of cavity m (a_i = cavity eigenmode operators, R-local); tick τ̂_m = 2π/ω̂_m with
-  ω̂_m from an unwrapped phase-slope fit of z_m(t). The wall-insertion quench itself supplies
-  the initial two-mode coherence (no extra excitation needed).
+  ω̂_m from an unwrapped phase-slope fit of z_m(t). Amendment A1 below supplies the initial
+  two-mode coherence with an R-local phase kick because the bare coherence is parity-forbidden.
 All battery times in ticks of C1, lengths in rods, values dimensionless.
 
 ## Internal battery (pre-registered items; each computed per variant)
 1. **clock-ratio**: scalar ω̂_1/ω̂_2; plus dimensionless coherence traces z_m(t/τ̂_1)/z_m(0).
 2. **two-time correlator**: `C<(x,t) = <c†_x(t) c_{x0}(0)>` on R probes x0 = c, offsets
-   {0,2,4,8,12,18,24,32} (reported in rods), t grid of main run (in ticks). Exact formula:
-   `C< = conj(U G)` rows. Full complex array is the item value.
+   {0,2,4,8,12,18,24,32} in rods, mapped to nearest lattice sites for the discrete chain;
+   t grid of main run (in ticks). Exact formula: `C< = conj(U G)` rows. Full complex
+   array is the item value.
 3. **KMS**: on-site C<, C> at x0; symmetrize C(-t)=C(t)*, Hann-windowed FFT → S<(ω), S>(ω);
    β̂ = LSQ slope of ln[S>(ω)/S<(ω)] over bins with weight > 1e-3·max. Item: β̂/τ̂_1.
 4. **quench arrow**: S_A(t) for A = 24 sites centred at q, per V; item = curves S_A(t/τ̂_1).
