@@ -8,6 +8,7 @@
     ["time", "time-as-forgetting-lab.html", "Time Lab"],
     ["cone", "lieb-robinson-cone-lab.html", "Cone Lab"],
     ["verdict", "ruler-cancellation-verdict-lab.html", "Verdict Lab"],
+    ["orientation", "orientation-gauge-lab.html", "Orientation Lab"],
   ];
   const nav = document.createElement("nav");
   nav.className = "cutnav";

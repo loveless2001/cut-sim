@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orientation Lab — is the other side's time direction real?</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⏳</text></svg>">
+<link rel="stylesheet" href="assets/cut-theme.css">
+<style>
+  .legend { display:flex; flex-wrap:wrap; gap:16px; font:.75rem Verdana,sans-serif; justify-content:center; margin-top:6px; }
+  .swatch { display:inline-block; width:22px; height:3px; vertical-align:middle; margin-right:5px; border-radius:2px; }
+  .gticks { display:flex; justify-content:space-between; width:190px; font:.68rem Consolas,monospace; color:var(--muted); }
+  .viewbtns button { margin-right:6px; }
+</style>
+</head>
+<body>
+<script src="assets/site-nav.js" data-page="orientation"></script>
+<div class="wrap">
+
+<h1>The Orientation-Gauge Experiment <span class="tag conj">CONJ</span> → measured</h1>
+<p>Cut a pure global state into two sides L&nbsp;|&nbsp;R with no interaction across the cut.
+Prop&nbsp;7.2 says the relative <em>time-orientation</em> of the two sides is gauge: nobody living
+inside side&nbsp;R — with rods and clocks built from side-R physics — can tell whether L's modular
+time runs forward or backward (<b>P7.2a</b>), nor whether L is the faithful mirror partner or a
+scrambled purification with the same ρ<sub>R</sub> (<b>P7.2b</b>). Both were tested adversarially
+on a two-sided fermion thermofield double with verdict rules fixed
+<em>before</em> the code was written. Everything below is <strong>measured data</strong>
+(exact correlation-matrix dynamics, no Trotter error).</p>
+
+<div class="card small">
+<p><strong>The honest construction.</strong> The R-observer's <b>rod</b> is an impurity
+bound-state width (static binding length), its <b>tick</b> the measured beat of a small cavity
+carved into R. The battery: clock ratios, two-time correlators in rods/ticks, a KMS thermometer,
+a quench entropy arrow, purity/entanglement-spectrum floors — six dimensionless items, side-R
+data only. Calibration: every god's-eye discriminator must fire at g=0 (it does, d ≈ 0.4–1.4)
+and every internal item must fire once the cut opens at g=0.1 (it does, d ≈ 0.02–1.1). Gates
+G0–G9 include a dense Fock-space cross-check of the whole machinery at 10<sup>−15</sup>.</p>
+</div>
+
+<div class="controls">
+  <span class="viewbtns">
+    <button id="btn-cut" class="primary">The Cut (side R only)</button>
+    <button id="btn-god">God's-eye (both sides)</button>
+  </span>
+  <label>cross-cut coupling g/J
+    <span>
+      <input type="range" id="gsl" min="0" max="3" step="1" value="0">
+      <span class="gticks"><span>0</span><span>10⁻³</span><span>10⁻²</span><span>10⁻¹</span></span>
+    </span>
+  </label>
+</div>
+
+<div class="canvasbox">
+  <canvas id="main" width="780" height="320"></canvas>
+  <div class="legend" id="mainlegend"></div>
+  <p class="small muted" id="maincaption"></p>
+</div>
+
+<div class="readouts">
+  <div class="readout"><div class="k">D_internal · O+ vs O−</div><div class="v" id="d-or">—</div></div>
+  <div class="readout"><div class="k">D_internal · mirror vs scrambled</div><div class="v" id="d-pu">—</div></div>
+  <div class="readout"><div class="k">god's-eye MI discriminator</div><div class="v" id="d-ge">—</div></div>
+  <div class="readout"><div class="k">verdict at g = 0</div><div class="v" id="verdict">—</div></div>
+</div>
+
+<h2>The crossover: how fast orientation becomes physical</h2>
+<p>The gauge property is exact only at g&nbsp;=&nbsp;0. Opening the cut, the internal battery
+detects the complement's <em>micro-state</em> at first order in g but its <em>time-orientation</em>
+only at second order — the O(g) term rides on the number-conserving cross-correlation
+⟨c†<sub>L</sub>c<sub>R</sub>⟩, which vanishes identically for the TFD:</p>
+<div class="formula">D(O+ vs O−) ∝ g²&emsp;·&emsp;D(mirror vs scrambled) ∝ g&emsp;
+(measured slopes 1.98 and 1.02)</div>
+
+<div class="canvasbox">
+  <canvas id="cross" width="780" height="320"></canvas>
+  <div class="legend">
+    <span><span class="swatch" style="background:var(--cone)"></span>orientation axis (O+ vs O−)</span>
+    <span><span class="swatch" style="background:var(--seen)"></span>purification axis (mirror vs scrambled)</span>
+    <span><span class="swatch" style="background:var(--gapc)"></span>null tolerance 10⁻⁹</span>
+    <span><span class="swatch" style="background:var(--rod)"></span>fire threshold 10⁻⁶</span>
+  </div>
+  <p class="small muted">Measured D_internal vs g at N=256, β=1. The g=0 points sit at float
+  noise (10⁻¹⁵) — plotted in the left gutter. The vertical marker tracks the slider above.</p>
+</div>
+
+<div class="callout verdict">
+<p><strong>Verdict (pre-registered rules).</strong> <b>P7.2a HOLDS</b>: max D_internal(O+ vs O−,
+g=0) = 2.0×10⁻¹⁵ across N ∈ {64…512}, β ∈ {0.5, 1, 4} — six decades under tolerance — with all
+positive controls live. <b>P7.2b HOLDS</b> at 1.4×10⁻¹⁴ — but this one is a <em>theorem</em>
+(every R-observable is a functional of ρ<sub>R</sub>); the run demonstrates the machinery
+realizes it, and calibrates the battery that makes the null meaningful. Both Θ<sub>L</sub>
+implementations (flipped generator; conjugation sandwich) give identical verdicts.
+Full write-up: <code>docs/results-writeup-orientation.md</code>.</p>
+</div>
+
+<div class="card small">
+<p><strong>What this does not show.</strong> No claim about our cosmological vacuum — this is the
+idealized eternal-TFD construction. Gaussian states carry no pointer basis, Born rule, or branch
+structure: this tests orientation gauge, not branching. And one amendment was logged before the
+run: the bare cavity coherence vanishes by a parity selection rule, so the clock is "wound" by an
+R-local phase kick, identical in every variant.</p>
+</div>
+
+<footer>Data: <code>results/results-orientation.json</code> from the pre-registered experiment
+(spec <code>orientation-test.md</code>, plan <code>plans/260720-2257-orientation-gauge-sim/plan.md</code>).
+Curves regenerated for every g through the same exact modules by
+<code>src/export-web-orientation-data.py</code>.</footer>
+</div>
+
+<script src="assets/orientation-experiment-data.js"></script>
+<script>
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const D = ORIENTATION_DATA;
+const GS = D.gs;                       // [0, 1e-3, 1e-2, 1e-1]
+const CKEYS = Object.keys(D.curves).sort((a, b) => parseFloat(a) - parseFloat(b));
+let view = "cut", gi = 0;
+
+const cv = document.getElementById("main"), cx = cv.getContext("2d");
+const cv2 = document.getElementById("cross"), cx2 = cv2.getContext("2d");
+
+function axes(ctx, W, H, pad, xlab, ylab) {
+  ctx.strokeStyle = css("--line"); ctx.lineWidth = 1;
+  ctx.strokeRect(pad.l, pad.t, W - pad.l - pad.r, H - pad.t - pad.b);
+  ctx.fillStyle = css("--muted"); ctx.font = "11px Verdana";
+  ctx.textAlign = "center";
+  ctx.fillText(xlab, pad.l + (W - pad.l - pad.r) / 2, H - 8);
+  ctx.save(); ctx.translate(12, pad.t + (H - pad.t - pad.b) / 2);
+  ctx.rotate(-Math.PI / 2); ctx.fillText(ylab, 0, 0); ctx.restore();
+}
+
+function line(ctx, xs, ys, X, Y, color, dash) {
+  ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.setLineDash(dash || []);
+  ctx.beginPath();
+  xs.forEach((x, i) => { const px = X(x), py = Y(ys[i]); i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); });
+  ctx.stroke(); ctx.setLineDash([]);
+}
+
+function drawMain() {
+  const g = GS[gi], c = D.curves[CKEYS[gi]];
+  const W = cv.width, H = cv.height, pad = { l: 58, r: 14, t: 14, b: 40 };
+  cx.clearRect(0, 0, W, H);
+  const leg = document.getElementById("mainlegend");
+  const cap = document.getElementById("maincaption");
+  if (view === "cut") {
+    const tt = c.sa_t_ticks, keys = ["O+mirror", "O-mirror", "O+scrambled", "O-scrambled"];
+    const all = keys.flatMap(k => c.sa[k]);
+    const y0 = Math.min(...all), y1 = Math.max(...all), m = (y1 - y0) * 0.08 + 1e-9;
+    const X = x => pad.l + x / tt[tt.length - 1] * (W - pad.l - pad.r);
+    const Y = y => H - pad.b - (y - y0 + m) / (y1 - y0 + 2 * m) * (H - pad.t - pad.b);
+    axes(cx, W, H, pad, "t  (ticks of the R clock)", "S_A(t)  [nats]");
+    const styles = { "O+mirror": [css("--cone"), []], "O-mirror": [css("--seen"), [7, 5]],
+                     "O+scrambled": [css("--rod"), [2, 3]], "O-scrambled": [css("--gapc"), [7, 3, 2, 3]] };
+    keys.forEach(k => line(cx, tt, c.sa[k], X, Y, styles[k][0], styles[k][1]));
+    cx.fillStyle = css("--ink"); cx.font = "11px Consolas"; cx.textAlign = "left";
+    cx.fillText("y-range: " + y0.toFixed(3) + " … " + y1.toFixed(3), pad.l + 8, pad.t + 14);
+    leg.innerHTML = Object.entries(styles).map(([k, [col]]) =>
+      `<span><span class="swatch" style="background:${col}"></span>${k}</span>`).join("");
+    cap.textContent = g === 0
+      ? "Side-R view at g=0: the quench entropy curves of ALL FOUR variants are pixel-identical " +
+        "(measured differences ~10⁻¹⁶) — the observer cannot tell which world it lives in."
+      : `Side-R view at g=${g}: the traversable cut makes the four variants split — the same ` +
+        "battery that was silent at g=0 now discriminates.";
+  } else {
+    const t = c.mi_t, y1 = Math.max(...c.mi_plus, ...c.mi_minus) * 1.08;
+    const X = x => pad.l + x / t[t.length - 1] * (W - pad.l - pad.r);
+    const Y = y => H - pad.b - y / y1 * (H - pad.t - pad.b);
+    axes(cx, W, H, pad, "t  (bare units, J=1)", "I(L_w : R_w)  [nats]");
+    line(cx, t, c.mi_plus, X, Y, css("--cone"));
+    line(cx, t, c.mi_minus, X, Y, css("--seen"), [7, 5]);
+    leg.innerHTML =
+      `<span><span class="swatch" style="background:${css("--cone")}"></span>O+ (both times forward)</span>` +
+      `<span><span class="swatch" style="background:${css("--seen")}"></span>O− (L time reversed)</span>`;
+    cap.textContent = "God's-eye view: two-sided mutual information between aligned 32-site windows. " +
+      "Under O+ the cross-cut correlations dephase; under O− the TFD is stationary — the flip is " +
+      "blatant from outside at ANY g, including g=0.";
+  }
+}
+
+function drawCross() {
+  const W = cv2.width, H = cv2.height, pad = { l: 58, r: 14, t: 14, b: 40 };
+  cx2.clearRect(0, 0, W, H);
+  axes(cx2, W, H, pad, "coupling g / J   (log; g=0 in gutter)", "D_internal (log)");
+  const lgmin = Math.log10(GS[1]) - 1.2, lgmax = Math.log10(GS[GS.length - 1]) + 0.3;
+  const X = g => pad.l + ((g === 0 ? lgmin : Math.log10(g)) - lgmin) / (lgmax - lgmin) * (W - pad.l - pad.r);
+  const Y = d => H - pad.b - (Math.log10(Math.max(d, 1e-17)) + 17) / 18 * (H - pad.t - pad.b);
+  [[1e-9, css("--gapc")], [1e-6, css("--rod")]].forEach(([lv, col]) => {
+    cx2.strokeStyle = col; cx2.setLineDash([4, 4]); cx2.beginPath();
+    cx2.moveTo(pad.l, Y(lv)); cx2.lineTo(W - pad.r, Y(lv)); cx2.stroke(); cx2.setLineDash([]);
+  });
+  [["D_orientation", css("--cone")], ["D_purification", css("--seen")]].forEach(([key, col]) => {
+    const pts = D.records.map(r => [r.g, r[key]]);
+    line(cx2, pts.map(p => p[0]), pts.map(p => p[1]), X, Y, col);
+    cx2.fillStyle = col;
+    pts.forEach(([g, d]) => { cx2.beginPath(); cx2.arc(X(g), Y(d), 4, 0, 7); cx2.fill(); });
+  });
+  const g = GS[gi];
+  cx2.strokeStyle = css("--accent"); cx2.lineWidth = 1.5;
+  cx2.beginPath(); cx2.moveTo(X(g), pad.t); cx2.lineTo(X(g), H - pad.b); cx2.stroke();
+  cx2.fillStyle = css("--muted"); cx2.font = "10px Consolas"; cx2.textAlign = "left";
+  cx2.fillText("g=0 (float noise)", pad.l + 4, Y(D.records[0].D_orientation) - 8);
+}
+
+function fmt(x) { return x === 0 ? "0" : x < 1e-2 ? x.toExponential(1) : x.toFixed(2); }
+
+function refresh() {
+  const r = D.records[gi];
+  document.getElementById("d-or").textContent = fmt(r.D_orientation);
+  document.getElementById("d-pu").textContent = fmt(r.D_purification);
+  document.getElementById("d-ge").textContent = fmt(r.gods_eye["ge-mi"]);
+  document.getElementById("verdict").textContent =
+    D.verdict["P7.2a"] + " / " + D.verdict["P7.2b"];
+  document.getElementById("btn-cut").className = view === "cut" ? "primary" : "";
+  document.getElementById("btn-god").className = view === "god" ? "primary" : "";
+  drawMain(); drawCross();
+}
+
+document.getElementById("btn-cut").onclick = () => { view = "cut"; refresh(); };
+document.getElementById("btn-god").onclick = () => { view = "god"; refresh(); };
+document.getElementById("gsl").oninput = e => { gi = +e.target.value; refresh(); };
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", refresh);
+refresh();
+</script>
+</body>
+</html>
