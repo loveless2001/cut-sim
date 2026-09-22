@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Cut — an explorable framework</title>
+<title>The Cut — framework overview</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✂</text></svg>">
 <link rel="stylesheet" href="assets/cut-theme.css">
 </head>
@@ -11,70 +11,84 @@
 <div class="wrap">
 
 <h1>The Cut</h1>
-<p class="muted" style="margin-top:-.4em">Co-products of a partition — an explorable companion to the working spec (v0.3) and its two numerical experiments.</p>
+<p class="muted" style="margin-top:-.4em">Operational core, quantum realization, and scoped experiments — working framework v0.4.</p>
 
 <div class="callout">
-<p><strong>The thesis in one paragraph.</strong> Take a closed quantum universe: one Hilbert space, one pure state, one Hamiltonian, evolving unitarily. Nothing in there flows, leaks, or forgets. Now draw a <em>cut</em> — split the universe into a subsystem <em>A</em> and its complement <em>B</em>. Suddenly three quantities exist that didn't before: <strong>time</strong> (the growth of <em>A</em>'s entanglement entropy — its forgetting of <em>B</em>), <strong>energy flux</strong> (what leaks across the boundary coupling), and <strong>information</strong> (differences in <em>B</em> that leave registered marks in <em>A</em>). The cut doesn't create physics from nothing — it makes global structure locally <em>legible</em>. And the framework's central honesty: <em>nothing inside the theory selects the cut itself</em>, and nothing gives the arrow of time a direction. Those two residues — the chosen cut and the imposed arrow — are the "two turtles" the whole construction stands on.</p>
+<p><strong>Summary.</strong> A system can test what it can access when it can distinguish outcomes, retain and compare records, compose procedures, and rely on restricted regularities. The current realization adds a chosen quantum cut, state, dynamics, couplings, and apparatus. These assumptions define entropy, flux, and registered differences for that model. They do not make reduced entropy a universal clock or give an internal observer access to model-builder variables. Operational agreement is scoped to a procedure class and does not uniquely determine ontology.</p>
 </div>
 
+<h2>Three layers</h2>
+<div class="tablebox"><table>
+<tr><th>Layer</th><th>Authority</th><th>Limit</th></tr>
+<tr><td>Operational core</td><td><a href="operational-core.html">OC-A1–A4 and OC-R1–R3</a></td><td>No dynamics or ontology of the whole by itself</td></tr>
+<tr><td>Physical realization</td><td><code>docs/cut_spec.tex</code></td><td>Pure-state/unitary quantum structure is assumed and declared</td></tr>
+<tr><td>Phenomena and interpretations</td><td>Labs, game, and result write-ups</td><td>Clocks, arrows, records, and experience are not core-only deductions</td></tr>
+</table></div>
+<p>The layers connect by adding assumptions and testing consequences. A realization or
+interpretation can fail without refuting the whole operational core.</p>
+
 <h2>How to read the claims</h2>
-<p>Every claim in the spec carries a status tag. This is the framework's load-bearing honesty — filtering by tag is the fastest way to see what is established versus what is hoped:</p>
+<p>Every claim in the spec carries a status tag. Use the tags to distinguish established results, assumptions, conjectures, postulates, and limitations:</p>
 <div class="card small">
 <p><span class="tag est">EST</span> — established result in the literature; not original here.</p>
 <p><span class="tag fields">FIELDS</span> — due to Chris Fields and collaborators; assembled, not originated, by this framework.</p>
 <p><span class="tag asm">ASM</span> — assembly: established pieces combined, possibly original in <em>arrangement</em>; no new mathematics.</p>
 <p><span class="tag conj">CONJ</span> — conjecture: plausible, not proved, flagged open.</p>
 <p><span class="tag post">POST</span> — postulate: a philosophical commitment of the ontology, adopted rather than derived.</p>
-<p><span class="tag gap">GAP</span> — a deliberately stated limitation: something the formalism provably cannot do.</p>
+<p><span class="tag gap">GAP</span> — a declared limitation, missing bridge, or scope boundary; a no-go only where separately proved.</p>
 </div>
 
 <h2>Explore</h2>
 <div class="cardgrid">
+  <a class="cardlink" href="operational-core.html"><div class="card">
+    <h3>Operational Core <span class="muted small">· start here</span></h3>
+    <p class="small">Definitions, OC-A1–A4, OC-R1–R3, the cut/access distinction, four separate time tasks, worked examples, assumption ledger, and limits of inference.</p>
+  </div></a>
   <a class="cardlink" href="the-cut-game.html"><div class="card">
-    <h3>The Game <span class="muted small">· play the framework</span></h3>
-    <p class="small">Six levels, one toggle: <strong>God's-eye ⇄ Cut</strong>. Draw a cut and watch time appear; hunt for the canonical cut (you can't — by design); try to set the arrow from inside (you can't — that's the point); become an observer made of the substrate and measure it with real experiment data. The gaps are playable.</p>
+    <h3>Interactive Guide</h3>
+    <p class="small">Six levels with a <strong>Model view ⇄ Observer view</strong> toggle. Compare access scopes, test candidate entropic order, examine cut-selection proposals, and inspect measured experiment data. The simulations illustrate one realization; they do not establish its ontology.</p>
   </div></a>
   <a class="cardlink" href="framework-explorer.html"><div class="card">
     <h3>Framework Explorer</h3>
-    <p class="small">The full spec, section by section, as tagged claim cards. Filter by status tag — e.g. show only the <span class="tag gap">GAP</span>s — to see exactly where the framework admits it stops.</p>
+    <p class="small">The spec summarized as tagged claim cards. Filter by status tag, for example to show only stated <span class="tag gap">GAP</span>s.</p>
   </div></a>
   <a class="cardlink" href="time-as-forgetting-lab.html"><div class="card">
-    <h3>Time Lab <span class="muted small">· live simulation</span></h3>
-    <p class="small">"Time is a subsystem's forgetting of its complement." Watch the entanglement entropy S<sub>A</sub>(t) of a real fermion chain grow after a quench — then watch it <em>come back down</em>, which is why the arrow of time must be imported (Turtle 1).</p>
+    <h3>Entanglement &amp; Candidate Clock Lab <span class="muted small">· live simulation</span></h3>
+    <p class="small">Watch S<sub>A</sub>(t) grow, fluctuate, and revive after a quench. It can provide a candidate ordering on a monotone interval, but it is not a universal clock, a duration standard, or a derivation of the arrow.</p>
   </div></a>
   <a class="cardlink" href="lieb-robinson-cone-lab.html"><div class="card">
     <h3>Cone Lab <span class="muted small">· live simulation</span></h3>
-    <p class="small">The god's-eye view. An exact 2D quantum lattice evolving in your browser: set the couplings J<sub>x</sub> ≠ J<sub>y</sub> and watch correlations spread in an <em>elliptical</em> light-cone. This substrate really has a preferred direction.</p>
+    <p class="small">A model-level view of an exact 2D quantum lattice. Set J<sub>x</sub> ≠ J<sub>y</sub> and observe anisotropic correlation spreading in the specified lattice model.</p>
   </div></a>
   <a class="cardlink" href="ruler-cancellation-verdict-lab.html"><div class="card">
-    <h3>Verdict Lab <span class="muted small">· real experiment data</span></h3>
-    <p class="small">The make-or-break test: can an observer <em>made of</em> the anisotropic lattice detect its anisotropy from inside? Explore the measured verdict — the naive claim died, a √-law appeared, and Lorentz invariance survived only in the infrared.</p>
+    <h3>Verdict Lab <span class="muted small">· measured data</span></h3>
+    <p class="small">Tests whether an endogenous observer can detect lattice anisotropy with instruments built from the same couplings. The data reject the original general claim, identify a square-root scaling law, and support cancellation only for the tested infrared observables.</p>
   </div></a>
   <a class="cardlink" href="orientation-gauge-lab.html"><div class="card">
-    <h3>Orientation Lab <span class="muted small">· real experiment data</span></h3>
-    <p class="small">Second experiment: cut a pure two-sided state and flip one side's time direction. Nobody inside the other side can tell — until a coupling opens the cut, and then only at second order. The gauge claim survived at 10⁻¹⁵; the crossover law is the new physics.</p>
+    <h3>Orientation Lab <span class="muted small">· measured data</span></h3>
+    <p class="small">In the declared two-sided model and side-R access class, the zero-coupling orientation null held at 10⁻¹⁵ and the tested crossover was quadratic. “Gauge” is the historical in-repo name for this scoped operational equivalence, not a universal ontological identity.</p>
   </div></a>
 </div>
 
-<h2>The two turtles</h2>
-<p>The framework claims everything above bottoms out in exactly <strong>two irreducible inputs of different type</strong> — and that this pair is genuinely two, not one:</p>
+<h2>Two unresolved inputs</h2>
+<p>The current realization tracks two unresolved inputs, historically called “the two turtles.” This is bookkeeping for this construction, not a claim about every possible theory:</p>
 <div class="cardgrid">
   <div class="card">
-    <h3>Turtle 1 — the arrow <span class="tag gap">GAP</span></h3>
-    <p class="small">Unitary evolution is time-symmetric: S<sub>A</sub>(t) can decrease (see the <a href="time-as-forgetting-lab.html">Time Lab</a>). The direction of time is an external boundary condition — a low-entropy past — <em>imposed</em> on the state, never derived. A constraint on the <strong>state</strong>. Measured corollary: a decoupled complement's time-direction is invisible from inside at 10⁻¹⁵ precision (<a href="orientation-gauge-lab.html">Orientation Lab</a>).</p>
+    <h3>Arrow conditions <span class="tag gap">GAP</span></h3>
+    <p class="small">Unitarity gives reversible evolution; time-reversal symmetry is a separate dynamical condition. A macroscopic arrow requires additional boundary/preparation, environmental, and coarse-graining assumptions. The orientation experiment found a scoped null for a decoupled complement in its declared access class; it is not a universal corollary.</p>
   </div>
   <div class="card">
-    <h3>Turtle 2 — the chosen cut <span class="tag gap">GAP</span></h3>
-    <p class="small">No basis-independent, physically natural rule inside the theory selects a preferred factorization ℋ<sub>A</sub> ⊗ ℋ<sub>B</sub>. Every candidate selector references something exogenous, relocating the choice. A selection of a <strong>factorization</strong> — and state constraints don't induce factorizations, so the two turtles are independent.</p>
+    <h3>Cut selection <span class="tag gap">GAP</span></h3>
+    <p class="small">The present input tuple does not supply a basis-independent natural rule selecting a preferred factorization ℋ<sub>A</sub> ⊗ ℋ<sub>B</sub>. A richer physical theory may add locality or observable structure; any broader no-selection claim needs its own assumptions and proof.</p>
   </div>
 </div>
 
-<h2>Why there's a simulation here at all</h2>
-<p>The spec's weakest joint is emergent Lorentz invariance: a generic lattice has a lumpy, direction-dependent maximum signal speed, yet observed physics has a perfectly round light-cone. The framework's proposed mechanism — <em>ruler cancellation</em> — says an observer whose rods and clocks are built from the same couplings as the signals it measures cannot register the anisotropy. That is a falsifiable physics claim, so it was tested: an exact free-fermion simulation with a deliberately anisotropic substrate, an honestly-constructed endogenous observer, and pre-registered verdict rules. The result <strong>falsified the naive claim, uncovered an exact square-root law, and confirmed a corrected, infrared-only version</strong> — the full story is in the <a href="ruler-cancellation-verdict-lab.html">Verdict Lab</a>.</p>
-<p>The second experiment attacks the other turtle from the physics side: if the arrow is imported, the <em>relative</em> time-orientation of a decoupled complement should be unregistrable from inside — gauge. Tested on a two-sided fermion thermofield double, same adversarial protocol: the internal battery's null held at float precision (10⁻¹⁵) while every god's-eye discriminator fired, and opening a cross-cut coupling g made orientation detectable only at <strong>second order in g</strong> (the complement's micro-state: first order). The gauge claim <strong>survived, with a measured crossover law</strong> — explore it in the <a href="orientation-gauge-lab.html">Orientation Lab</a>.</p>
+<h2>Why the simulations are included</h2>
+<p>A generic lattice has a direction-dependent maximum signal speed, while Lorentz invariance requires isotropic measured propagation in its domain. The ruler-cancellation proposal was therefore tested in an exact anisotropic free-fermion simulation with endogenous rods and clocks and preregistered verdict rules. The result <strong>rejected the general cancellation claim, identified a square-root scaling law, and supported cancellation only for the tested infrared observables</strong>. See the <a href="ruler-cancellation-verdict-lab.html">Verdict Lab</a>.</p>
+<p>The second experiment asks whether relative orientation or purification can be distinguished in a two-sided fermion thermofield-double model with no cross-cut coupling and the declared side-R procedures. The internal battery remained null at float precision (10⁻¹⁵), while model-level controls detected the difference. In the tested crossover, orientation entered at <strong>second order in g</strong> and the complement micro-state at first order. The result does not cover arbitrary couplings, access classes, or ontologies. See the <a href="orientation-gauge-lab.html">Orientation Lab</a>.</p>
 
 <footer>
-Companion to <code>docs/cut_spec.tex</code> (working spec v0.3) and the two experiments in this repository (ruler cancellation; orientation gauge). Simulations on these pages run the same exact free-fermion dynamics as the research code — nothing is a canned animation. Framework assembles results due to Fields, Zurek, Lieb–Robinson, Casini–Huerta–Rosabal, Ryu–Takayanagi and others; see the spec for tags and citations.
+Core authority: <code>docs/operational-core.md</code>. Realization and interpretation authority: <code>docs/cut_spec.tex</code> (working spec v0.4). Numerical authority: preregistered plans, stored results, validators, and the two experiment write-ups. Simulations on these pages use the repository's exact free-fermion methods; their model-builder views are not automatically observer-accessible data.
 </footer>
 
 </div>

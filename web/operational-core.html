@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operational Core and Limits of Inference — The Cut</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✂</text></svg>">
+<link rel="stylesheet" href="assets/cut-theme.css">
+</head>
+<body>
+<div class="wrap">
+
+<h1>The Cut — Operational Core and Limits of Inference</h1>
+<p class="muted">Proposed foundation for this research programme · version 0.4 · 2026-09-22</p>
+
+<div class="callout">
+<p><strong>Role.</strong> This module states the conditions under which a system can distinguish,
+record, compare, and test models from within its actual range of access. It is not a new
+definition of time, not a replacement for the ontology of The Cut, and not a denial of
+reality outside an observer.</p>
+<p><strong>Status.</strong> The commitments below are a proposed basis. They have not been proved
+to be the unique minimal axioms or fully logically independent. An observer may be any
+physical record-capable system; consciousness is not assumed.</p>
+</div>
+
+<h2>Three layers</h2>
+<div class="tablebox"><table>
+<thead><tr><th>Layer</th><th>Work</th><th>Limit</th></tr></thead>
+<tbody>
+<tr><td><strong>Operational core</strong></td><td>Procedures, records, comparison rules, and inference scope</td><td>Does not supply dynamics or an ontology of the whole</td></tr>
+<tr><td><strong>Physical realizations</strong></td><td>Physical structures that realize those capacities</td><td>Must declare added assumptions; the current quantum model is one realization</td></tr>
+<tr><td><strong>Phenomena and interpretations</strong></td><td>Clocks, arrows, records, shareability, and experience within a realization</td><td>Not consequences of the operational core alone</td></tr>
+</tbody></table></div>
+<p>The layers are related by <strong>adding assumptions and testing consequences</strong>, not
+by automatic deduction. A realization or interpretation can fail without the whole core
+failing. Operational fit also does not uniquely determine ontology: ontology may propose
+what exists, but representability or data-fit is not evidence of uniqueness.</p>
+
+<h2>Foundation</h2>
+<div class="card">
+<p><strong>Definition.</strong> A system can investigate what it can access when it can register
+differences, retain traces for comparison, compose operations into procedures, and
+identify relations stable enough to test predictions.</p>
+<p><strong>Limitation.</strong> Conclusions established from inside the system must be tied to
+their operational scope, recording channels, preparation conditions, and corresponding
+errors. They do not automatically determine a unique structure for the whole beyond that
+scope.</p>
+<p><strong>Definition.</strong> Two models are operationally equivalent for a test scope when
+they predict the same distribution over every accessible record for every procedure in
+that scope. This neither asserts a shared ontology nor guarantees equivalence after the
+scope is enlarged.</p>
+</div>
+
+<h2>Operational assumptions</h2>
+
+<article class="card" id="oc-a1">
+<h3>OC-A1 — Distinguishability</h3>
+<p><strong>Operational assumption.</strong> There is at least one procedure for which two
+situations produce outcomes, or distributions of records, distinguishable within a
+stated error model.</p>
+<p class="small">No complete-state readout, perfect single-shot discrimination, or
+absolute set of object-properties is assumed. Without a distinguishable difference,
+there is no data available to that observer for that comparison.</p>
+</article>
+
+<article class="card" id="oc-a2">
+<h3>OC-A2 — Recordability and comparability</h3>
+<p><strong>Operational assumption.</strong> Some traces persist long enough to enter
+comparisons, and criteria identify procedures as equivalent in the properties relevant
+to a test.</p>
+<p class="small">Memory need not be infallible, storage permanent, or a record complete.
+“This trace records that source” still needs a model and tests. Universal observer
+agreement is not assumed.</p>
+</article>
+
+<article class="card" id="oc-a3">
+<h3>OC-A3 — Composability of procedures</h3>
+<p><strong>Operational assumption.</strong> Some operations compose into structured
+procedures: preparation, interaction, readout, and comparison. Not every operation must
+compose with every other.</p>
+<p><strong>Foundational debt.</strong> Composition and retained traces already carry a
+primitive local ordering structure. The core does not derive all of time from a basis
+with no order relations. This local order alone supplies neither a universal linear
+order, standard duration, nor a thermodynamic arrow.</p>
+</article>
+
+<article class="card" id="oc-a4">
+<h3>OC-A4 — Restricted regularity</h3>
+<p><strong>Operational assumption.</strong> Within a specified domain, equivalent procedures
+exhibit statistical relations stable enough for calibration and prediction tests on
+further trials.</p>
+<p class="small">Determinism, IID trials, and laws invariant at every place and epoch are
+not assumed. Temperature, context, and preparation history belong in the model when
+they affect records. This is bounded induction, not a theorem about the whole universe.</p>
+</article>
+
+<h2>Constraints on inference</h2>
+
+<article class="card" id="oc-r1">
+<h3>OC-R1 — Predictive consistency</h3>
+<div class="formula">P<sub>M</sub>(r | Q)</div>
+<p><strong>Empirical constraint.</strong> <code>Q</code> is a specified procedure: relevant
+preparation conditions, operations, readout channels, and—where needed—a policy that
+selects later operations from earlier records. <code>r</code> is the <strong>complete
+accessible transcript</strong>, not only a final snapshot. <code>M</code> is the model.</p>
+<p>Probabilities must be non-negative, normalized, and consistent under coarse-graining
+of outcomes for the same procedure. This does not impose a joint distribution on
+incompatible measurements or unobserved counterfactuals, and does not decide whether
+chance is ontologically fundamental.</p>
+</article>
+
+<article class="card" id="oc-r2">
+<h3>OC-R2 — Representation invariance</h3>
+<p><strong>Empirical constraint.</strong> Relabelling, changing units, or changing coordinates,
+with the model transformed consistently, must not alter predictions for the <strong>same
+physical procedure</strong>.</p>
+<p>This is not the claim that every cut is equivalent. A change of description differs
+from a change of apparatus, access, or coupling. Descriptions of one measurement must
+agree; physically different measurements need not.</p>
+</article>
+
+<article class="card" id="oc-r3">
+<h3>OC-R3 — Scope-limited identifiability</h3>
+<div class="formula">M<sub>1</sub> ∼<sub>𝒬<sub>O</sub></sub> M<sub>2</sub>
+&nbsp;⇔&nbsp; P<sub>M1</sub>(r | Q) = P<sub>M2</sub>(r | Q)<br>
+for every Q ∈ 𝒬<sub>O</sub> and every accessible r</div>
+<p><strong>Definition.</strong> Keep three cases separate: current data have not distinguished
+the models; equivalence is proved for every procedure in a defined class; the models
+have the same ontology. The last does not follow from the first two.</p>
+<p>Equal reduced states at one instant do not guarantee equivalence under every future
+interaction. Approximate equivalence must state a metric, tolerance, and experimental
+budget. More samples or an enlarged procedure class may reveal a sub-threshold
+difference. “Inaccessible here” is not “forever unknowable by humans,” and a finite
+numerical null is not an exact theorem about every test.</p>
+</article>
+
+<h2>Model cut and operational access</h2>
+<div class="cardgrid">
+<div class="card"><h3>Model cut</h3><p>The way a model divides a system, its complement,
+and relevant interactions. In the current quantum realization it includes a chosen
+tensor factorization plus separately declared state, Hamiltonian split, locality, and
+coupling assumptions.</p></div>
+<div class="card"><h3>Operational access</h3><p>The preparations, controls, readout
+channels, records, resolutions, and resources actually available to an observer.
+The class 𝒬<sub>O</sub> is generated from this access.</p></div>
+</div>
+<p>A cut is not redefined as a set of operations. A realization must explain how cut,
+state, coupling, and apparatus generate an access class. The map is not assumed
+one-to-one: one cut may support many access levels, and the same accessible statistics
+need not identify a unique cut. Operational indistinguishability also does not prove
+that no physical cut-selection principle can exist; any no-selection claim keeps the
+scope and assumptions of its own argument.</p>
+<div class="callout gap"><p><strong>Limitation — no privilege outside the model.</strong> An
+endogenous test must declare its clock, memory, phase reference, preparation source,
+and signals. Simulator steps, the full state matrix, exact lattice coordinates, and
+debug variables belong to the model builder; they are not automatically records of the
+modeled observer.</p></div>
+
+<h2>Four tasks concerning time</h2>
+<p>These questions are related, but are neither an automatic sequence of deductions nor
+asserted to be fully independent.</p>
+<div class="tablebox"><table>
+<thead><tr><th>Task</th><th>Added beyond the core</th><th>Constraint</th></tr></thead>
+<tbody>
+<tr><td><strong>Ordering and influence</strong></td><td>Interaction model, preparations, and control assumptions separating intervention from correlation</td><td>Predict changed-procedure outcomes; no forced global line</td></tr>
+<tr><td><strong>Duration and clocks</strong></td><td>Reference system, read/count procedure, calibration domain, and matching rule</td><td>Reproduce clock relations in the claimed domain, including motion/gravity when claimed</td></tr>
+<tr><td><strong>Arrow and records</strong></td><td>Boundary/preparation conditions, environment, coarse-graining, and record maintenance</td><td>Explain history asymmetry and readback limits; do not define the arrow and count it as derived</td></tr>
+<tr><td><strong>Experience and temporal judgement</strong></td><td>Trace retention, integration, prediction, and report model</td><td>Distinguish interaction, record, and judged order; information processing is not a ready solution to consciousness</td></tr>
+</tbody></table></div>
+
+<p>Keep distinct: model parameter <code>t</code>; reduced entropy
+<code>S<sub>A</sub></code>; a calibrated physical clock reading; relativistic proper time
+within its model domain; and candidate entropic order
+<code>τ<sub>A</sub><sup>ent</sup></code>.</p>
+<p><strong>Limitation.</strong> “Time as forgetting” is a model-dependent, conditional
+interpretive hypothesis. <code>S<sub>A</sub></code> is not a universal clock. Monotonicity
+on an interval may supply an order there, not seconds, a universal clock law, or a
+record-formation mechanism. A global low-entropy condition does not make every reduced
+entropy of every cut monotone.</p>
+
+<h2>Worked examples</h2>
+<div class="card">
+<h3>Clock matching without absolute time</h3>
+<p>Between two markers defined by a procedure, A records 100 ticks while B usually
+records 97. The relation can be calibrated, assigned an uncertainty, and tested on new
+trials. It does not show that A measures absolute time. If a change of description
+preserves all records and the 100:97 relation, OC-R2 forbids calling that relabelling a
+measured difference.</p>
+</div>
+<div class="card">
+<h3>Entropy does not register every change</h3>
+<div class="formula">|ψ(φ)⟩ = (|0⟩ + e<sup>−iφ</sup>|1⟩) / √2</div>
+<p>Every state in this family is pure and has entropy zero, but an appropriate
+relative-phase measurement can have probability <code>cos²(φ/2)</code>. The measurement,
+phase reference, and preparation relation must be declared: this is not access to a
+global phase or a clock without additional structure. It is a counterexample to entropy as an indicator of every
+change, not a derivation of time's origin.</p>
+</div>
+
+<h2>Assumption ledger</h2>
+<div class="tablebox"><table>
+<thead><tr><th>Commitment</th><th>Role</th><th>Scope</th><th>Consequence/test</th><th>Not inferred</th></tr></thead>
+<tbody>
+<tr><td>OC-A1</td><td>Operational assumption</td><td>Comparison + error model</td><td>A procedure separates alternatives</td><td>Complete-state access or perfect single-shot readout</td></tr>
+<tr><td>OC-A2</td><td>Operational assumption</td><td>Traces + equivalence criteria</td><td>Repeatable comparison and audit</td><td>Perfect memory, full history, universal agreement</td></tr>
+<tr><td>OC-A3</td><td>Operational assumption</td><td>Procedure chains</td><td>Transcript-bearing tests</td><td>Global order or the origin of time</td></tr>
+<tr><td>OC-A4</td><td>Operational assumption</td><td>Calibration/application domain</td><td>Out-of-sample tests in-domain</td><td>Determinism, IID trials, universal laws</td></tr>
+<tr><td>Cut/access map</td><td>Model assumption</td><td>Realization + apparatus</td><td>Generates 𝒬<sub>O</sub></td><td>Unique cut or one-to-one map</td></tr>
+<tr><td>P<sub>M</sub>(r|Q)</td><td>Model assumption + empirical constraint</td><td>Procedures + transcripts</td><td>Normalization, coarse-graining, calibration</td><td>Ontic chance or joint counterfactual values</td></tr>
+<tr><td>Purity/unitarity</td><td>Model assumption</td><td>Current quantum realization</td><td>Purity, reversibility, conservation checks</td><td>Stationarity, time-reversal symmetry, or the universe's actual state</td></tr>
+<tr><td>Clock calibration</td><td>Model assumption + empirical constraint</td><td>Reference/readout/domain</td><td>New-trial clock matching</td><td>Absolute time or universal seconds</td></tr>
+<tr><td>Arrow conditions</td><td>Model assumption</td><td>Boundary, environment, coarse-graining</td><td>Entropy histories and record persistence</td><td>Universal arrow from entropy alone</td></tr>
+<tr><td>Temporal judgement</td><td>Model assumption</td><td>Trace integration + report</td><td>Compare interaction, record, judged order</td><td>Conscious experience in general</td></tr>
+</tbody></table></div>
+
+<h2>Limits and the current experiments</h2>
+<ul>
+<li>Global purity gives <code>S<sub>U</sub> = 0</code>; it does not imply stationarity or
+erase internal temporal relations. It only makes this global entropy a degenerate clock
+indicator.</li>
+<li>Unitarity gives reversible evolution. Time-reversal symmetry is a separate condition.</li>
+<li>A state and dynamics can determine the sign of entropy change; the entropy functional
+alone does not supply a universal macroscopic arrow.</li>
+<li>A manifold or coordinate representation does not permit reversal of a physical
+history. A monotone index assumes or verifies monotonicity within a domain.</li>
+<li>Formal resemblance between Shannon and von Neumann entropy does not identify
+uncertainty, information transfer, duration, and record order.</li>
+<li>Recording does not always increase an observer's reduced-state entropy; preparation,
+correlations, environment, erasure, and resources matter.</li>
+</ul>
+<p>The ruler-cancellation and orientation experiments retain their stored data,
+preregistered gates, and verdicts. Their conclusions apply to the declared models and
+access classes. The zero-coupling orientation null is not an ontological identity or a
+universal gauge theorem, and the tested crossover does not imply that every nonzero
+coupling reveals every distinction.</p>
+<p>The current construction tracks two unresolved inputs, historically called “the two
+turtles”: arrow conditions and cut selection. This module neither proves that every
+theory has exactly two foundations nor closes cut selection, the arrow, or
+intersubjectivity. A future programme may enlarge procedure classes and compare
+realizations, but this revision introduces no new origin-of-time experiment.</p>
+
+<h2>References</h2>
+<p class="small">Primary sources used for context, not as proof that this proposed core is
+unique or minimal: Hardy,
+<a href="https://arxiv.org/abs/quant-ph/0101012">Quantum Theory From Five Reasonable
+Axioms</a>; Chiribella, D'Ariano &amp; Perinotti,
+<a href="https://arxiv.org/abs/1011.6451">Informational derivation of Quantum Theory</a>;
+Dittrich, <a href="https://arxiv.org/abs/gr-qc/0411013">Partial and Complete Observables</a>;
+Page &amp; Wootters,
+<a href="https://doi.org/10.1103/PhysRevD.27.2885">Evolution without evolution</a>;
+Ollivier, Poulin &amp; Zurek,
+<a href="https://arxiv.org/abs/quant-ph/0408125">Environment as a Witness</a>.</p>
+
+<footer>Canonical module: <code>docs/operational-core.md</code>. The operational core
+defines inference scope; <code>docs/cut_spec.tex</code> specifies the current quantum
+realization and its interpretations. Numerical authority remains the stored results,
+preregistered plans, and validators.</footer>
+</div>
+<script src="assets/site-nav.js" data-page="operational"></script>
+</body>
+</html>

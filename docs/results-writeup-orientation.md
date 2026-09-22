@@ -35,6 +35,28 @@ while the scrambled complement has ⟨c†_L c_R⟩ ≠ 0 and is detected at fir
 battery item already fires at g = 10⁻³ (θ_fire = 10⁻⁶): the "gauge" property is exact at
 g = 0 and degrades quadratically, not exponentially — there is no protective gap.
 
+## Interpretation addendum — 2026-09-22
+
+This addendum updates scope language only. It does not alter the preregistered criteria,
+stored numbers, plots, or HOLDS verdicts above.
+
+- “Orientation gauge” is retained as the historical experiment name. In this report it
+  denotes operational equivalence for the declared zero-coupling TFD realization and
+  side-R procedure class. It is not a claim of gauge redundancy for every theory or of
+  ontological identity between the modeled histories.
+- The null does not describe an observer watching a star run backwards and does not
+  establish that humans can never gain access under another configuration. The
+  model-builder discriminators and the side-R battery are different access classes.
+- The P7.2b theorem applies to R-observables determined by the same reduced state in the
+  decoupled setup. Equal reduced states at one instant do not guarantee equal transcripts
+  after future interactions or allowed procedures change.
+- The measured g²/g crossover belongs to the tested state, coupling, observables, and
+  parameter range. It does not imply that every nonzero coupling makes every possible
+  distinction observable.
+- The finite numerical null is evidence that the implementation realizes the scoped
+  equality to floating-point precision; it is not by itself an exact proof over every
+  conceivable procedure.
+
 ## Setup (details in plan / code)
 
 1D tight-binding free fermions, N sites per side, PBC; global state = fermionic TFD(β)
@@ -109,8 +131,8 @@ battery distances to 1×10⁻¹³, identical verdicts.
    7.2a is showing the *machinery* (including the clock, KMS thermometry, and quench
    arrow all defined operationally from inside R) closes at float precision — the arrow
    of R's own quench dynamics does not care which way L's modular time runs.
-3. **"Orientation becomes physical" has a rate.** The g² vs g¹ split is the sharpest
-   quantitative statement this sim adds: an internal observer gains access to the
+3. **Orientation becomes distinguishable in this tested access class at a measured rate.** The g² vs g¹ split is the sharpest
+   quantitative statement this sim adds: the declared internal battery gains access to the
    complement's time-orientation strictly slower (quadratically) than to its
    micro-state (linearly) as a traversable coupling switches on. At g = 10⁻³ J the
    orientation signal is already 6×10⁻⁴ — small but far above any reasonable noise

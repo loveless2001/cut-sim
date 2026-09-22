@@ -1,17 +1,16 @@
-// Level 6 — "Two views of one paradox" (explicitly analogy-only): the problem of
-// time and the black-hole information paradox presented as the same move — a
-// cut-relative quantity mistaken for an absolute one. Hand-authored, no physics sim.
+// Level 6 — limited scope comparison between relational clocks and island calculations.
+// The analogy is limited and derives neither result. Hand-authored, no physics sim.
 (() => {
   const $ = id => document.getElementById(id);
   const moved = new Set();
 
   const DEMAND = {
-    time: "You demanded THE time of the whole. The constraint answers: H|Ψ⟩ = 0 — the global state has nothing to evolve with respect to. Asked as an absolute question, it has no answer. (You met this wall in Level 1; it hasn't moved.)",
-    bh: "You demanded THE entropy of the radiation, as an absolute fact about the radiation alone. Computed naively it rises forever, crashing through the bound a unitary theory must respect. Asked this way, the question generates the paradox.",
+    time: "One absolute time was requested without specifying a clock or relational observable. A stationary constraint in some formulations makes that request underspecified; S_U = 0 alone does not establish stationarity.",
+    bh: "Radiation entropy was treated as a complete statement about the global state. It is a subsystem quantity and does not by itself determine global purity or unitarity.",
   };
   const MOVE = {
-    time: "Reframed: pick a cut — a clock subsystem C and the rest R — and ask how R's state correlates with C's readings. Conditional evolution appears (the Page–Wootters construction). Time wasn't lost; it was never a property of the whole. It lives at the cut, like your Level-1 clock.",
-    bh: "Reframed: ask for the entropy given the best cut — minimize over ways of carving the interior in or out (the island prescription). The answer follows the Page curve and unitarity survives. The 'paradox' was insisting one fixed cut's bookkeeping was an absolute fact.",
+    time: "One relational construction chooses a clock subsystem C and asks how R's state correlates with C's readings (Page–Wootters). This is a specific physical realization, not a consequence of reduced entropy or of the operational core alone.",
+    bh: "The island prescription extremizes generalized entropy over candidate saddles in controlled gravitational models. This is not merely choosing the 'best cut': its gravitational area term and path-integral derivation are essential inputs absent from this game.",
   };
 
   function init() {
@@ -23,9 +22,9 @@
       $("l6-" + p + "-out").textContent = MOVE[p];
       moved.add(p);
       if (moved.size === 2) {
-        CutGame.complete(6, "one move, two locks");
+        CutGame.complete(6, "scope declared");
         setTimeout(() => {
-          $("l6-bh-out").textContent += " — Same move, both panels. One badge: “one move, two locks.” And to keep the conscience clear: the island rule was discovered by gravitational path integrals, not by this framework; what you just saw is a shared shape, not a derivation.";
+          $("l6-bh-out").textContent += " The comparison is limited to scope discipline. The island rule comes from gravitational calculations and is not derived by this framework.";
         }, 600);
       }
     }));

@@ -1,7 +1,5 @@
-// Level 5 — "The observer that can't see straight" (the centerpiece): god's-eye shows
-// the live exact anisotropic cone; in cut view the player measures with rods+clock made
-// of the substrate. Every measured number is log-interpolated REAL data from
-// results/results.json (via experiment-data.js) — the one level that must not be faked.
+// Level 5 — compare model-level anisotropy with measurements made using endogenous
+// rods and clocks. Values are log-interpolated from results/results.json.
 (() => {
   const L = 128, SCALE = 3;
   const byR = {}; CUT_EXPERIMENT_DATA.ratios.forEach(d => { byR[d.r] = d; });
@@ -46,9 +44,9 @@
       const m = interp(kind === "front" ? d.Afront : d.Awp);
       notes.push({ xi: m.xi, kind, A: m.v });
       const sees = Math.abs(m.v - 1) > 0.02;
-      $("l5-out").textContent = `Result: anisotropy you measure A = ${m.v.toFixed(4)} — ` +
-        (sees ? "your world has a direction in it. But is that the substrate itself, or the substrate through your rulers? You can't tell from in here — compare in god's-eye."
-              : "isotropic within your 2% rule. On this instrument, your world looks the same in every direction.");
+      $("l5-out").textContent = `Measured anisotropy A = ${m.v.toFixed(4)} — ` +
+        (sees ? "the result exceeds the 2% isotropy threshold. Compare it with Model view to separate substrate and instrument scaling."
+              : "the result is isotropic within the 2% rule for this instrument.");
       if (kind === "front") flags.front = true;
       if (kind === "wavepacket" && frac >= 0.85 && Math.abs(m.v - 1) < 0.005) flags.wpHigh = true;
       renderNotebook(); refresh(); quest();
@@ -59,7 +57,7 @@
     const i = interp(d.Afront).i;
     flags.batt = true;
     $("l5-out").textContent = d.batteryDetected[i]
-      ? "BATTERY (backend, pre-registered rule |R−1| > max(2%, 5σ)): DETECTS the substrate axis at the nearest measured point — driven by the front-ratio test. Even where your slow instruments read perfect isotropy, your own light-front betrays the axis. You cannot hide it."
+      ? "BATTERY (preregistered rule |R−1| > max(2%, 5σ)): detects the substrate axis at the nearest measured point through the front-ratio test. The slow wavepacket result may still be isotropic."
       : "BATTERY: null at the nearest measured point — no dimensionless test fires here. Slide ξ and try again; the verdict is scale-dependent.";
     quest(); refresh();
   }
@@ -67,21 +65,20 @@
   function quest() {
     const q = $("l5-quest");
     if (!flags.front && !notes.length) return;
-    if (!flags.compared) q.innerHTML = "You have a reading. Is it the substrate's true shape? That comparison needs the substrate's true shape — toggle to <strong>god's-eye</strong>. (No endogenous observer gets this step.)";
-    else if (!flags.wpHigh) q.innerHTML = "The √ law: your rods ate half the anisotropy. Now try to <strong>hide it completely</strong>: push ξ to the far right (the fixed point) and measure with the slow wavepacket.";
-    else if (!flags.batt) q.innerHTML = "Perfect isotropy on slow instruments! So is your world Lorentz-invariant, full stop? Ask your sharpest probe: <strong>run the battery</strong> (or re-measure the front) at this same ξ.";
+    if (!flags.compared) q.innerHTML = "Compare the reading with <strong>Model view</strong>. This comparison uses information outside the endogenous observer's declared access.";
+    else if (!flags.wpHigh) q.innerHTML = "Increase ξ toward the tested fixed-point regime and measure the slow wavepacket.";
+    else if (!flags.batt) q.innerHTML = "Run the detection battery, or remeasure the front at the same ξ, to test whether the slow-wavepacket null extends to other observables.";
     else verdict();
   }
 
   function verdict() {
     const n = d.xi.length - 1, v = $("l5-verdict");
     v.style.display = "block";
-    v.innerHTML = `<p><strong>No clean win — the measured verdict at r = ${d.r}:</strong> ` +
-      `(1) The naive claim ("no internal experiment detects the substrate") is <strong>falsified</strong>: your fastest signal plateaus at A = ${d.Afront[n].toFixed(4)} ≈ √A_god = ${Math.sqrt(d.A_god).toFixed(4)} — the substrate, square-rooted, at every scale. ` +
-      `(2) The corrected claim <strong>survives IR-only</strong>: your slow instruments read ${d.Awp[n].toFixed(4)} at ξ = ${d.xi[n]} — emergent Lorentz invariance is real, but only for observables that flow to the fixed point. ` +
-      `(3) You can neither fully see the substrate (your rods absorb half of it) nor fully hide it (your own light-front leaks it back). ` +
-      `(4) Open: whether interactions make the front itself co-disperse — undecidable in this free theory. You partly see it, partly don't. That is the result.</p>`;
-    CutGame.complete(5, "the √ law");
+    v.innerHTML = `<p><strong>Measured verdict at r = ${d.r}:</strong> ` +
+      `(1) The original general null claim is <strong>falsified</strong>: the front ratio approaches A = ${d.Afront[n].toFixed(4)} ≈ √A_god = ${Math.sqrt(d.A_god).toFixed(4)}. ` +
+      `(2) The long-wavelength wavepacket reads ${d.Awp[n].toFixed(4)} at ξ = ${d.xi[n]}, supporting cancellation for that tested infrared observable. ` +
+      `(3) Whether interactions change the front scaling is outside this free model.</p>`;
+    CutGame.complete(5, "square-root scaling");
   }
 
   function renderNotebook() {
@@ -118,7 +115,7 @@
     ctx.font = "11px Verdana"; ctx.fillStyle = css("--muted");
     ctx.strokeStyle = css("--line"); ctx.setLineDash([3, 4]);
     ctx.beginPath(); ctx.moveTo(padL, Y(1)); ctx.lineTo(W - padR, Y(1)); ctx.stroke(); ctx.setLineDash([]);
-    ctx.fillText("1 — the only reference you own", padL + 4, Y(1) - 4);
+    ctx.fillText("1 — isotropy reference", padL + 4, Y(1) - 4);
     ctx.fillText("your rod scale ξ (log)", W / 2 - 50, H - 8);
     for (const m of notes) {
       ctx.fillStyle = m.kind === "front" ? css("--cone") : css("--rod");
@@ -130,7 +127,7 @@
     ctx.beginPath(); ctx.moveTo(xm, padT); ctx.lineTo(xm, H - padB); ctx.stroke(); ctx.setLineDash([]);
   }
 
-  function drawSweep() {                             // god's-eye comparison chart
+  function drawSweep() {                             // model-level comparison chart
     const cv = $("l5-sweep"), ctx = cv.getContext("2d");
     const W = cv.width, H = cv.height, padL = 50, padR = 14, padT = 14, padB = 36;
     ctx.clearRect(0, 0, W, H);
@@ -196,9 +193,9 @@
       $("l5-comparemsg").textContent = (f
         ? `Your front reading A = ${f.A.toFixed(4)} vs the substrate's A_god = ${d.A_god.toFixed(4)}: ` +
           (Math.abs(f.A - sq) < 0.02
-            ? `it sits on the √A_god = ${sq.toFixed(4)} line — your rods absorbed exactly half the substrate's anisotropy. You saw it, square-rooted. `
-            : `at this rod scale it is flowing toward the √A_god = ${sq.toFixed(4)} plateau, and nowhere near A_god itself. Push ξ right and re-measure to watch it land on the √ law. `)
-        : "") + "Remember: this panel is the view from nowhere. The observer below never gets it.";
+            ? `it agrees with the √A_god = ${sq.toFixed(4)} scaling line. `
+            : `at this rod scale it is moving toward the √A_god = ${sq.toFixed(4)} plateau. Increase ξ and remeasure. `)
+        : "") + "This comparison uses model-level information outside the observer's declared access.";
       quest();
     }
   }

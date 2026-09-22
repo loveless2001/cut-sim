@@ -1,6 +1,6 @@
-// Level 3 — "You cannot find the true cut" (Turtle 2, playable): a quest that is
-// unwinnable BY DESIGN. Every candidate selector is evaluated on the real system
-// and fails honestly: unstable in time, degenerate, circular, or god's-eye-smuggling.
+// Level 3 — candidate selectors within the supplied model inputs. Every tested rule
+// fails by instability, degeneracy, circularity, or undeclared model-builder access;
+// the level does not prove that no richer physical selection principle can exist.
 (() => {
   const N = 24, T1 = 4, T2 = 8, TLEAK = 6;
   let sim, cutL = 12;
@@ -16,8 +16,8 @@
     $("l3-cut").addEventListener("input", e => { cutL = +e.target.value; $("l3-cutv").value = cutL; readouts(); });
     document.querySelectorAll(".l3-sel").forEach(b => b.addEventListener("click", () => fire(b.dataset.sel)));
     $("l3-accept").addEventListener("click", () => {
-      CutGame.complete(3, "Turtle 2 witnessed");
-      $("l3-result").textContent = "Badge: “Turtle 2 witnessed”. You didn't find the true cut; you found that the question has no answer inside the theory. That's the win this level had to offer.";
+      CutGame.complete(3, "selection remains open");
+      $("l3-result").textContent = "Result: none of the four rules selected a stable unique cut from the supplied inputs. Richer physical principles were not tested.";
     });
   }
 
@@ -39,17 +39,17 @@
     if (sel === "rate") {
       const early = argmax(l => S1[l] / T1), late = argmax(l => (S2[l] - S1[l]) / (T2 - T1));
       msg = early === late
-        ? `Fastest clock: ℓ = ${early} right now. But a rate is an instantaneous fact — re-run the election at another moment and the winner changes as cuts saturate. A selector that needs re-electing every instant selects nothing.`
-        : `Fastest clock early on: ℓ = ${early}. Fastest clock later: ℓ = ${late}. The “true cut” moved while you watched. Unstable — a selector that changes its answer with the state it was meant to ground.`;
+        ? `Fastest S_A rate: ℓ = ${early} right now. Re-running at another parameter value can change the winner as cuts saturate, so this tested rule is not stable.`
+        : `Fastest candidate entropic rate early on: ℓ = ${early}. Fastest later: ℓ = ${late}. This rule's selected cut moved with the state. Unstable within the tested model.`;
     } else if (sel === "leak") {
       const lmin = (() => { let b = 1; for (let l = 2; l < N; l++) if (Math.abs(leak[l]) < Math.abs(leak[b])) b = l; return b; })();
       const ties = [];
       for (let l = 1; l < N; l++) if (l !== lmin && Math.abs(leak[l]) < Math.abs(leak[lmin]) + 0.05) ties.push(l);
       msg = `Smallest leak: ℓ = ${lmin} (|I| = ${Math.abs(leak[lmin]).toFixed(3)})` +
         (ties.length ? `, with ${ties.length} more cut${ties.length > 1 ? "s" : ""} within 0.05 — degenerate. ` : ". ") +
-        `And the criterion is gameable: it systematically favors cuts that isolate almost nothing, because near-empty subsystems have little to leak. Optimizing triviality is not selecting a partition.`;
+        `The criterion also favors cuts that isolate very small subsystems because they have little to leak. That bias does not identify a physically preferred partition.`;
     } else if (sel === "sym") {
-      msg = `Symmetry picks the mirror cut ℓ = ${N / 2}. But “the lattice is mirror-symmetric” is a fact about the whole, read from outside every cut. To use this selector, A would already need the god's-eye view — the very thing having a cut denies it. Smuggled.`;
+      msg = `Symmetry picks the mirror cut ℓ = ${N / 2}. But this rule uses full-lattice symmetry, which is outside the declared A-observer access. It is an additional model input, not a result of A's supplied records.`;
     } else {
       msg = `Counting records requires deciding what counts as a record-bearing system — which is a choice of cut. The selector presupposes the answer it was supposed to produce. Circular.`;
     }

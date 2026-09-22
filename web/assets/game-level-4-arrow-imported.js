@@ -1,7 +1,7 @@
-// Level 4 — "Which way is forward?" (Turtle 1, playable): the player stands at an
-// entropy minimum and tries to set time's arrow from inside. Both halves of S_A(s)
-// are computed independently (no mirroring trick) — they agree exactly, so nothing
-// internal can pick a direction. Only the god's-eye past-hypothesis lever can.
+// Level 4 — "Which way is forward?": for one Hamiltonian, preparation, cut, and
+// entropy transcript, the player stands at an entropy minimum. Both halves of S_A(s)
+// are computed independently (no mirroring trick); agreement limits this supplied
+// procedure and does not establish a universal orientation theorem.
 (() => {
   const N = 16, LEN = 8, SMAX = 12, NPTS = 61;
   let sim, S = [], sVals = [];
@@ -18,15 +18,15 @@
     $("l4-bwd").addEventListener("click", () => pointArrow(-1));
     document.querySelectorAll(".l4-probe").forEach(b => b.addEventListener("click", () => {
       $("l4-msg").textContent = b.dataset.p === "dyn"
-        ? "Probe result: the dynamics is unitary and time-reversal symmetric. It treats both directions identically — nothing here to grab an arrow from."
-        : "Probe result: both halves of the curve were computed independently, and S_A(−s) = S_A(s) to plotting precision. Entropy grows both ways from where you stand. It refuses to pick a side.";
+        ? "Probe result: unitarity makes the evolution reversible. For this Hamiltonian and symmetric preparation, the tested transcript is also symmetric; time-reversal symmetry is not implied by unitarity alone."
+        : "Probe result: both halves were computed independently, and S_A(−s) = S_A(s) to plotting precision. This entropy transcript does not pick a side; other procedures are not covered.";
     }));
     document.querySelectorAll('input[name="l4lever"]').forEach(r => r.addEventListener("change", () => {
       lever = r.value; leverSet = true;
       $("l4-godsmsg").textContent = lever === "center"
-        ? "The condition sits mid-block: entropy grows away from it in both directions — two arrows, back to back. (A live proposal in real cosmology.)"
-        : `The low-entropy condition now sits at the ${lever} end. The arrow points away from it — and notice who placed it: not the subsystem. You did, from outside. The arrow was imported.`;
-      if (flipTried) CutGame.complete(4, "Turtle 1 witnessed");
+        ? "The chosen low-entropy preparation sits mid-block: this model's entropy grows away from it in both directions. The curve alone does not establish a universal arrow."
+        : `The chosen low-entropy preparation now sits at the ${lever} end. The modeled entropy gradient points away from it; environmental, coarse-graining, and record conditions would still be needed for a macroscopic arrow.`;
+      if (flipTried) CutGame.complete(4, "arrow input identified");
       draw();
     }));
   }
@@ -37,10 +37,10 @@
     (dir > 0 ? $("l4-fwd") : $("l4-bwd")).dataset.hit = "1";
     if ($("l4-fwd").dataset.hit && $("l4-bwd").dataset.hit) {
       flipTried = true;
-      $("l4-msg").textContent = "You pointed it both ways now. Either way you walk, S grows: both directions look like “the future” from the minimum. Your arrow-setting changed nothing measurable. If it has to come from somewhere, it isn't from in here — toggle to god's-eye.";
-      if (leverSet) CutGame.complete(4, "Turtle 1 witnessed");
+      $("l4-msg").textContent = "Along this symmetric entropy transcript, S rises in both directions from the minimum. This procedure does not select one direction as the future. Switch to Model view to change the preparation condition.";
+      if (leverSet) CutGame.complete(4, "arrow input identified");
     } else {
-      $("l4-msg").textContent = "Walking that way… S is rising. Feels like the future. Now try the other direction before you commit.";
+      $("l4-msg").textContent = "Along that branch S rises. That observation alone does not define duration or a universal future; test the other branch too.";
     }
   }
 

@@ -3,16 +3,18 @@
   const page = document.currentScript.dataset.page;
   const links = [
     ["index", "index.html", "Overview"],
-    ["game", "the-cut-game.html", "The Game"],
+    ["operational", "operational-core.html", "Operational Core"],
+    ["game", "the-cut-game.html", "Interactive Guide"],
     ["framework", "framework-explorer.html", "Framework Explorer"],
-    ["time", "time-as-forgetting-lab.html", "Time Lab"],
+    ["time", "time-as-forgetting-lab.html", "Entropy Lab"],
     ["cone", "lieb-robinson-cone-lab.html", "Cone Lab"],
     ["verdict", "ruler-cancellation-verdict-lab.html", "Verdict Lab"],
     ["orientation", "orientation-gauge-lab.html", "Orientation Lab"],
   ];
   const nav = document.createElement("nav");
   nav.className = "cutnav";
+  nav.setAttribute("aria-label", "Primary");
   nav.innerHTML = '<span class="brand">THE CUT</span>' + links.map(([id, href, label]) =>
-    `<a href="${href}"${id === page ? ' class="active"' : ""}>${label}</a>`).join("");
+    `<a href="${href}"${id === page ? ' class="active" aria-current="page"' : ""}>${label}</a>`).join("");
   document.body.prepend(nav);
 })();
