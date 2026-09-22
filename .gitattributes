@@ -1,0 +1,2 @@
+# Preserve the hash-bound Matplotlib output, including SVG path-line whitespace.
+results/followup-20260922/followup-summary.svg whitespace=-blank-at-eol

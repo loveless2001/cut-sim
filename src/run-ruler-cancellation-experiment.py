@@ -32,6 +32,7 @@ lm = _load("lattice-model-exact-fft-evolution.py", "lattice_model")
 ge = _load("gods-eye-cone-velocity-measurement.py", "gods_eye")
 eo = _load("endogenous-observer-rods-clock.py", "endogenous_observer")
 bt = _load("dimensionless-anisotropy-detection-battery.py", "battery")
+support = _load("experiment-support.py", "experiment_support")
 
 RATIOS = [1.0, 1.25, 1.5, 2.0, 3.0]
 EPS_SWEEP = [12.0, 8.0, 6.0, 4.0, 3.0, 2.5, 2.0, 1.75, 1.5]
@@ -62,6 +63,8 @@ def run_ratio(r, keep_snapshot):
     rec["calibration"] = bt.calibrate_battery(
         512, Jx, Jy, cone["vx"], cone["vy"], cone["sigma_vx"], cone["sigma_vy"],
         vwx, vwy, svwx, svwy)
+    if not rec["calibration"]["calibration_pass"]:
+        raise RuntimeError(f"Battery calibration failed at r={r}; experiment aborted")
 
     rec["sweep"] = []
     for eps in EPS_SWEEP:
@@ -125,6 +128,8 @@ def to_jsonable(o):
 
 
 def main():
+    manifest = support.provenance()
+    manifest["gates"] = [support.run_gate("validate-physics-sanity-checks.py")]
     RESULTS.mkdir(exist_ok=True)
     t0 = time.time()
     all_recs, snap = [], None
@@ -139,10 +144,14 @@ def main():
               f"{'PASS' if cal else 'FAIL'}", flush=True)
         all_recs.append(rec)
 
+    support.verify_inputs(manifest)
+    manifest["completed_utc"] = support.utc_now()
+    manifest["calibrations"] = [{"r": r["r"], "pass": r["calibration"]["calibration_pass"]}
+                                for r in all_recs]
     if snap is not None:
         np.savez_compressed(RESULTS / "cone-snapshot-r2.npz", **snap)
     with open(RESULTS / "results.json", "w") as f:
-        json.dump(to_jsonable({"ratios": all_recs,
+        json.dump(to_jsonable({"ratios": all_recs, "provenance": manifest,
                                "params": {"L_prop": L_PROP, "L_rod": L_ROD,
                                           "eps_sweep": EPS_SWEEP}}), f, indent=1)
 

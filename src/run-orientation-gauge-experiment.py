@@ -32,6 +32,7 @@ ts = _load("tfd-gaussian-state-construction.py", "tfd_state")
 oe = _load("orientation-flip-evolution.py", "orientation_evolution")
 bt = _load("internal-battery-side-r.py", "internal_battery")
 ge = _load("gods-eye-discriminators.py", "gods_eye")
+support = _load("experiment-support.py", "experiment_support")
 
 G_SWEEP = [0.0, 1e-3, 1e-2, 1e-1]
 COMBOS = ([(256, 1.0, G_SWEEP), (256, 4.0, G_SWEEP)]
@@ -152,10 +153,9 @@ def crossover_summary(recs):
 
 def main():
     print("=== pre-registered gates (must all pass) ===", flush=True)
-    va = _load("validate-orientation-gates.py", "validate_gates")
-    if va.main():
-        print("GATES FAILED — experiment aborted (INCONCLUSIVE by rule).", flush=True)
-        sys.exit(1)
+    manifest = support.provenance(inputs=("orientation-test.md",
+        "plans/260720-2257-orientation-gauge-sim/plan.md"))
+    manifest["gates"] = [support.run_gate("validate-orientation-gates.py")]
 
     RESULTS.mkdir(exist_ok=True)
     t0 = time.time()
@@ -219,7 +219,10 @@ def main():
             for r in recs]
     for r in slim:                       # strip non-serializable evo refs if any leaked
         r.pop("evo", None)
+    support.verify_inputs(manifest)
+    manifest["completed_utc"] = support.utc_now()
     payload = to_jsonable({
+        "provenance": manifest,
         "spec": "orientation-test.md", "plan": "plans/260720-2257-orientation-gauge-sim",
         "params": {"g_sweep": G_SWEEP, "quench_Vs": list(QUENCH_VS),
                    "combos": [(n, b, list(g)) for n, b, g in COMBOS],

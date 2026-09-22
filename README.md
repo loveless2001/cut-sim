@@ -30,6 +30,13 @@ precision, crossover law D ∝ g² / g found): `docs/results-writeup-orientation
 The null is scoped to the declared zero-coupling setup and side-R access class; it is not
 an ontological identity or a universal gauge redundancy.
 
+**Targeted follow-up (2026-09-22):** a denser sweep retains the original battery's
+quadratic orientation response; adding a declared local pair reference gives a linear
+response. Finite-trial detection, scramble/window sensitivity, and larger-lattice
+spreading checks are reported separately in
+[`docs/results-writeup-followup.md`](docs/results-writeup-followup.md).
+The original result files and embedded web data are preserved.
+
 ```bash
 .venv/bin/python3 src/validate-orientation-gates.py        # gates G0–G9 must ALL pass
 .venv/bin/python3 src/run-orientation-gauge-experiment.py  # → results/results-orientation.json + plots
@@ -55,10 +62,31 @@ All dynamics are **exact** (single-particle propagator via FFT — no Trotter er
 ## Run
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install numpy scipy matplotlib
+python3 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
 .venv/bin/python3 src/validate-physics-sanity-checks.py   # gates must ALL pass first
 .venv/bin/python3 src/run-ruler-cancellation-experiment.py # → results/ (JSON + plots)
 ```
+
+The ruler driver now enforces its preflight gates and aborts on failed calibration.
+Both original drivers include source hashes, dependency versions, and gate logs in
+newly generated result files. The dependency lock records the follow-up environment
+(Python 3.14.6); it does not retroactively specify the original July environment.
+
+To inspect or reproduce the follow-up:
+
+```bash
+.venv/bin/python3 src/validate-followup-gates.py
+.venv/bin/python3 src/validate-followup-artifacts.py
+# A new output directory is required; existing results are never overwritten.
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python3 \
+  src/run-targeted-followups.py --output results/followup-reproduction
+.venv/bin/python3 src/validate-followup-artifacts.py --output results/followup-reproduction
+```
+
+The [study plan](docs/followup-study-plan.md) fixes the access assumptions, grids,
+error model, and stop conditions. The
+[manifest](results/followup-20260922/manifest.json) and
+[figure](results/followup-20260922/followup-summary.png) accompany the raw JSON data.
 
 ## Interactive web bundle
 
@@ -78,6 +106,7 @@ no build step, no external dependencies, works from disk or any static host
 - `lieb-robinson-cone-lab.html` — live 2D anisotropic lattice: the elliptical cone (exact)
 - `ruler-cancellation-verdict-lab.html` — the experiment's measured data, interactive
 - `orientation-gauge-lab.html` — scoped orientation null and crossover data, interactive
+- `followup-study.html` — measurement access, finite-trial detection, and convergence results
 
 The in-browser simulations run the same exact free-fermion methods as the python code
 (FFT propagator, correlation-matrix entropy); the Verdict Lab embeds real data generated

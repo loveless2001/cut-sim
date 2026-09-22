@@ -30,10 +30,11 @@ D_internal(mirror vs scrambled) ∝ g   (measured slope 1.02, same interval)
 
 Mechanism: the leading O(g) correction to any number-conserving R-correlator multiplies
 the number-conserving cross-correlation ⟨c†_L c_R⟩, which vanishes identically for the
-TFD — so orientation becomes visible only at second order (a round trip through the cut),
+TFD — so these number-conserving channels respond only at second order,
 while the scrambled complement has ⟨c†_L c_R⟩ ≠ 0 and is detected at first order. Every
-battery item already fires at g = 10⁻³ (θ_fire = 10⁻⁶): the "gauge" property is exact at
-g = 0 and degrades quadratically, not exponentially — there is no protective gap.
+battery item already fires at g = 10⁻³ (θ_fire = 10⁻⁶). The measured quadratic onset
+is specific to this battery; pair-sensitive access requires a separate apparatus
+definition and can have a different leading power.
 
 ## Interpretation addendum — 2026-09-22
 
@@ -98,7 +99,8 @@ Nulls at g = 0 (D_internal; tolerance 10⁻⁹) and traversable controls at g = 
 (ge columns: two-sided mutual information I(L_w:R_w)(t) O+ vs O−; anomalous cross
 correlator ⟨c_L(x,t) c_R(0,0)⟩ phase structure; mirror-vs-scrambled L-sector probe. The
 number-conserving ⟨c†_L(x,t) c_R⟩ correlator vanishes identically for the TFD — the
-phase structure lives in the anomalous channel, which is also why orientation onset is g².)
+phase structure lives in the anomalous channel. The normal-correlator channel has no
+linear correction, but that argument does not cover every possible R-local readout.)
 
 Crossover (N = 256, β = 1; plot `results/orientation-null-and-crossover.png`):
 
@@ -135,8 +137,9 @@ battery distances to 1×10⁻¹³, identical verdicts.
    quantitative statement this sim adds: the declared internal battery gains access to the
    complement's time-orientation strictly slower (quadratically) than to its
    micro-state (linearly) as a traversable coupling switches on. At g = 10⁻³ J the
-   orientation signal is already 6×10⁻⁴ — small but far above any reasonable noise
-   floor for a physical detector; gauge-ness at g exactly 0 is a measure-zero idealization.
+   normalized battery distance is already 6×10⁻⁴. This exceeds the declared numerical
+   threshold; it is not a detector signal-to-noise ratio. Physical detectability
+   additionally depends on apparatus, trial budget, and calibration uncertainty.
 
 ## Caveats / error budget
 
@@ -157,7 +160,9 @@ battery distances to 1×10⁻¹³, identical verdicts.
   through 10³-step trajectories; still five decades under tolerance.
 - Fitted log-log slope over the whole g range (1.65 / 0.70) is compressed by saturation
   at g = 0.1 where D ~ O(1); the quoted 1.98 / 1.02 slopes use the two smallest nonzero
-  g points, where the asymptotic power law is clean.
+  g points. A two-point slope alone cannot establish asymptotic stability; the
+  [September follow-up](results-writeup-followup.md) tests denser coupling grids,
+  scramble seeds, sizes, and clock-calibration windows.
 
 ## Out of scope (restated from spec)
 
@@ -173,9 +178,10 @@ battery distances to 1×10⁻¹³, identical verdicts.
 
 ## Unresolved questions
 
-1. The g² orientation onset is argued from ⟨c†_L c_R⟩ = 0 killing the first-order term —
-   a one-line perturbative proof for general R-observables (including entropies, which
-   are nonlinear in the correlations) was not written down.
+1. How does orientation onset depend on the allowed readout and phase reference?
+   Vanishing ⟨c†_L c_R⟩ removes the linear term in normal correlations, but does not
+   remove linear terms in all anomalous pair correlations. The September follow-up
+   treats pair-sensitive access and finite-trial detection explicitly.
 2. Does the g² law survive interactions (non-Gaussian TFD), where the cross-correlator
    structure is richer? Needs tensor-network machinery.
 3. At β = 0.5 the ge-complement discriminator drops to 0.39 (hotter state → flatter

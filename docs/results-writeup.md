@@ -96,10 +96,12 @@ rods do.
    direction-dependent "speed of light", tending to ratio √(Jx/Jy) in the continuum
    rod regime.
 2. **Corrected claim (co-dispersion at the RG fixed point): SUPPORTED, with a sharp
-   scope restriction.** Everything built from long-wavelength physics — wavepacket
-   speeds, dispersion/birefringence, packet shapes — co-disperses with the rods and
-   becomes isotropic at the fixed point. Emergent effective Lorentz invariance
-   holds for the IR sector only.
+   scope restriction.** The measured long-wavelength wavepacket speeds co-disperse
+   with the rods; spreading central values also approach isotropy, with the tail
+   limitations below. This establishes cancellation for these observables, not
+   Lorentz invariance. Here the band-bottom expansion is
+   `E − E_min = Jx kx² + Jy ky² + O(k⁴)`, a nonrelativistic quadratic dispersion.
+   Rescaling its axes does not establish boost covariance or an invariant light speed.
 3. **The loophole is physical, not numerical:** rods renormalize as √J (bound-state
    scaling), ballistic fronts as J (band edge). Any observable mixing the two scales
    detects the axis. For the framework this means Prop 7.1 needs the qualifier
@@ -137,6 +139,9 @@ IS registrable by an endogenous observer, except exactly at the fixed point and 
 fixed-point observables.**
 
 ## Unresolved questions
+
+The [September follow-up](results-writeup-followup.md) adds access-class,
+finite-trial, and convergence tests while preserving this original dataset.
 
 1. Does an interacting (non-Gaussian) fixed point change the front's status — i.e., can
    interactions make the *front itself* renormalize so the √A_god plateau also flows to 1?

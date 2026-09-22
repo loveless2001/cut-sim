@@ -10,6 +10,7 @@
     ["cone", "lieb-robinson-cone-lab.html", "Cone Lab"],
     ["verdict", "ruler-cancellation-verdict-lab.html", "Verdict Lab"],
     ["orientation", "orientation-gauge-lab.html", "Orientation Lab"],
+    ["followup", "followup-study.html", "Follow-up Results"],
   ];
   const nav = document.createElement("nav");
   nav.className = "cutnav";

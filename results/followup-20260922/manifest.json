@@ -1,0 +1,85 @@
+{
+  "started_utc": "2026-09-22T08:47:47.663484+00:00",
+  "git_revision": "c920e3c167ed308d9dfc40c44472bfd309821e65",
+  "git_status": "M src/internal-battery-side-r.py\n M src/run-orientation-gauge-experiment.py\n M src/run-ruler-cancellation-experiment.py\n?? docs/followup-study-plan.md\n?? requirements-lock.txt\n?? src/experiment-support.py\n?? src/followup-measurements.py\n?? src/generate-followup-plots.py\n?? src/run-targeted-followups.py\n?? src/validate-followup-artifacts.py\n?? src/validate-followup-gates.py",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [GCC 13.3.0]",
+  "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "dependencies": {
+    "numpy": "2.5.0",
+    "scipy": "1.18.0",
+    "matplotlib": "3.11.0"
+  },
+  "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": null
+  },
+  "input_sha256": {
+    "src/dimensionless-anisotropy-detection-battery.py": "d34cc5c3215a80bb2a5e07ee810b9e091a167e77c003aeaa3fcc5a5b0779a6ad",
+    "src/endogenous-observer-rods-clock.py": "f7b959395744f3c2cf9ab21f87babbab6f2e94a773feb260d33e17e2dea9cbf7",
+    "src/experiment-support.py": "9968365581245926819850b88e4aee863ccc55efc71ab30eb46c9672549d5473",
+    "src/export-web-orientation-data.py": "81eeecec4f91887a7bb7ec2abf82ba0b79dfced05d45adb5881b5a4b233c4000",
+    "src/followup-measurements.py": "36587115fd6da8fc4ebdc077b048182bf723d4644a5cb535aa6ed3be2baea5a9",
+    "src/generate-followup-plots.py": "a6efaccbd3ac4058906e7c60c428e759b62dfef95c35238ef56c2db46dcc9fd4",
+    "src/generate-orientation-plots.py": "6a3e4b306a14b1512712b0df3dfe0ce1b22110e1b0c4c1a017b443e6da9eec62",
+    "src/generate-result-plots.py": "3942ea476372b6f0f35d9851be7869f56e98bd5e4731ed90c077acf21d0ff363",
+    "src/gods-eye-cone-velocity-measurement.py": "7506d460584e930f00b6dab47f1bc587299c59e1e6ce3221338226b90d408ae6",
+    "src/gods-eye-discriminators.py": "b439a1cfda433741cce914684411daa6c434aa05dd2e6e4baedcaef6062fd342",
+    "src/internal-battery-side-r.py": "3867b4a2ae288fa8e9ec8d6557dc34d7c6bb3b81713b5343e8328d8c7a8e20d8",
+    "src/lattice-model-exact-fft-evolution.py": "359f05b4555fca6d589e269daf9dcfc91c8db93cd35b85dedf8f733b63b53097",
+    "src/orientation-flip-evolution.py": "af7797619aa555755340d86edfe1e7be8fbef5628edb7e7c787f7a222fb6dea6",
+    "src/run-orientation-gauge-experiment.py": "e7ddc6cdd26ec8be1128c9b80c0397c5be934e016b83014c78c69efa1c33dfef",
+    "src/run-ruler-cancellation-experiment.py": "48f45fe69cd7987bceafa70516a7b11a5167387e6e26ed592545c8fec12914ba",
+    "src/run-targeted-followups.py": "6865198b3757f175adeaa26f7278c66ff852d6904fc3c4a0e4b84a2563b41dd6",
+    "src/tfd-gaussian-state-construction.py": "c5be9770ec024de43f779704b17f1b81f112550df0667e1a4ec3c7edf19cb066",
+    "src/validate-followup-artifacts.py": "aa1970f78761ad27282291d3b70abdb21f782e4729796867000c00be2cc34162",
+    "src/validate-followup-gates.py": "fbe16aaf4b3db306f7fba131d7731190f2aee80bd503f0374092de95d17fd45d",
+    "src/validate-orientation-artifacts.py": "2524f0a8cf2285000b5927ad145e5714ad9430897d7e34b78e40a97355cb2e3c",
+    "src/validate-orientation-gates.py": "878667cc7f0d27ef94177f7effb993097506803c8dee7e95bc0f07ea243091e3",
+    "src/validate-physics-sanity-checks.py": "c1063fcbb60efaf393acbdf09bc1dda78c3353d1cea283f8d73a5feb680b953f",
+    "requirements-lock.txt": "f5e5d4fe66d7f9d568c078df72615b322b8a2c0de8cc8a4987c9bcf2307c486e",
+    "docs/followup-study-plan.md": "480a90f9ab95860d835400bcf193faf5dcd86f8884b4387ccff8bef5d676bd46",
+    "results/results.json": "ff2e729805cd195dfbf0c7fc5651bd9f94bd8a50603f5b0a3418fc14b1a4d90c",
+    "results/results-orientation.json": "3a425d53f99fa5160e64a8ad536a092a92ad6ec4e5bb7234db58a5f351ec9c85",
+    "orientation-test.md": "6dac5142b4f907905e0a28722367be8da041db67345ddfec7744f6305d551470",
+    "plans/260720-2257-orientation-gauge-sim/plan.md": "dfd88b8ac782240c3fde928da59ee2a191befc2526559357ebf96a7880ff95c5"
+  },
+  "gates": [
+    {
+      "script": "validate-physics-sanity-checks.py",
+      "returncode": 0,
+      "stdout": "[PASS] G1 unitarity: norm drift 0.00e+00\n[PASS] G2 front velocity: vx=3.9698 (exact 4), vy=1.9775 (exact 2)\n[PASS] G2b band-edge wavepacket: v=3.9922 (exact 4 minus O(sigma_k^2) envelope correction)\n[PASS] G3 isotropic null: A_god=1.0000 rod_ratio=1.0000 A_endo_wp=1.0000\n[PASS] G4 battery calibration: detections={'front': True, 'wavepacket': True, 'spreading': True}\n[PASS] G4b battery no-false-positive: detections={'front': False, 'wavepacket': False, 'spreading': False}\n[PASS] G5 bound-state scaling: xi: 0.30->39.30, rod_ratio: 1.6946->1.4142 (target 1.4142), tail=1.1e-06\n\nALL GATES PASS\n",
+      "stderr": ""
+    },
+    {
+      "script": "validate-orientation-gates.py",
+      "returncode": 0,
+      "stdout": "[PASS] G0 Fock-space cross-check: norm 4.4e-16 state 4.4e-16 entropy 8.9e-16 evo 1.6e-15\n[PASS] G1 rho_R thermal: max err 0.00e+00\n[PASS] G2 purity + S_L=S_R: |S_L-S_R|=0.00e+00 purity defect 3.00e-15 (S_L=65.481)\n[PASS] G3 Theta_L + impl A/B: rho_R(0) invariance 0.00e+00, A/B trajectory diff 7.31e-15\n[PASS] G4 g=0 rho_R(t) thermal-stationary: max err 1.00e-15\n[PASS] G5 scrambled rho_R identical: rho_R err 2.90e-17, purity defect 5.00e-15\n[PASS] G6 clock vs analytic gap: rel err 2.22e-16 (|z0|=9.31e-03)\n[PASS] G7 god's-eye discriminators fire: ge-mi=7.29e-01 ge-cross-phase=1.38e+00 ge-complement=6.12e-01\n[PASS] G8 battery fires at g=0.1: orientation: clock-ratio=1.2e-01 clock-traces=1.1e+00 two-time=1.1e+00 kms-beta=1.2e-01 coherence-floor=1.7e-02 quench-arrow-V1.0=3.4e-02 quench-arrow-V3.0=2.0e-02 | purification: clock-ratio=5.1e-02 clock-traces=8.9e-01 two-time=7.9e-01 kms-beta=1.2e-01 coherence-floor=5.7e-02 quench-arrow-V1.0=1.2e-01 quench-arrow-V3.0=9.9e-02\n[PASS] G9 number/energy conservation: max rel drift 1.42e-14\n\nALL GATES PASS\n",
+      "stderr": ""
+    },
+    {
+      "script": "validate-orientation-artifacts.py",
+      "returncode": 0,
+      "stdout": "ORIENTATION ARTIFACT CHECKS PASS\n",
+      "stderr": ""
+    },
+    {
+      "script": "validate-followup-gates.py",
+      "returncode": 0,
+      "stdout": "=== pre-registered gates (must all pass) ===\n",
+      "stderr": "test_binomial_rule_against_exhaustive_counts (__main__.FollowupGates.test_binomial_rule_against_exhaustive_counts) ... ok\ntest_chunked_rods_against_2d_green_function (__main__.FollowupGates.test_chunked_rods_against_2d_green_function) ... ok\ntest_failed_preflight_cannot_write_experiment_outputs (__main__.FollowupGates.test_failed_preflight_cannot_write_experiment_outputs) ... ok\ntest_pair_reference_povm_against_fock_space (__main__.FollowupGates.test_pair_reference_povm_against_fock_space) ... ok\ntest_refined_stop_hits_measured_growth (__main__.FollowupGates.test_refined_stop_hits_measured_growth) ... ok\ntest_ruler_calibration_failure_stops_before_sweep (__main__.FollowupGates.test_ruler_calibration_failure_stops_before_sweep) ... ok\ntest_separable_packet_against_2d_fft (__main__.FollowupGates.test_separable_packet_against_2d_fft) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.066s\n\nOK\n"
+    }
+  ],
+  "status": "COMPLETE",
+  "inputs_verified_unchanged": true,
+  "output_sha256": {
+    "crossover.json": "3e80aafdeb343cb8906118269082d828af22efaba24fa896502213a733115816",
+    "finite-trials.json": "d29f9bcd266dcc30a5047d17e6502004846dd56f0b629b870e901299a3b296bd",
+    "followup-summary.png": "3a82b6e95cc1bf1e3603c57d072e4a061db0a582652fe4b7560cc80253cdee29",
+    "followup-summary.svg": "2232d1c2e6bbff51231df38b6c786e2ec48976e98dd4c9d300774e1f492d1bfb",
+    "pair-access.json": "e164bb25f4b5869dcb4077338d10a5e22a9b29a99464d9f460629bc1f67d890d",
+    "spreading.json": "0e1bfc5a4c68a4288aade3482bc97bce301898a916ab37558f4390f594742c43"
+  },
+  "finished_utc": "2026-09-22T08:49:06.113774+00:00",
+  "elapsed_seconds": 59.43149494897807
+}

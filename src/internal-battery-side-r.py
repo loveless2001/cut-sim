@@ -92,11 +92,11 @@ def clock_measurement(evo, N, spec, times=CLOCK_TIMES):
             "idx": idx, "v1": v1, "v2": v2}
 
 
-def clock_items(evo_clock, N):
+def clock_items(evo_clock, N, *, clock_times=CLOCK_TIMES):
     """Item 1: beat-frequency ratio + dimensionless coherence traces; also the tick."""
     c1, c2 = oe.cavity_specs(N)
-    m1 = clock_measurement(evo_clock, N, c1)
-    m2 = clock_measurement(evo_clock, N, c2)
+    m1 = clock_measurement(evo_clock, N, c1, times=clock_times)
+    m2 = clock_measurement(evo_clock, N, c2, times=clock_times)
     tick = 2.0 * np.pi / m1["omega"]
     tt = np.arange(65) * tick / 8.0                       # 8 ticks, 1/8-tick sampling
     traces = []
@@ -168,9 +168,10 @@ def coherence_floor_item(evo_main, N, tick):
     return np.concatenate(out)
 
 
-def compute_internal_items(evo_main, evo_quenches, evo_clock, N, rod=1.0):
+def compute_internal_items(evo_main, evo_quenches, evo_clock, N, rod=1.0,
+                           *, clock_times=CLOCK_TIMES):
     """Full battery for one variant. evo_quenches = {V: VariantEvolution}."""
-    clk = clock_items(evo_clock, N)
+    clk = clock_items(evo_clock, N, clock_times=clock_times)
     tick = clk["tick"]
     kms, beta_hat = kms_item(evo_main, N, tick)
     items = {
