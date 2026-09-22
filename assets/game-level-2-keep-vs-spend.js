@@ -1,6 +1,4 @@
-// Level 2 — "What you keep, what you spend": sort phenomena into the flowing pile
-// (crosses the cut) vs the persisting pile (conserved structure), against live exact
-// values. The limit made playable: moving the cut reshuffles what counts as "leak".
+// Level 2 — classify boundary flows and persistent structures for a chosen cut.
 (() => {
   const N = 24, BOND = 12;           // spotlight bond between sites 11 and 12
   let sim, t = 0, cutL = 12, frameCount = 0;
@@ -9,8 +7,8 @@
   const $ = id => document.getElementById(id);
   const css = k => CutGame.css(k);
   const RIGHT = {
-    flow: "Right — it lives at the boundary, as flux. Watch the readouts: it changes and it crosses.",
-    keep: "Right — conserved exactly, at every instant, whatever you do with the cut.",
+    flow: "Correct: this is a boundary-flow quantity for the declared cut.",
+    keep: "Correct: this is treated as a persistent quantity in this model.",
   };
 
   function init() {
@@ -28,7 +26,7 @@
     });
     [["l2-binflow", "flow"], ["l2-binkeep", "keep"]].forEach(([id, kind]) => {
       $(id).addEventListener("click", () => {
-        if (!selected) { $("l2-feedback").textContent = "Pick a phenomenon first."; return; }
+        if (!selected) { $("l2-feedback").textContent = "Select a quantity first."; return; }
         if (selected.dataset.kind === kind) {
           selected.classList.remove("sel"); selected.classList.add("placed");
           $(id).appendChild(selected);
@@ -37,8 +35,8 @@
           checkDone();
         } else {
           $("l2-feedback").textContent = kind === "flow"
-            ? "Not this pile — that quantity is identical at every instant. Nothing that never changes can be flowing away."
-            : "Not this pile — that quantity only exists as change across your boundary. It isn't a stock you hold; it's a rate you bleed.";
+            ? "Not this category: the model treats that quantity as persistent rather than boundary flux."
+            : "Not this category: this quantity is defined as change across the declared boundary.";
         }
       });
     });
@@ -49,13 +47,13 @@
     let status, msg;
     if (cutL === BOND) {
       status = "boundary";
-      msg = "The highlighted bond IS your boundary right now: its current is your energy leak. It sits in the SPENT column.";
+      msg = "The highlighted bond is the current boundary, so its current is cross-cut flux.";
     } else if (cutL > BOND) {
       status = "insideA";
-      msg = "Same bond, same microscopic current — but now it's deep inside A. Nothing is being spent there anymore: it's your internal metabolism. Your ledger reshuffled; the physics didn't.";
+      msg = "The same bond and current now lie inside A, so they are no longer cross-cut flux. The partition changed; the microscopic dynamics did not.";
     } else {
       status = "insideB";
-      msg = "Same bond, same current — now it isn't even yours. It sits in B, and from A you hold no fact about it at all.";
+      msg = "The same bond now lies inside B and is outside A's declared readout channels.";
     }
     statusesSeen.add(status);
     $("l2-bond").textContent = msg;
@@ -65,8 +63,8 @@
   function checkDone() {
     if (!done && placed === 6 && statusesSeen.size >= 2) {
       done = true;
-      $("l2-feedback").textContent = "Ledger sorted — and you watched it reshuffle under a recut. Badge: “the ledger is cut-relative”.";
-      CutGame.complete(2, "the ledger is cut-relative");
+      $("l2-feedback").textContent = "Classification complete. Moving the cut changed which current counted as cross-cut flux.";
+      CutGame.complete(2, "cut-relative classification");
     }
   }
 
@@ -88,7 +86,7 @@
     ctx.strokeStyle = css("--gapc"); ctx.lineWidth = 2;
     ctx.beginPath(); ctx.moveTo(pad + cutL * w, 10); ctx.lineTo(pad + cutL * w, H - 10); ctx.stroke();
     ctx.fillStyle = css("--muted"); ctx.font = "11px Verdana";
-    ctx.fillText("A (you)", pad, 12); ctx.fillText("B", pad + cutL * w + 8, 12);
+    ctx.fillText("A", pad, 12); ctx.fillText("B", pad + cutL * w + 8, 12);
     ctx.fillStyle = css("--conj");
     ctx.fillText("watched bond", pad + (BOND - 3) * w, H - 4);
   }

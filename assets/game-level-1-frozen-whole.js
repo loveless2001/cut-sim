@@ -1,6 +1,6 @@
-// Level 1 — "The frozen whole": god's-eye shows the universe as a static block
-// (no "now" marker anywhere); the player's first cut CREATES a clock, an
-// information deficit, and an energy leak. Exact dynamics via ChainEntropySim.
+// Level 1 — pure whole, changing state: the model-builder view shows the full
+// parameterized history. A chosen cut defines reduced entropy and boundary current;
+// S_A is presented only as a candidate entropic order. Exact ChainEntropySim dynamics.
 (() => {
   const N = 32, TBLOCK = 14, ROWS = 84;
   let sim, blockOcc = null;          // ROWS x N occupation history (the block)
@@ -10,10 +10,10 @@
   const $ = id => document.getElementById(id);
   const css = k => CutGame.css(k);
   const WHEN_ANSWERS = [
-    "The state is one vector. “When” presupposes a clock, and no subsystem is keeping one — there is no subsystem.",
-    "You can point at a parameter value in the block, but that names a place in a picture, not a happening. Nothing is “at” it.",
-    "S_U = 0 at every slice: nothing has been registered by anything, ever. No registration, no event, no when.",
-    "The whole will keep not answering. (Hint: the second task.)",
+    "This view supplies a simulator parameter, not a declared physical clock-reading procedure.",
+    "You can identify a parameter value in the block plot. To call it a clock reading, specify a reference system, readout, and calibration.",
+    "S_U = 0 at every slice because the modeled state stays pure. That does not make the state stationary.",
+    "Try the second task: choose a cut and inspect which cut-relative indicators the model defines.",
   ];
   let whenIdx = 0;
 
@@ -48,12 +48,12 @@
   function makeCut(l) {
     if (cutL) return;                                // one first-cut moment per visit
     cutL = l; t = 0; S = 0;
-    $("l1-cuthint").innerHTML = "<strong>Cut drawn at ℓ = " + l +
-      ".</strong> Toggle to the <strong>Cut</strong> view — you live there now.";
+    $("l1-cuthint").innerHTML = "<strong>Cut set at ℓ = " + l +
+      ".</strong> Switch to <strong>Observer view</strong> to inspect subsystem-A records.";
     $("l1-nocut").style.display = "none";
     $("l1-cutui").style.display = "block";
     CutGame.setView("cut");
-    // the single most important moment: co-products emerge FROM the act of cutting
+    // Reveal quantities defined relative to the chosen cut and declared coupling.
     ["l1-cp-time", "l1-cp-info", "l1-cp-energy"].forEach((id, i) =>
       setTimeout(() => $(id).classList.add("reveal"), 450 + 380 * i));
     drawBlock();
@@ -85,7 +85,7 @@
     if (cutL) {
       line(cutL, css("--gapc"), []);
       ctx.fillStyle = css("--gapc"); ctx.font = "bold 11px Verdana";
-      ctx.fillText("your cut — note: the block did not change", padX + cutL * cw + 6, padY + 12);
+      ctx.fillText("chosen cut; the modeled history is unchanged", padX + cutL * cw + 6, padY + 12);
     }
   }
 
@@ -94,19 +94,19 @@
     const W = cv.width, H = cv.height, pad = 20, w = (W - 2 * pad) / N;
     ctx.clearRect(0, 0, W, H);
     const { Cr } = sim.correlationMatrix(t);
-    for (let i = 0; i < cutL; i++) {                 // A: what you are
+    for (let i = 0; i < cutL; i++) {
       ctx.fillStyle = css("--accent");
       ctx.globalAlpha = 0.15 + 0.85 * Math.min(1, Math.max(0, Cr[i * N + i]));
       ctx.beginPath(); ctx.arc(pad + (i + .5) * w, H / 2, Math.min(w * .38, 11), 0, 7); ctx.fill();
     }
-    ctx.globalAlpha = .25; ctx.fillStyle = css("--muted");  // B: fog
+    ctx.globalAlpha = .25; ctx.fillStyle = css("--muted");
     ctx.fillRect(pad + cutL * w, 12, (N - cutL) * w, H - 24);
     ctx.globalAlpha = 1; ctx.font = "11px Verdana"; ctx.fillStyle = css("--muted");
-    ctx.fillText("A (you)", pad, 10);
-    ctx.fillText("B — fog: not yours to see", pad + cutL * w + 8, 10);
+    ctx.fillText("A (observer subsystem)", pad, 10);
+    ctx.fillText("B (not in declared readout)", pad + cutL * w + 8, 10);
     ctx.strokeStyle = css("--gapc"); ctx.lineWidth = 2;
     ctx.beginPath(); ctx.moveTo(pad + cutL * w, 6); ctx.lineTo(pad + cutL * w, H - 6); ctx.stroke();
-    // clock dial: the needle IS S_A, no hidden gears
+    // Candidate entropic-order dial: it displays S_A, not a calibrated physical clock.
     const ck = $("l1-clock"), c2 = ck.getContext("2d"), R = 48, cx = 60, cy = 62;
     c2.clearRect(0, 0, 120, 120);
     c2.strokeStyle = css("--line"); c2.lineWidth = 2;
@@ -122,7 +122,7 @@
 
   function tick(dt) {
     if (!cutL || CutGame.view !== "cut") return;
-    t += dt * 2;                                     // time exists for A now — only for A
+    t += dt * 2;                                     // simulator parameter, not observer data by default
     if (frameCount++ % 2 === 0) {
       S = sim.entropy(t, cutL);
       const smax = Math.min(cutL, N - cutL) * Math.LN2;
@@ -141,8 +141,8 @@
       drawBlock();
       if (cutL && !checkedBack) {
         checkedBack = true;
-        $("l1-checked").textContent = "✓ You checked: the whole is still frozen. Badge earned: “time is a co-product”.";
-        CutGame.complete(1, "time is a co-product");
+        $("l1-checked").textContent = "✓ Confirmed: S_U stays zero while the modeled state changes.";
+        CutGame.complete(1, "purity is not stationarity");
       }
     }
   }

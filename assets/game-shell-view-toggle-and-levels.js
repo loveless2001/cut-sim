@@ -1,5 +1,5 @@
-// Core of "The Cut — the game": level registry, the god's-eye <-> cut view toggle
-// (the game's central mechanic), level navigation, badge shelf, and the shared
+// Core of the interactive guide: level registry, model/observer view toggle,
+// level navigation, result shelf, and the shared
 // animation loop. Levels register via CutGame.register(n, def) where def may have
 // { enter(), leave(), tick(dtSeconds), onView(view), onComplete() }.
 const CutGame = (() => {
@@ -13,7 +13,7 @@ const CutGame = (() => {
 
   function register(n, def) { levels.set(n, def); }
 
-  // ---- view toggle with iris-style transition: the perspective SHIFT ----
+  // ---- view toggle ----
   function setView(v, instant) {
     if (v === view || switching) return;
     const apply = () => {
@@ -28,9 +28,9 @@ const CutGame = (() => {
     if (instant) { apply(); return; }
     switching = true;
     const iris = $("iris");
-    iris.classList.add("in");                       // fade to substrate-dark...
+    iris.classList.add("in");
     setTimeout(() => { apply(); iris.classList.remove("in"); }, 190);
-    setTimeout(() => { switching = false; }, 400);  // ...and re-emerge in the other view
+    setTimeout(() => { switching = false; }, 400);
   }
 
   // ---- level navigation ----
@@ -64,14 +64,14 @@ const CutGame = (() => {
     }
   }
 
-  // ---- finale summary: lessons paired with their limits, never a victory ----
+  // ---- final summary: claims paired with their limits ----
   const LESSONS = [
-    [1, "Time, information, energy appear only across a cut; the whole stays frozen (S_U = 0).", "…computed with an external parameter the framework itself cannot banish."],
-    [2, "Each cut splits the world into flowing and persisting piles, exactly and honestly.", "…and the split reshuffles when you recut; the ledger is cut-relative."],
-    [3, "Every cut is as valid as any other.", "Turtle 2: no partition selector exists inside the theory — the quest was unwinnable by design."],
-    [4, "From an entropy minimum, both directions look like the future.", "Turtle 1: the arrow is imported via a past condition you don't control from inside."],
-    [5, "An endogenous observer sees the substrate square-rooted; slow instruments see none of it; its own light-front always leaks it back.", "Naive claim falsified; the IR-only claim survives; the interacting case is open."],
-    [6, "The problem of time and the information paradox share one shape: a cut-relative quantity mistaken for an absolute.", "Shape only — nothing was derived here."],
+    [1, "A chosen cut defines reduced entropy, boundary current, and accessible-record questions in this realization.", "S_U = 0 follows from purity; it neither makes the state stationary nor supplies a physical clock."],
+    [2, "A model cut makes boundary currents, reduced entropy, and conserved quantities computable.", "The flow/persistence classification is interpretive and changes when the cut changes."],
+    [3, "None of four candidate rules selected a stable unique cut from the supplied inputs.", "A richer physical selection principle was not tested; the universal no-selection claim does not follow."],
+    [4, "For this symmetric preparation, S_A rises away from the minimum in both parameter directions.", "This entropy transcript does not derive a macroscopic arrow or cover every procedure."],
+    [5, "The front ratio follows square-root scaling while the tested long-wavelength wavepacket approaches isotropy.", "The general null claim is falsified; support is limited to the tested infrared observable, and the interacting case is open."],
+    [6, "Relational-time and island constructions both demand explicit observables, subsystems, and scope.", "Analogy only: their distinct clock and gravitational assumptions do the physical work."],
   ];
   function renderFinale() {
     const box = $("finale-list");

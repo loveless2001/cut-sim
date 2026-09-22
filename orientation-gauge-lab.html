@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Orientation Lab — is the other side's time direction real?</title>
+<title>Orientation Lab — scoped operational equivalence</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⏳</text></svg>">
 <link rel="stylesheet" href="assets/cut-theme.css">
 <style>
@@ -17,18 +17,18 @@
 <script src="assets/site-nav.js" data-page="orientation"></script>
 <div class="wrap">
 
-<h1>The Orientation-Gauge Experiment <span class="tag conj">CONJ</span> → measured</h1>
+<h1>The Orientation Experiment <span class="tag conj">CONJ</span> → measured</h1>
 <p>Cut a pure global state into two sides L&nbsp;|&nbsp;R with no interaction across the cut.
-Prop&nbsp;7.2 says the relative <em>time-orientation</em> of the two sides is gauge: nobody living
-inside side&nbsp;R — with rods and clocks built from side-R physics — can tell whether L's modular
-time runs forward or backward (<b>P7.2a</b>), nor whether L is the faithful mirror partner or a
-scrambled purification with the same ρ<sub>R</sub> (<b>P7.2b</b>). Both were tested adversarially
+Prop&nbsp;7.2 asks whether the relative <em>time-orientation</em> is operationally distinguishable
+within the declared side-R access class: can its six procedures tell whether L's modular
+time runs forward or backward (<b>P7.2a</b>), or whether L is the faithful mirror partner or a
+scrambled purification with the same ρ<sub>R</sub> (<b>P7.2b</b>)? Both were tested adversarially
 on a two-sided fermion thermofield double with verdict rules fixed
 <em>before</em> the code was written. Everything below is <strong>measured data</strong>
 (exact correlation-matrix dynamics, no Trotter error).</p>
 
 <div class="card small">
-<p><strong>The honest construction.</strong> The R-observer's <b>rod</b> is an impurity
+<p><strong>Declared apparatus.</strong> The R-observer's <b>rod</b> is an impurity
 bound-state width (static binding length), its <b>tick</b> the measured beat of a small cavity
 carved into R. Two-time probes are requested at rod offsets and mapped to nearest lattice
 sites. The battery: clock ratios, two-time correlators in rods/ticks, a KMS thermometer,
@@ -37,6 +37,17 @@ data only. Calibration: every god's-eye discriminator must fire at g=0 (it does,
 and every internal item must fire on the tested g=0.1 control grid (it does, d ≈ 0.006–1.23).
 beta = 0.5 was null-only. Gates G0–G9 include a dense Fock-space cross-check of the whole
 machinery at 10<sup>−15</sup>.</p>
+</div>
+
+<div class="callout gap">
+<p><strong>Interpretive clarification · 2026-09-22.</strong> “Orientation gauge” is retained
+as the experiment's historical name. Here it means operational equivalence for the
+specified zero-coupling realization and side-R procedure class. It does not assert a
+gauge redundancy of every theory, ontological identity of the models, permanent human
+unknowability, or a scenario in which an observer watches a star run backwards. Equal
+reduced states at one instant also do not guarantee equal future transcripts after the
+interaction or procedure class changes. The stored data, preregistered criteria, and
+HOLDS verdicts are unchanged.</p>
 </div>
 
 <div class="controls">
@@ -65,8 +76,9 @@ machinery at 10<sup>−15</sup>.</p>
   <div class="readout"><div class="k">verdict at g = 0</div><div class="v" id="verdict">—</div></div>
 </div>
 
-<h2>The crossover: how fast orientation becomes physical</h2>
-<p>The gauge property is exact only at g&nbsp;=&nbsp;0. Opening the cut, the internal battery
+<h2>The tested crossover when access changes</h2>
+<p>At g&nbsp;=&nbsp;0 the declared R-observables are decoupled; the finite run found only float-noise
+differences. Opening the tested coupling changes the physical procedure and the internal battery
 detects the complement's <em>micro-state</em> at first order in g but its <em>time-orientation</em>
 only at second order — the O(g) term rides on the number-conserving cross-correlation
 ⟨c†<sub>L</sub>c<sub>R</sub>⟩, which vanishes identically for the TFD:</p>
@@ -100,13 +112,16 @@ Full write-up: <code>docs/results-writeup-orientation.md</code>.</p>
 idealized eternal-TFD construction. Gaussian states carry no pointer basis, Born rule, or branch
 structure: this tests orientation gauge, not branching. And one amendment was logged before the
 run: the bare cavity coherence vanishes by a parity selection rule, so the clock is "wound" by an
-R-local phase kick, identical in every variant.</p>
+R-local phase kick, identical in every variant. The crossover belongs to the tested state,
+coupling window, observables, and g range; it does not say that every nonzero coupling makes every
+difference observable.</p>
 </div>
 
-<footer>Data: <code>results/results-orientation.json</code> from the pre-registered experiment
+<footer>Data authority: <code>results/results-orientation.json</code> from the pre-registered experiment
 (spec <code>orientation-test.md</code>, plan <code>plans/260720-2257-orientation-gauge-sim/plan.md</code>).
 Curves regenerated for every g through the same exact modules by
-<code>src/export-web-orientation-data.py</code>.</footer>
+<code>src/export-web-orientation-data.py</code>. Interpretive scope: <code>docs/operational-core.md</code>
+and the dated addendum in <code>docs/results-writeup-orientation.md</code>.</footer>
 </div>
 
 <script src="assets/orientation-experiment-data.js"></script>
@@ -159,7 +174,7 @@ function drawMain() {
       `<span><span class="swatch" style="background:${col}"></span>${k}</span>`).join("");
     cap.textContent = g === 0
       ? "Side-R view at g=0: the quench entropy curves of ALL FOUR variants are pixel-identical " +
-        "(measured differences ~10⁻¹⁶) — the observer cannot tell which world it lives in."
+        "(measured differences ~10⁻¹⁶) — this battery item does not distinguish the variants."
       : `Side-R view at g=${g}: the traversable cut makes the four variants split — the same ` +
         "battery that was silent at g=0 now discriminates.";
   } else {
@@ -174,7 +189,7 @@ function drawMain() {
       `<span><span class="swatch" style="background:${css("--seen")}"></span>O− (L time reversed)</span>`;
     cap.textContent = "God's-eye view: two-sided mutual information between aligned 32-site windows. " +
       "Under O+ the cross-cut correlations dephase; under O− the TFD is stationary — the flip is " +
-      "blatant from outside at ANY g, including g=0.";
+      "visible in this model-builder discriminator at every tested g, including g=0.";
   }
 }
 
