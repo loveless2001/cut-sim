@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Entanglement Dynamics and Candidate Entropic Clocks — The Cut</title>
+<title>Entanglement, Records, and Candidate Arrow Variables — The Cut</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✂</text></svg>">
 <link rel="stylesheet" href="assets/cut-theme.css">
 </head>
 <body>
 <div class="wrap">
 
-<h1>Entanglement Dynamics and Candidate Entropic Clocks <span class="tag asm">ASM</span><span class="tag conj">CONJ</span></h1>
-<p>For a chosen quantum cut, the reduced entropy <code>S<sub>A</sub> = −Tr(ρ<sub>A</sub> log ρ<sub>A</sub>)</code> may change. The framework conditionally interprets a sufficiently monotone segment as a candidate ordering variable, <code>τ<sub>A</sub><sup>ent</sup></code> — “forgetting” as a model-dependent metaphor, not a universal definition of time.</p>
+<h1>Entanglement, Records, and Candidate Arrow Variables <span class="tag asm">ASM</span><span class="tag conj">CONJ</span></h1>
+<p>For a chosen quantum cut, the reduced entropy <code>S<sub>A</sub> = −Tr(ρ<sub>A</sub> log ρ<sub>A</sub>)</code> may change. On a declared sufficiently monotone segment, <code>τ<sub>A</sub><sup>ent</sup></code> may label candidate entropic orientation. “Forgetting” is a possible account of asymmetric record retention or loss along an already defined causal history, not a source of causal order.</p>
 <p>The browser simulates a free-fermion chain prepared in a Néel state and released. It uses exact analytic eigenmodes and correlation-matrix evolution, the same method as the research code. The movable cut defines the left subsystem whose entanglement entropy is plotted.</p>
-<p class="small muted">The displayed <code>t</code> is the simulator's model parameter. It is not an observer's clock reading. A physical clock would require a declared reference, read/count procedure, and calibration rule.</p>
+<p class="small muted">The displayed <code>t</code> is the simulator's model parameter. It is model-builder information unless a declared physical clock makes it accessible to the observer. A physical clock would require a declared reference, read/count procedure, and calibration rule.</p>
 
 <div class="controls">
   <label>Chain length N
@@ -33,18 +33,18 @@
 
 <div class="readouts">
   <div class="readout"><div class="k">S_A now</div><div class="v" id="snow">0.00</div></div>
-  <div class="readout"><div class="k">max possible (ℓ·ln2)</div><div class="v" id="smax">—</div></div>
+  <div class="readout"><div class="k">max possible (min(ℓ,N−ℓ)·ln2)</div><div class="v" id="smax">—</div></div>
   <div class="readout"><div class="k">global S_U (pure-state model)</div><div class="v">0 for this run</div></div>
 </div>
 
 <h2>What to notice</h2>
 <div class="card">
 <p><strong>1 · Purity is not stationarity.</strong> The global state remains pure, so S<sub>U</sub> = 0 throughout this unitary model. That does not mean the state is stationary or that no internal relation changes; it means only that global von Neumann entropy cannot serve as a varying indicator here. The reduced entropy S<sub>A</sub> does vary for the chosen cut.</p>
-<p><strong>2 · Move the cut, change the candidate order.</strong> Drag the cut position: a different bipartition gives a different S<sub>A</sub>(t). On a monotone interval, each curve may define a different <code>τ<sub>A</sub><sup>ent</sup></code>. It supplies neither seconds nor a universal clock law. The current realization also does not supply a preferred cut; that scoped gap is discussed in the <a href="operational-core.html#oc-r3">operational core</a>.</p>
-<p><strong>3 · Recurrences limit the clock interpretation.</strong> <span class="tag gap">GAP</span> At N = 16, S<sub>A</sub>(t) rises, fluctuates, and partially revives. Unitarity gives reversible evolution; time-reversal symmetry is a separate condition. The recurrence shows that S<sub>A</sub> is not a universal monotone clock. A macroscopic arrow needs additional boundary/preparation, environmental, coarse-graining, and record-maintenance assumptions. The <a href="orientation-gauge-lab.html">Orientation Lab</a> tests a separate equivalence in a declared two-sided setup.</p>
+<p><strong>2 · Move the cut, change the entropic indicator.</strong> Drag the cut position: a different bipartition gives a different S<sub>A</sub>(t). On a monotone interval, each curve may label a different candidate entropic orientation <code>τ<sub>A</sub><sup>ent</sup></code>. The underlying causal reachability does not come from either curve. It supplies neither seconds nor a universal clock law. The current realization also does not supply a preferred cut; that scoped gap is discussed in the <a href="operational-core.html#oc-r3">operational core</a>.</p>
+<p><strong>3 · Recurrences limit a global entropic label.</strong> <span class="tag gap">GAP</span> At N = 16, S<sub>A</sub>(t) rises, fluctuates, and partially revives. Unitarity gives reversible evolution; time-reversal symmetry is a separate condition. The recurrence shows that S<sub>A</sub> is not a universal monotone label; causal order remains. A macroscopic arrow needs additional boundary/preparation, environmental, coarse-graining, and record-maintenance assumptions. The <a href="orientation-gauge-lab.html">Orientation Lab</a> tests a separate equivalence in a declared two-sided setup.</p>
 </div>
 
-<footer>Physics: open-boundary tight-binding chain, quench from the Néel state; S<sub>A</sub> from the spectrum of the reduced correlation matrix. Identical numerical method to <code>src/lattice-model-exact-fft-evolution.py</code>, ported to JS. Interpretive scope: <code>docs/operational-core.md</code> and <code>docs/cut_spec.tex</code> v0.4.</footer>
+<footer>Physics: open-boundary tight-binding chain, quench from the Néel state; S<sub>A</sub> from the spectrum of the reduced correlation matrix. Identical numerical method to <code>src/lattice-model-exact-fft-evolution.py</code>, ported to JS. Interpretive scope: <code>docs/operational-core.md</code> and <code>docs/cut_spec.tex</code> v0.5.</footer>
 </div>
 
 <script src="assets/fft-free-fermion-engine.js"></script>
@@ -62,7 +62,7 @@ const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).
 
 function resetSim() {
   t = 0; history = [];
-  document.getElementById("smax").textContent = (cutLen * Math.LN2).toFixed(2);
+  document.getElementById("smax").textContent = (Math.min(cutLen, N - cutLen) * Math.LN2).toFixed(2);
 }
 function setN(n) {
   N = n; sim = new ChainEntropySim(N);
@@ -102,7 +102,7 @@ function drawChain(Cr) {
 function drawPlot() {
   const W = plotCv.width, H = plotCv.height, padL = 46, padB = 28, padT = 12, padR = 10;
   pctx.clearRect(0, 0, W, H);
-  const smax = cutLen * Math.LN2 * 1.06;
+  const smax = Math.min(cutLen, N - cutLen) * Math.LN2 * 1.06;
   const tmax = Math.max(20, history.length ? history[history.length - 1][0] : 20);
   const X = tt => padL + (W - padL - padR) * tt / tmax;
   const Y = s => H - padB - (H - padB - padT) * s / smax;

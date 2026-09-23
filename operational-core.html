@@ -11,7 +11,7 @@
 <div class="wrap">
 
 <h1>The Cut — Operational Core and Limits of Inference</h1>
-<p class="muted">Proposed foundation for this research programme · version 0.4 · 2026-09-22</p>
+<p class="muted">Proposed foundation for this research programme · version 0.5 · 2026-09-23</p>
 
 <div class="callout">
 <p><strong>Role.</strong> This module states the conditions under which a system can distinguish,
@@ -27,7 +27,7 @@ physical record-capable system; consciousness is not assumed.</p>
 <div class="tablebox"><table>
 <thead><tr><th>Layer</th><th>Work</th><th>Limit</th></tr></thead>
 <tbody>
-<tr><td><strong>Operational core</strong></td><td>Procedures, records, comparison rules, and inference scope</td><td>Does not supply dynamics or an ontology of the whole</td></tr>
+<tr><td><strong>Operational core</strong></td><td>Procedures, records, comparison rules, causal identifiability, and inference scope</td><td>Does not supply dynamics or an ontology of the whole</td></tr>
 <tr><td><strong>Physical realizations</strong></td><td>Physical structures that realize those capacities</td><td>Must declare added assumptions; the current quantum model is one realization</td></tr>
 <tr><td><strong>Phenomena and interpretations</strong></td><td>Clocks, arrows, records, shareability, and experience within a realization</td><td>Not consequences of the operational core alone</td></tr>
 </tbody></table></div>
@@ -131,7 +131,7 @@ have the same ontology. The last does not follow from the first two.</p>
 interaction. Approximate equivalence must state a metric, tolerance, and experimental
 budget. More samples or an enlarged procedure class may reveal a sub-threshold
 difference. “Inaccessible here” is not “forever unknowable by humans,” and a finite
-numerical null is not an exact theorem about every test.</p>
+numerical null is not an exact theorem about every test. For causal structure, compare model-level <code>C<sub>M</sub> = (E, ⇝<sub>M</sub>)</code> with the observer reconstruction <code>Ĉ<sub>O</sub></code> from <code>𝒬<sub>O</sub></code>; absent detection does not prove absent model influence.</p>
 </article>
 
 <h2>Model cut and operational access</h2>
@@ -156,27 +156,31 @@ and signals. Simulator steps, the full state matrix, exact lattice coordinates, 
 debug variables belong to the model builder; they are not automatically records of the
 modeled observer.</p></div>
 
+<h2 id="causal-accessibility">Causal accessibility and scoped ordering</h2>
+<div class="card"><h3>Model-level influence</h3>
+<p>For declared events or operational regions <code>e</code> and <code>f</code> in a physical realization <code>M</code>, write <code>e ⇝<sub>M</sub> f</code> when an admissible controlled change at <code>e</code> can alter the distribution of an accessible record at <code>f</code>, holding the remaining declared procedure fixed.</p>
+<div class="formula">e ⇝<sub>M</sub> f ⇔ ∃ x, x′, Q, r<sub>f</sub>: P<sub>M</sub>(r<sub>f</sub> | do(x), Q) ≠ P<sub>M</sub>(r<sub>f</sub> | do(x′), Q)</div>
+<p><code>x</code> and <code>x′</code> are intervention or preparation alternatives at <code>e</code>; <code>Q</code> fixes other conditions; <code>r<sub>f</sub></code> is the record at <code>f</code>. Dynamics, localization, admissibility, and controls belong to the realization. A common-source correlation alone establishes no directed edge.</p></div>
+<div class="cardgrid">
+<div class="card"><h3>Model view · C<sub>M</sub></h3><p>Declared realization and admissible interventions determine <code>⇝<sub>M</sub></code>.</p><div class="formula">e → a → f<br>↘ b → f</div></div>
+<div class="card"><h3>Observer view · Ĉ<sub>O</sub></h3><p>Available detectors, interventions, clocks, references, records, resolution, and finite trials determine what can be reconstructed from <code>𝒬<sub>O</sub></code>.</p><div class="formula">e → a → f<br>⋯ b ⋯ f ?</div></div>
+</div>
+<p><strong>OC-R3 application.</strong> In general <code>⇝<sub>𝒬<sub>O</sub></sub> ≠ ⇝<sub>M</sub></code>. An undetected edge is not evidence of model-level absence; limited controls can also yield false positives. The cut and access class remain distinct. Compare <code>C<sub>M</sub> = (E, ⇝<sub>M</sub>)</code> with the reconstructed <code>Ĉ<sub>O</sub></code> only under declared procedure and error rules.</p>
+<p><strong>Reachability.</strong> Write <code>e ≺<sub>M</sub> f</code> for a directed path of one or more model edges. If the domain is acyclic, this is a strict partial order (its reflexive closure is a partial order). With loops, it remains directed reachability. Acyclicity must be assumed or shown; unrelated events need no linear order. OC-A3 already admits primitive local sequencing, so this construction does not derive order from nothing.</p>
+
 <h2>Four tasks concerning time</h2>
 <p>These questions are related, but are neither an automatic sequence of deductions nor
 asserted to be fully independent.</p>
 <div class="tablebox"><table>
-<thead><tr><th>Task</th><th>Added beyond the core</th><th>Constraint</th></tr></thead>
-<tbody>
-<tr><td><strong>Ordering and influence</strong></td><td>Interaction model, preparations, and control assumptions separating intervention from correlation</td><td>Predict changed-procedure outcomes; no forced global line</td></tr>
-<tr><td><strong>Duration and clocks</strong></td><td>Reference system, read/count procedure, calibration domain, and matching rule</td><td>Reproduce clock relations in the claimed domain, including motion/gravity when claimed</td></tr>
-<tr><td><strong>Arrow and records</strong></td><td>Boundary/preparation conditions, environment, coarse-graining, and record maintenance</td><td>Explain history asymmetry and readback limits; do not define the arrow and count it as derived</td></tr>
-<tr><td><strong>Experience and temporal judgement</strong></td><td>Trace retention, integration, prediction, and report model</td><td>Distinguish interaction, record, and judged order; information processing is not a ready solution to consciousness</td></tr>
+<thead><tr><th>Task</th><th>Question and required structure</th><th>Limit</th></tr></thead><tbody>
+<tr><td><strong>Ordering and influence</strong></td><td>Which stages can affect others? Local sequencing, interventions, dynamics, preparations, and controls yield causal reachability.</td><td>No entropy monotonicity, absolute clock, or total order required.</td></tr>
+<tr><td><strong>Duration and clocks</strong></td><td>How much calibrated change accumulates along a chain or worldline? Add physical reference, read/count rule, calibration, and comparison model.</td><td>Order alone supplies no seconds or relativistic proper time.</td></tr>
+<tr><td><strong>Arrow and records</strong></td><td>Why are histories and records asymmetric? Test boundary/preparation conditions, environment, coarse-graining, entropy, persistence, loss, and recoverability.</td><td>Do not define the arrow by entropy increase then count that as an explanation.</td></tr>
+<tr><td><strong>Temporal judgement / experience</strong></td><td>How does an observer infer before/after, duration, and now? Model memory, integration, prediction, belief update, and report.</td><td>Physical ordering does not require judgement or consciousness.</td></tr>
 </tbody></table></div>
 
-<p>Keep distinct: model parameter <code>t</code>; reduced entropy
-<code>S<sub>A</sub></code>; a calibrated physical clock reading; relativistic proper time
-within its model domain; and candidate entropic order
-<code>τ<sub>A</sub><sup>ent</sup></code>.</p>
-<p><strong>Limitation.</strong> “Time as forgetting” is a model-dependent, conditional
-interpretive hypothesis. <code>S<sub>A</sub></code> is not a universal clock. Monotonicity
-on an interval may supply an order there, not seconds, a universal clock law, or a
-record-formation mechanism. A global low-entropy condition does not make every reduced
-entropy of every cut monotone.</p>
+<p>Keep distinct: model parameter <code>t</code>; causal reachability <code>≺<sub>M</sub></code>; reduced entropy <code>S<sub>A</sub></code>; a calibrated physical clock reading; proper time in a suitable relativistic model; and <code>τ<sub>A</sub><sup>ent</sup></code>, a candidate entropic orientation label on a declared sufficiently monotone interval.</p>
+<p><strong>“Time as forgetting” is scoped to arrow and records.</strong> Asymmetric retention or loss of causal records may contribute to an embedded observer’s experienced arrow along an already ordered history. Entropy neither defines causal reachability nor supplies seconds. <code>e₁ ≺ e₂ ≺ e₃</code> can hold even if <code>S<sub>A</sub>(e₁) = S<sub>A</sub>(e₃)</code> or entropy temporarily falls. Recurrence limits the entropic label; it does not erase causal order.</p>
 
 <h2>Worked examples</h2>
 <div class="card">
@@ -197,6 +201,8 @@ global phase or a clock without additional structure. It is a counterexample to 
 change, not a derivation of time's origin.</p>
 </div>
 
+<div class="card"><h3>Penrose diagrams: model representation and access</h3><p>A Penrose diagram compactifies a specified spacetime model. It preserves causal/conformal content such as null directions, reachability, horizons, and causal boundaries while discarding most metric scale. Finite placement of infinity, drawing distances, coordinate shape, and unconstrained visual angles are representational.</p><p>The full diagram is a <strong>model-level causal completion</strong>, not a literal picture seen by an embedded observer. That observer has signals, interventions, records, and local instruments and may reconstruct only part of the causal structure under its access class. See <a href="https://www.maths.ed.ac.uk/~jsbiersk/assets/LectureNotesGRII.pdf">Sbierski’s General Relativity II notes, §3.2</a> for the conformal construction.</p></div>
+
 <h2>Assumption ledger</h2>
 <div class="tablebox"><table>
 <thead><tr><th>Commitment</th><th>Role</th><th>Scope</th><th>Consequence/test</th><th>Not inferred</th></tr></thead>
@@ -205,6 +211,9 @@ change, not a derivation of time's origin.</p>
 <tr><td>OC-A2</td><td>Operational assumption</td><td>Traces + equivalence criteria</td><td>Repeatable comparison and audit</td><td>Perfect memory, full history, universal agreement</td></tr>
 <tr><td>OC-A3</td><td>Operational assumption</td><td>Procedure chains</td><td>Transcript-bearing tests</td><td>Global order or the origin of time</td></tr>
 <tr><td>OC-A4</td><td>Operational assumption</td><td>Calibration/application domain</td><td>Out-of-sample tests in-domain</td><td>Determinism, IID trials, universal laws</td></tr>
+<tr><td>Model influence ⇝<sub>M</sub></td><td>Realization-dependent definition</td><td>Declared events, interventions, controls, dynamics, records</td><td>Change a downstream record distribution</td><td>Influence from correlation alone</td></tr>
+<tr><td>Observer reconstruction Ĉ<sub>O</sub></td><td>Scoped inference</td><td>𝒬<sub>O</sub>, resolution, references, trial budget</td><td>Compare detectable and missed relations</td><td>Identity with C<sub>M</sub> or absence from a null</td></tr>
+<tr><td>Reachability ≺<sub>M</sub></td><td>Derived relation</td><td>Directed model paths; acyclicity only if established</td><td>Partial order in acyclic domain</td><td>Duration, total order, or arrow</td></tr>
 <tr><td>Cut/access map</td><td>Model assumption</td><td>Realization + apparatus</td><td>Generates 𝒬<sub>O</sub></td><td>Unique cut or one-to-one map</td></tr>
 <tr><td>P<sub>M</sub>(r|Q)</td><td>Model assumption + empirical constraint</td><td>Procedures + transcripts</td><td>Normalization, coarse-graining, calibration</td><td>Ontic chance or joint counterfactual values</td></tr>
 <tr><td>Purity/unitarity</td><td>Model assumption</td><td>Current quantum realization</td><td>Purity, reversibility, conservation checks</td><td>Stationarity, time-reversal symmetry, or the universe's actual state</td></tr>
@@ -233,12 +242,14 @@ preregistered gates, and verdicts. Their conclusions apply to the declared model
 access classes. The zero-coupling orientation null is not an ontological identity or a
 universal gauge theorem, and the tested crossover does not imply that every nonzero
 coupling reveals every distinction.</p>
+<p>The 2026-09-22 follow-up compares access classes in the same declared realization: the original battery's weak-coupling orientation response is approximately quadratic, while an added pair-sensitive local reference gives an approximately linear response; the zero-coupling null remains. The reference, shared preparation phase, and joint readout are additional apparatus. The detectable leading response depends on access; this does not imply the underlying physical causality changes with measurement choice.</p>
 <p>The current construction tracks two unresolved inputs, historically called “the two
 turtles”: arrow conditions and cut selection. This module neither proves that every
 theory has exactly two foundations nor closes cut selection, the arrow, or
 intersubjectivity. A future programme may enlarge procedure classes and compare
 realizations, but this revision introduces no new origin-of-time experiment.</p>
 
+<h2>Future work</h2><p>A possible causal reconstruction pilot would use a local brickwork circuit or cellular automaton with a strict finite causal cone. Hide simulator steps and exact coordinates from the observer; permit tagged interventions and detector records. Expand access from restricted detectors to added references, an endogenous clock, then an asymmetric environment with persistent records. Compare model reachability <code>C<sub>M</sub> = (E, ≺<sub>M</sub>)</code> with <code>Ĉ<sub>O</sub></code>. Detectable, missed, and false edges, reachability agreement, cone boundaries, and model uncertainty are possible future diagnostics; none is implemented here.</p>
 <h2>References</h2>
 <p class="small">Primary sources used for context, not as proof that this proposed core is
 unique or minimal: Hardy,

@@ -53,7 +53,7 @@ HOLDS verdicts are unchanged.</p>
 <div class="controls">
   <span class="viewbtns">
     <button id="btn-cut" class="primary">The Cut (side R only)</button>
-    <button id="btn-god">God's-eye (both sides)</button>
+    <button id="btn-god">Model view (both sides)</button>
   </span>
   <label>cross-cut coupling g/J
     <span>
@@ -72,7 +72,7 @@ HOLDS verdicts are unchanged.</p>
 <div class="readouts">
   <div class="readout"><div class="k">D_internal · O+ vs O−</div><div class="v" id="d-or">—</div></div>
   <div class="readout"><div class="k">D_internal · mirror vs scrambled</div><div class="v" id="d-pu">—</div></div>
-  <div class="readout"><div class="k">god's-eye MI discriminator</div><div class="v" id="d-ge">—</div></div>
+  <div class="readout"><div class="k">model-level MI discriminator</div><div class="v" id="d-ge">—</div></div>
   <div class="readout"><div class="k">verdict at g = 0</div><div class="v" id="verdict">—</div></div>
 </div>
 
@@ -194,7 +194,7 @@ function drawMain() {
     leg.innerHTML =
       `<span><span class="swatch" style="background:${css("--cone")}"></span>O+ (both times forward)</span>` +
       `<span><span class="swatch" style="background:${css("--seen")}"></span>O− (L time reversed)</span>`;
-    cap.textContent = "God's-eye view: two-sided mutual information between aligned 32-site windows. " +
+    cap.textContent = "Model view: two-sided mutual information between aligned 32-site windows. " +
       "Under O+ the cross-cut correlations dephase; under O− the TFD is stationary — the flip is " +
       "visible in this model-builder discriminator at every tested g, including g=0.";
   }

@@ -49,6 +49,8 @@ nav.cutnav .brand { font-weight: bold; letter-spacing: .04em; margin-right: 10px
 nav.cutnav a { text-decoration: none; color: var(--muted); padding: 2px 4px; }
 nav.cutnav a.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
 nav.cutnav a:hover { color: var(--ink); }
+html { scroll-padding-top: calc(var(--cutnav-height, 48px) + 12px); }
+[id] { scroll-margin-top: calc(var(--cutnav-height, 48px) + 12px); }
 /* status tags */
 .tag {
   display: inline-block; font-family: Verdana, sans-serif; font-size: .62rem;
