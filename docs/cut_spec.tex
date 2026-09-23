@@ -39,7 +39,7 @@
 \title{\textbf{A Formal Skeleton for the Cut}\\[4pt]
 \large An operational core, one quantum realization, and explicit limits of inference}
 \author{}
-\date{Working spec, v0.4 --- 2026-09-22}
+\date{Working spec, v0.5 --- 2026-09-23}
 
 \begin{document}
 \maketitle
@@ -68,7 +68,7 @@ The canonical statement of the new module is \href{../docs/operational-core.md}{
 
 The framework now has three layers. The \textbf{operational core} specifies procedures, records, comparison rules, and the scope of inference, but supplies neither dynamics nor an ontology of the whole. \textbf{Physical realizations} add structures that could implement those capacities and must declare their additional assumptions. \textbf{Phenomena and interpretations} study clocks, arrows, records, shareability, and experience within a realization; they do not follow from the operational core alone. The layers are related by adding assumptions and testing consequences, not by automatic deduction. A realization or interpretation may fail without the entire operational core failing.
 
-The operational basis comprises distinguishability (OC-A1), recordability and comparability (OC-A2), composability of some preparation--interaction--readout procedures (OC-A3), and restricted regularity within a stated domain (OC-A4). OC-A3 openly incurs a foundational debt: composition and retained traces already assume a primitive local order. The core therefore does \emph{not} derive all of time from a wholly order-free basis. Its inference constraints are predictive consistency for complete accessible transcripts (OC-R1), invariance under mere changes of representation for the same physical procedure (OC-R2), and scope-limited identifiability relative to the available procedure class $\mathcal Q_O$ (OC-R3).
+The operational basis comprises distinguishability (OC-A1), recordability and comparability (OC-A2), composability of some preparation--interaction--readout procedures (OC-A3), and restricted regularity within a stated domain (OC-A4). OC-A3 openly incurs a foundational debt: composition and retained traces already assume a primitive local order. The core therefore does \emph{not} derive all of time from a wholly order-free basis. This dated clarification (2026-09-23) separates causal accessibility and ordering from calibrated duration, history and record asymmetry, and temporal judgement; it does not revise historical experiment records. Its inference constraints are predictive consistency for complete accessible transcripts (OC-R1), invariance under mere changes of representation for the same physical procedure (OC-R2), and scope-limited identifiability relative to the available procedure class $\mathcal Q_O$ (OC-R3).
 
 This document supplies one \textbf{physical realization}: a chosen tensor factorization, global pure state, unitary dynamics, and a declared Hamiltonian split, together with the apparatus assumptions used in particular models. These are model assumptions, not consequences of OC-A1--A4 and not direct observations of the whole universe. A model cut is likewise distinct from operational access: the former partitions the modeled system and interactions; the latter is the observer's actual preparations, controls, readout channels, records, resolutions, and resources, which generate $\mathcal Q_O$. The mapping between them is neither assumed to be one-to-one nor specified by the core.
 
@@ -89,47 +89,48 @@ The trivial cut is $A = U,\ B = \mathbb{C}$ (or $B = U,\ A = \mathbb{C}$): no ge
 \end{definition}
 
 \begin{invariant}[\asm]
-The \emph{cut-relative} quantities defined in \S2--\S4 (candidate entropic order, local energy flux, registered information) are all \textbf{degenerate on the trivial cut and non-degenerate only for a genuine bipartition}: no complement exists to trace out, no boundary exists across which a flux can be assigned, and no complement channel exists for registration. (The global quantities themselves remain defined --- e.g.\ global entropy is zero, global energy conserved; it is their \emph{cut-relative} versions that degenerate.) This is the one structure invariant under \emph{which} non-trivial cut is chosen: that \emph{some} non-trivial cut is required for these definitions.
+The \emph{cut-relative} indicators used here (reduced entropy, cross-cut flux, and cross-cut registration) degenerate on the trivial cut: no complement exists to trace out, no cross-cut boundary exists for flux, and no complement channel exists for registration. A genuine bipartition makes these indicators definable but does not guarantee nonzero values; those depend on state, dynamics, and access. This statement concerns cut-relative diagnostics, not whether causal accessibility can exist within a model without a chosen bipartition.
 \end{invariant}
 
 \noindent The necessity of partition is primitive but silent: it is invariant (it holds for every genuine cut) and yet it does not select among them (see \S\ref{sec:select}).
 
-\section{Candidate entropic order \quad{\normalsize\asm\ / \conj}\label{sec:time}}
+\section{Causal accessibility, clocks, and the arrow \quad{\normalsize\asm\ / \conj}}\label{sec:time}
 
-Given a cut $A\vert B$ and global state $\rho = \lvert\Psi\rangle\langle\Psi\rvert$, the reduced state of $A$ is
+This section adds a model-relative ordering layer to the operational core. It uses the primitive local sequencing already admitted by OC-A2--A3; it does not derive directed order from an order-free substrate. The chosen cut, state, dynamics, admissible interventions, and readouts are additional data of the quantum realization. Neither a correlation nor a nonzero Hamiltonian matrix element alone proves directed influence.
+
+\subsection*{Causal accessibility and scoped order}
+For declared events or operational regions $e,f$, write $e\leadsto_M f$ when a controlled change associated with $e$ can alter the distribution of an accessible record at $f$, with other declared conditions fixed. Schematically,
 \[
-  \rho_A \;=\; \operatorname{Tr}_B(\rho). \qquad \est
+ e\leadsto_M f\quad\Longleftrightarrow\quad
+ \exists x,x',Q,r_f:\ P_M(r_f\mid\operatorname{do}(x),Q)\ne P_M(r_f\mid\operatorname{do}(x'),Q).
 \]
-Define the reduced entropy of $A$ (the von Neumann entropy of the reduced state),
+The intervention/preparation alternatives $x,x'$ belong to $e$; $Q$ fixes the rest of the procedure; $r_f$ belongs to $f$. This is a \emph{model-level influence relation}, not a claim that every observer can test the edge. Common-source correlation does not establish $e\leadsto_M f$ or its reverse.
+
+The observer-identifiable relation $\leadsto_{\mathcal Q_O}$ is reconstructed only from interventions, detectors, clocks, phase references, records, resolution, and trial budget in the access class $\mathcal Q_O$. In general $\leadsto_{\mathcal Q_O}\ne\leadsto_M$: an edge can exist in the model without being identifiable to this observer, and finite, inadequately controlled data can also support a false edge. The model cut is not the access class. The reconstruction problem is how much of $C_M=(E,\leadsto_M)$ can be recovered as $\widehat C_O$ from accessible transcripts. The 2026-09-22 targeted follow-up illustrates this scope distinction in the same modeled sample and dynamics: the original battery has an approximately quadratic weak-coupling orientation response, while an added pair-sensitive local reference and joint readout give an approximately linear response; the zero-coupling null remains. These are additional apparatus resources, so detectable leading order changes with the access class. The result does not imply that the sample's physical causal structure changes with measurement choice.
+
+Define $e\prec_M f$ by a directed path of one or more $\leadsto_M$ edges. If the relevant domain is acyclic, this transitive reachability is a strict partial order (and its reflexive closure is a partial order). If loops are permitted it remains directed reachability, without automatic antisymmetry or irreflexivity. Acyclicity requires an assumption or a demonstration; unrelated events need not be placed in a universal line. This order carries no duration by itself.
+
+\subsection*{Clock relations and duration}
+A clock is a declared physical reference and read/count procedure with a calibration domain and matching rule. Clock relations can assign duration along a causal chain or worldline only with that extra structure. Keep the model parameter $t$, causal reachability $\prec_M$, physical clock readings, relativistic proper time in its applicable domain, and any entropic variable distinct. No universal seconds or proper-time law follows from reachability alone.
+
+\subsection*{Arrow, records, and ``time as forgetting''}
+Given a cut $A\vert B$ and global state $\rho=\lvert\Psi\rangle\langle\Psi\rvert$, the reduced state and its von Neumann entropy are
 \[
-  S_A \;=\; -\operatorname{Tr}\!\big(\rho_A \log \rho_A\big), \qquad \est
+ \rho_A=\operatorname{Tr}_B(\rho),\qquad S_A=-\operatorname{Tr}(\rho_A\log\rho_A).\qquad\est
 \]
-Five distinct quantities or roles must be kept apart, as conflating them is the main source of confusion in \S\ref{sec:spacetime}--\S\ref{sec:lorentz}:
-\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
-  \item $t$ --- the external/coordinate parameter in the formal dynamics. \est
-  \item $S_A$ --- the reduced (entanglement) entropy above. \est
-  \item a physical clock reading --- the output of a declared read/count procedure, calibrated against a reference over a stated domain;
-  \item proper time --- a relativistic quantity in a domain where the relevant spacetime model applies;
-  \item $\tau_A^{\mathrm{ent}}$ --- a candidate \emph{entropic ordering variable}: a monotone reparametrization of $S_A$, defined only on a domain where the specified state and dynamics make $S_A$ monotone enough for that use. \asm/\conj
-\end{itemize}
-The interpretive claim ``$\tau_A^{\mathrm{ent}}$ is time --- the subsystem's forgetting of its complement'' is therefore model-dependent and conditional, not \est. Monotonicity on an interval can make $S_A$ an ordering variable there; it supplies neither seconds, a universal clock law, nor a mechanism that forms durable records. A globally low-entropy condition does not ensure that the reduced entropy of every cut is monotone.
+Boundary/preparation conditions, environment, coarse-graining, record formation and persistence, loss of accessible information, and recoverability are relevant to a historical arrow. Entropy increase cannot be both the definition of that arrow and its explanation. The conditional phrase ``time as forgetting'' now concerns asymmetric retention or loss of causal records \emph{along an already ordered history}; it is not the origin of causal order.
+
+Write $\tau_A^{\mathrm{ent}}$ only as a candidate entropic-orientation coordinate on a declared segment where $S_A$ is sufficiently monotone. It is model- and cut-dependent, can fail globally, and supplies neither a universal duration nor proper time. A causal chain $e_1\prec_M e_2\prec_M e_3$ can persist when $S_A(e_1)=S_A(e_3)$ or entropy temporarily falls. A recurrence invalidates a universal entropic clock, not the causal chain.
 
 \begin{proposition}[global purity, local mixedness]{\normalfont\ \est}\label{prop:purity}
-If $\lvert\Psi\rangle$ is pure, then $S_U = 0$, while $S_A \ge 0$ with equality iff $A\vert B$ is unentangled. A genuinely entangled part has nonzero reduced entropy $S_A>0$; it can support a cut-relative candidate entropic order only where $S_A$ changes monotonically enough for the declared procedure. Entanglement alone gives $S_A>0$, not a clock. Global purity does \textbf{not} imply stationarity or the absence of internal temporal relations; it only makes this global entropy indicator constant and therefore unusable as a varying clock.
+If $\lvert\Psi\rangle$ is pure, then $S_U=0$, while $S_A\ge0$ with equality iff $A\vert B$ is unentangled. An entangled part has $S_A>0$; this does not define causal order, duration, or a macroscopic arrow. A varying $S_A$ can label an entropic orientation only where monotonicity is established for the specified state, cut, and interval. Global purity does not imply stationarity or the absence of internal temporal relations.
 \end{proposition}
 
-\begin{remark}[\gap\ --- direction]
-The growth of $S_A$ is \emph{not} derived to be monotone in any absolute sense. Unitarity guarantees reversible evolution; time-reversal symmetry is a separate property of the dynamics and the transformation of states and observables. Given a state and dynamics one can calculate both the magnitude and the sign of $S_A$-change. What the entropy functional alone does not provide is a universal macroscopic arrow. Any monotonicity used to define $\tau_A^{\mathrm{ent}}$ is assumed or checked on a stated domain and requires additional boundary, environmental, and coarse-graining structure (\S\ref{sec:turtles}).
+\begin{remark}[direction and records]{\normalfont\ \gap}
+Unitarity supplies reversible evolution, while time-reversal symmetry is a separate dynamical condition. A state and dynamics determine the sign of a specified entropy change, but the entropy functional alone supplies no universal macroscopic arrow. A physical record need not always raise the recorder's reduced entropy. Preparation, correlations, environment, erasure, and resources must be modelled; any claimed arrow also needs a history-level test rather than a definition that guarantees its own result.
 \end{remark}
 
-\subsection*{Four related tasks, kept separate}
-\begin{description}[leftmargin=1.6em, style=nextline, itemsep=3pt]
-  \item[Ordering and influence.] Add an interaction model, preparations, and control assumptions capable of separating intervention effects from correlations. The model must predict changed-procedure outcomes and need not place all events on one global line.
-  \item[Duration and clocks.] Add a physical reference, a read/count procedure, a calibration domain, and a matching rule. The result must reproduce clock relations in its claimed domain, including motion and gravity if that domain is claimed.
-  \item[Arrow and records.] Add boundary/preparation conditions, an environment, a coarse-graining, and a mechanism maintaining records. The account must explain historical asymmetry and readback limits rather than defining an arrow and counting it as derived.
-  \item[Experience and temporal judgement.] Add a model of trace retention, integration, prediction, and report. Interaction order, record order, and judged order must be distinguished; an information-processing model is not automatically a solution to consciousness.
-\end{description}
-These are related questions, not four stages automatically deduced in sequence, and they are not asserted to be fully independent.
+\noindent\textbf{Four distinct tasks.} Ordering asks which interventions can affect which records; duration asks how calibrated clocks compare along those relations; arrow asks why histories and records are statistically asymmetric; temporal judgement asks how a system integrates signals and memories to infer before/after, duration, and ``now.'' The last task requires a model of integration, prediction, belief update, and report, but is not required for physical order to exist. None is an automatic deduction from the others.
 
 \section{Energy as broken symmetry \quad{\normalsize\est}\label{sec:energy}}
 
@@ -172,7 +173,7 @@ Not all difference is information \emph{to a system}. Given an observer channel 
 and registered \emph{above threshold} iff $d_B\big(K_B(A), K_B(A')\big) \ge \delta_B$.
 
 \begin{proposition}[no complement-relative registration on the trivial cut]{\normalfont\ \asm}
-A single global pure state has zero von Neumann entropy, and the trivial cut offers no \emph{complement}-relative distribution --- there is no $B$ to trace out and no cross-cut channel. (The global system may still contain internal subsystems, Born distributions, clocks, and records relative to further structure.) What is absent is the complement-relative registered information and candidate entropic order defined for this trivial cut, not information or time as such.
+A single global pure state has zero von Neumann entropy, and the trivial cut offers no \emph{complement}-relative distribution --- there is no $B$ to trace out and no cross-cut channel. (The global system may still contain internal subsystems, Born distributions, clocks, and records relative to further structure.) What is absent is the complement-relative registered information and reduced-entropy diagnostic defined for this trivial cut, not causal order, information, or time as such.
 \end{proposition}
 
 \begin{remark}[\gap\ --- which channel]
@@ -185,7 +186,7 @@ That a physical interaction leaves a usable trace does not imply that every reco
 
 \section{Reach: what else the cut defines, and what it does not}\label{sec:reach}
 
-The three quantities of \S2--\S4 are not the framework's ceiling. Four routes carry further physical quantities out of the same apparatus --- and one route provably does not run, which is as much a result as the others.
+The cut-relative quantities discussed in \S2--\S4 are not the framework's ceiling. Four routes carry further physical quantities out of the same apparatus --- and one route provably does not run, which is as much a result as the others.
 
 \paragraph{Route 1 --- Noether charges, by the energy move. \est}
 Energy (\S3) was the conserved charge of \emph{time}-translation symmetry, made cut-relative through the boundary term $\hat{H}_{AB}$. Noether's theorem is general: every continuous symmetry yields a conserved charge, and — with the same caveat as the energy flux — each splits across the cut.
@@ -230,7 +231,7 @@ Given the declared background structure, the current realization defines partiti
 \end{proposition}
 
 \paragraph{Matter: the conserved side of the cut. \asm}
-The quantities so far include flows and changing correlations: energy may cross $\hat{H}_{AB}$, records may be created or lost, and $S_A$ may supply a candidate entropic order on a restricted interval. Matter is interpreted below as the \emph{persisting} side; this is a model-dependent proposal, not a definition of time.
+The quantities so far include flows and changing correlations: energy may cross $\hat{H}_{AB}$, records may be created or lost, and $S_A$ may label an entropic orientation on a restricted interval. Matter is interpreted below as the \emph{persisting} side; this is a model-dependent proposal, not a definition of time.
 
 \begin{definition}[matter]\label{def:matter}
 The \textbf{matter} content of a subsystem $A$ is the conserved, boundary-holding structure of $A$ --- the invariant of $A$'s own evolution: what is preserved (protected by symmetry, commuting with the effective $\hat{H}_A$) while the correlations that decohere into $B$ are washed away. Where energy is what flows across the cut, matter is what stays.
@@ -316,55 +317,37 @@ The problem-of-time discussion and the island calculation both require care abou
 \end{remark}
 
 
-\section{A candidate entropic ordering and spacetime \quad{\normalsize\conj\ / \gap}\label{sec:spacetime}}
+\section{Causal structure, clocks, and spacetime \quad{\normalsize\conj\ / \gap}}\label{sec:spacetime}
 
-This section explores one \textbf{interpretation inside the quantum realization}; it is not a consequence of the operational core and does not replace established spacetime modelling. A four-manifold and its coordinates are representational and dynamical structures. Writing a coordinate $t$, allowing negative coordinate values, or changing charts does not by itself grant an apparatus the ability to reverse a physical history. Conversely, rejecting a universal entropic clock does not reject relational or relativistic temporal observables.
+The architectural guide is $\text{causal order}\to\text{causal/conformal structure}$ and then $\text{causal structure}+\text{clock, scale, or volume information}\to\text{metric structure}$. This is not a derivation of Lorentzian geometry from The Cut. In appropriate Lorentzian settings the null/causal relations constrain conformal structure, while metric scale needs additional information and assumptions. An arbitrary influence graph does not automatically become a spacetime or supply proper time.
 
-\paragraph{The ``3'': space as a symmetry of the whole. \est\ / \gap-dimension}
-Space enters through momentum (Route~1): the conserved charge of translation symmetry. Spatial \emph{dimensionality} is the rank of the commuting translation subgroup ---
-\[
-  \dim_{\text{space}} \;=\; \operatorname{rank}\big(\text{translation generators of the symmetry group}\big).
-\]
-This is a property of the symmetry group, which by Route~4 is \textbf{background, not cut-derived}. The ``3'' is therefore \emph{located} (it is the translation-rank) but not \emph{derived}: it is an input, inherited from the symmetry structure the whole possesses.
+\paragraph{Representations and physical content.}
+A coordinate $t$ is a model parameter, not an embedded observer's clock. Changing a chart or allowing negative coordinate values does not reverse a physical history. Causal reachability can be represented in different coordinates without changing which events can influence which others. Physical clock comparisons add duration information along selected chains; they require calibration and a model relating clocks.
 
-\paragraph{The ``1'': an entropic ordering candidate for a part. \conj}
-In the proposal of \S\ref{sec:time}, $\tau_A^{\mathrm{ent}}$ is a monotone reparametrization of $S(\rho_A)$ on a stated domain. It is not identified with every meaning of time. A globally pure state has constant global von Neumann entropy, but this does not make the state stationary or eliminate internal clock relations. Hence the following is a conditional interpretive proposal:
+\paragraph{The ``3'' and the ``1'' are not derived here.}
+Spatial labels and dimension are inherited from the realization's assumed symmetry/locality structure, not selected by the cut. Causal reachability orders some events without a universal linear coordinate. Their different modelling inputs do not prove that space and time have fundamentally different ontological types or establish a Lorentzian signature.
 
-\begin{proposition}[space and time are of different type]{\normalfont\ \asm}\label{prop:diftype}
-Within this candidate representation, spatial labels are inherited from an assumed translation structure while $\tau_A^{\mathrm{ent}}$ is a cut-relative ordering constructed from a subsystem entropy. They are introduced by different assumptions. This distinction neither proves that physical space and time have different ontological types nor explains the Lorentzian signature.
+\begin{proposition}[distinct inputs do not establish ontological types]{\normalfont\ \asm/\gap}\label{prop:diftype}
+The present realization declares spatial and causal/clock structures separately. Their distinct roles constrain a proposed model, but do not imply a fundamental type distinction between physical space and time. Neither $S_A$ nor $\tau_A^{\mathrm{ent}}$ supplies the missing causal or metric structure.
 \end{proposition}
 
-\paragraph{An indexed-family representation, not an ontological replacement.}
-One may organize spatial configurations as a family indexed by the candidate entropic order:
-\[
-  \mathcal{S}_A \;=\; \big\{\, \Sigma(\tau_A^{\mathrm{ent}}) \,\big\}_{\tau_A^{\mathrm{ent}}},
-\]
-where each $\Sigma$ is a configuration over the assumed spatial structure. This representation is useful only when the entropy is monotone enough in the declared domain. Its limitations are explicit:
-\begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
-  \item A manifold coordinate is not a physical trajectory-control. Coordinate reversal and reversal of a history are different claims.
-  \item Monotonicity of $\tau_A^{\mathrm{ent}}$ is assumed or empirically checked over a domain; choosing a monotone index does not explain the origin of irreversibility.
-  \item The construction supplies no universal duration scale, clock-calibration law, or guarantee that another cut has the same order.
-\end{itemize}
-It is therefore a candidate bookkeeping device for a restricted realization, not a derivation of spacetime ontology.
+\paragraph{Penrose diagrams as a scoped example.}
+A Penrose diagram is a conformal compactification of a specified spacetime model, not a literal picture. Its finite placement of infinity, drawing distances, coordinate shape, and most visual angles are representational; the null-direction convention and global relationships preserve causal reachability, horizons, and causal boundaries. The full diagram is a \emph{model-level causal completion}, not an image directly seen by an embedded observer. Such an observer has local signals, interventions, clocks, records, and other declared instruments and may reconstruct only a partial $\widehat C_O$. See, for example, \href{https://www.maths.ed.ac.uk/~jsbiersk/assets/LectureNotesGRII.pdf}{Sbierski's General Relativity II notes, \S3.2} for the conformal construction.
 
-\paragraph{Recovering dimension-like time: emergent local kinematics. \conj}
-Observed relativistic physics mixes spatial and temporal coordinates under boosts and uses calibrated clocks and proper time. Relating $\tau_A^{\mathrm{ent}}$ to those quantities requires additional physics. The proposed split is:
-\begin{itemize}[leftmargin=1.4em, itemsep=2pt, topsep=2pt]
-  \item \textbf{Kinematic level. \conj} A realization would need to construct calibrated local clock readings and show that they join spatial coordinates in the appropriate Lorentz transformations. No such result follows merely by reparametrizing $S_A$.
-  \item \textbf{Thermodynamic level. \gap} A macroscopic arrow requires boundary conditions, environment, and coarse-graining. Coordinate covariance neither supplies nor removes that arrow.
-\end{itemize}
+\paragraph{Clock and metric bridge. \conj/\gap}
+A physical realization would have to establish an appropriate local causal structure, calibrated clocks, scale or volume information, and Lorentzian transformation laws before claiming metric duration or $3{+}1$ kinematics. The model's entropy may orient particular recorded histories after those histories are specified; it is not the index from which spacetime is built.
 
-\begin{proposition}[$3{+}1$ as emergent kinematics]{\normalfont\ \asm/\conj}\label{prop:threeone}
-If a physical realization supplies calibrated clocks, a Lorentzian transformation law, and an empirically adequate mapping from those clock readings to $\tau_A^{\mathrm{ent}}$ on a stated domain, then the indexed family can serve as a cut-relative representation of that local kinematics. This spec has not derived that mapping and does not infer it from entropy alone.
+\begin{proposition}[conditional local kinematics]{\normalfont\ \asm/\conj}\label{prop:threeone}
+If a realization supplies the requisite causal and Lorentzian structures and empirically adequate clock/scale relations, it may describe local kinematics using spatial and temporal coordinates. The current cut construction has not derived those structures, their dimensionality, an Einstein metric, or proper time from causal order alone.
 \end{proposition}
 
 \begin{remark}[the open joint]{\normalfont\ \conj/\gap}
-Proposition~\ref{prop:threeone} is conditional on a missing bridge between an entropic ordering variable, physical clock readings, proper time, and Lorentzian kinematics. The next section (\S\ref{sec:lorentz}) studies one model-dependent obstruction and a tested mechanism; it does not turn this bridge into a result of the operational core.
+The missing bridge is from a declared influence/reachability structure and calibrated physical clocks to a tested Lorentzian geometry. The next section studies a model-dependent anisotropy obstruction; its result neither closes that bridge nor upgrades an entropic diagnostic to the source of order.
 \end{remark}
 
 \section{Requirements for emergent Lorentz invariance \quad{\normalsize\est\ / \conj}\label{sec:lorentz}}
 
-The ``$3{+}1$'' construction (\S\ref{sec:spacetime}) requires Lorentzian effective kinematics. This section lists the required components and states which are assumed, established in restricted models, or still missing. It does not derive Lorentz invariance.
+A $3{+}1$ spacetime model would require Lorentzian effective kinematics beyond the causal-accessibility proposal of \S\ref{sec:spacetime}. This section lists the required components and states which are assumed, established in restricted models, or still missing. It does not derive Lorentz invariance.
 
 \paragraph{The five components.}
 Lorentz invariance bundles five distinct claims:
@@ -379,7 +362,7 @@ Lorentz invariance bundles five distinct claims:
 \paragraph{What the framework already supplies.}
 \begin{itemize}[leftmargin=1.4em, itemsep=2pt, topsep=2pt]
   \item \textbf{A relation to C2 is not established. \conj} ``No privileged cut'' (Claim~\ref{cl:noselect}) is an underdetermination claim; the relativity principle is a physical covariance claim about inertial frames and laws. They are not the same theorem, and relating them requires additional argument.
-  \item \textbf{C5 is natural. \asm} Causal structure is the pattern of which cuts can exchange information: $\hat{H}_{AB}\neq 0$ supplies the dynamical channel through which correlations can generically propagate. Actual influence depends on the state, observables, and controllable interventions --- a nonzero interaction may still fail to transmit a given signal (commuting observables, symmetry or state restrictions). Causal order is the \emph{reach} of the interaction term, not a strict iff.
+  \item \textbf{C5 requires a separate model. \asm/\conj} The influence relation $\leadsto_M$ asks whether admissible intervention variation changes an accessible downstream record distribution. Local interactions and bounds on propagation can constrain possible edges, but $\hat{H}_{AB}\neq 0$ alone proves neither a particular directed influence nor relativistic timelike/null structure. Relating this reachability to Lorentzian causal cones requires further physical assumptions and tests.
   \item \textbf{C1 has a candidate. \est} A finite maximum rate of correlation propagation exists in any system with local interactions: the \textbf{Lieb--Robinson bound}. This is a proven theorem, and it supplies an emergent, finite, \emph{pre-geometric} speed scale --- the fastest one region can come to be correlated with another. This is \emph{not} the same object as the observed relativistic conversion constant of \S\ref{sec:reach} (Route~4); it is a model-dependent effective speed. Whether the two coincide (i.e.\ whether the emergent correlation speed \emph{is} the observed $c$) is part of what the isotropy problem below must settle. Its numerical value is in any case a unit convention.
   \item \textbf{C3, C4 follow only with extra assumptions. \conj} Given an invariant finite speed (C1) and the relativity principle (C2), boost-mixing and the invariant interval follow \emph{only} with homogeneity, isotropy, linearity, and suitable group structure. Since isotropy is precisely the open obstruction below, this step cannot be leaned on as established; it is downgraded to conditional.
 \end{itemize}
@@ -539,12 +522,13 @@ Two links above are physically motivated but not proved here: (i)~the conditions
 
 \noindent\textbf{Is} \asm:
 \begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
-  \item a proposed operational core plus a quantum realization assembling partial trace (\S2), Noether (\S3), Shannon quantities and Fields' GHP (\S3--\S4), and an observer-registration condition (\S4);
+  \item a proposed operational core plus a quantum realization with a conditional causal-accessibility relation, clock/arrow distinctions, reduced entropy (\S2), Noether (\S3), Shannon quantities and Fields' GHP (\S3--\S4), and an observer-registration condition (\S4);
   \item an explicit scope ledger: the present input tuple does not supply a cut selector; arrow and cut assumptions are tracked separately here; and the suggested route to intersubjectivity remains conditional.
 \end{itemize}
 
 \noindent\textbf{Is not:}
 \begin{itemize}[leftmargin=1.4em, itemsep=1pt, topsep=2pt]
+  \item a derivation of Lorentz invariance, a metric, proper time, or an objective global time from causal order alone;
   \item a derivation of the arrow (the required boundary and preparation conditions are additional inputs, \S\ref{sec:turtles});
   \item a selection of the cut (Claim~\ref{cl:noselect} says this realization does not supply one, without ruling out every richer physical principle);
   \item a \emph{closed} solution to intersubjectivity (\S\ref{sec:inter} offers only a conditional mechanism with named assumptions);
@@ -560,5 +544,8 @@ Two links above are physically motivated but not proved here: (i)~the conditions
   \item \textbf{Specify bridges} among state, dynamics, locality, and factorization. Do this before claiming logical independence or that selection is impossible.
   \item \textbf{Make \S\ref{sec:inter} testable.} Define the access maps, observer ensemble, measure on the relevant cut space, decoherence cost, and record-stability criteria. Only then test whether the proposed concentration and shareability claims hold.
 \end{enumerate}
+
+\paragraph{Future causal-reconstruction pilot (not implemented).}
+A later brickwork quantum circuit or cellular automaton could supply a strict finite model-level causal cone while hiding simulator steps and exact lattice coordinates from its observer. Tagged interventions and detector records would support a reconstruction $\widehat C_O$ of $C_M=(E,\prec_M)$. Access could expand in stages: restricted detectors; added detectors and references; an endogenous clock; then an asymmetric environment with persistent records. Only a separately specified experiment should define edge-detection, false-positive, missed-edge, reachability, cone-boundary, or model-uncertainty metrics. No such pilot or metric is implemented in this revision.
 
 \end{document}

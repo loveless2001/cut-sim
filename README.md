@@ -4,7 +4,7 @@
 
 | Layer | Repository authority | Scope |
 |---|---|---|
-| Operational core | [`docs/operational-core.md`](docs/operational-core.md) · [public module](web/operational-core.html) | Procedures, records, comparison rules, and limits of inference |
+| Operational core | [`docs/operational-core.md`](docs/operational-core.md) · [public module](web/operational-core.html) | Distinguishability, records, procedure composition, inference scope, and causal accessibility/identifiability |
 | Physical realization | [`docs/cut_spec.tex`](docs/cut_spec.tex) | The current chosen tensor factorization, pure-state/unitary quantum model, Hamiltonian split, and declared apparatus assumptions |
 | Phenomena and interpretations | Spec sections, labs, game, and result write-ups | Conditional studies of clocks, arrows, records, Lorentz behaviour, and shareability within specified realizations |
 
@@ -12,7 +12,15 @@ The layers are related by adding assumptions and testing consequences, not by au
 deduction. The operational core is a proposed basis for this research programme; it is
 not a new definition of time, a uniquely minimal axiom system, or evidence that
 operational fit uniquely fixes ontology. For a first reading, start with the operational
-core, then the working spec, then the two experiment write-ups.
+core, then the working spec, then the two experiment write-ups. Causal accessibility supplies model-relative reachability; calibrated clocks supply duration. Entropy and “forgetting” are candidate models of arrow and record asymmetry, not the foundational ordering primitive.
+
+## Bend 2 formal slice
+
+[`formal/bend2-zero-coupling/`](formal/bend2-zero-coupling/README.md) contains a
+checked proof of access-scoped transcript equivalence in a finite classical
+zero-coupling model, including adaptive R-only procedures. It records the
+assumptions and the boundary to the quantum simulation. From that directory,
+`bend PROOF.bend` checks the laws with Bend 2.0.16.
 
 The first simulation tests one falsifiable claim from the quantum realization in "the
 Cut spec" (Prop 7.1): *an observer
@@ -102,7 +110,7 @@ no build step, no external dependencies, works from disk or any static host
   replays measured data, and the guide states the unresolved inputs and falsified claim
 - `framework-explorer.html` — the full spec as claim cards, filterable by epistemic tag
 - `time-as-forgetting-lab.html` — live 1D fermion chain: entanglement dynamics and a
-  candidate entropic ordering variable after a quench (exact)
+  candidate entropic orientation variable after a quench (exact)
 - `lieb-robinson-cone-lab.html` — live 2D anisotropic lattice: the elliptical cone (exact)
 - `ruler-cancellation-verdict-lab.html` — the experiment's measured data, interactive
 - `orientation-gauge-lab.html` — scoped orientation null and crossover data, interactive

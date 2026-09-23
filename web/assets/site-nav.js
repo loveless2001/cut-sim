@@ -18,4 +18,10 @@
   nav.innerHTML = '<span class="brand">THE CUT</span>' + links.map(([id, href, label]) =>
     `<a href="${href}"${id === page ? ' class="active" aria-current="page"' : ""}>${label}</a>`).join("");
   document.body.prepend(nav);
+  // Wrapped navigation changes height on narrow screens. Keep sticky controls and anchors clear.
+  const updateNavHeight = () => document.documentElement.style.setProperty(
+    "--cutnav-height", `${Math.ceil(nav.getBoundingClientRect().height)}px`);
+  updateNavHeight();
+  if (typeof ResizeObserver !== "undefined") new ResizeObserver(updateNavHeight).observe(nav);
+  else window.addEventListener("resize", updateNavHeight);
 })();

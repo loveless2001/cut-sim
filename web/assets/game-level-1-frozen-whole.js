@@ -1,6 +1,6 @@
 // Level 1 — pure whole, changing state: the model-builder view shows the full
 // parameterized history. A chosen cut defines reduced entropy and boundary current;
-// S_A is presented only as a candidate entropic order. Exact ChainEntropySim dynamics.
+// S_A is presented only as a candidate entropic orientation. Exact ChainEntropySim dynamics.
 (() => {
   const N = 32, TBLOCK = 14, ROWS = 84;
   let sim, blockOcc = null;          // ROWS x N occupation history (the block)
@@ -106,7 +106,7 @@
     ctx.fillText("B (not in declared readout)", pad + cutL * w + 8, 10);
     ctx.strokeStyle = css("--gapc"); ctx.lineWidth = 2;
     ctx.beginPath(); ctx.moveTo(pad + cutL * w, 6); ctx.lineTo(pad + cutL * w, H - 6); ctx.stroke();
-    // Candidate entropic-order dial: it displays S_A, not a calibrated physical clock.
+    // Candidate entropic-orientation dial: it displays S_A, not a calibrated physical clock.
     const ck = $("l1-clock"), c2 = ck.getContext("2d"), R = 48, cx = 60, cy = 62;
     c2.clearRect(0, 0, 120, 120);
     c2.strokeStyle = css("--line"); c2.lineWidth = 2;

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="assets/cut-theme.css">
 <style>
   /* ---- game chrome ---- */
-  .gamebar { position: sticky; top: 42px; z-index: 8; display: flex; flex-wrap: wrap; gap: 10px 18px;
+  .gamebar { position: sticky; top: var(--cutnav-height, 42px); z-index: 8; display: flex; flex-wrap: wrap; gap: 10px 18px;
     align-items: center; background: var(--bg2); border-bottom: 1px solid var(--line);
     padding: 8px 20px; font-family: Verdana, sans-serif; font-size: .78rem; }
   .viewtoggle { display: flex; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; }
@@ -83,7 +83,7 @@
 <div class="wrap">
 
 <h1>The Cut — interactive guide</h1>
-<p>One model is shown through two access scopes. <strong>Model view</strong> includes the full state, substrate coordinates, simulator parameter, and debug quantities. <strong>Observer view</strong> includes only records supplied by the declared apparatus. The toggle illustrates this difference; it does not show that model-level quantities are permanently inaccessible. The simulations use the repository's free-fermion methods, and Level 5 uses measured data from the <a href="ruler-cancellation-verdict-lab.html">preregistered experiment</a>.</p>
+<p>One model is shown through two access scopes. <strong>Model view</strong> includes the full state, substrate coordinates, simulator parameter, and debug quantities. <strong>Observer view</strong> includes only records supplied by the declared apparatus. The toggle illustrates this difference; Model view is the full declared realization, not a metaphysically privileged view. Model-level quantities may become accessible under expanded procedures. The simulations use the repository's free-fermion methods, and Level 5 uses measured data from the <a href="ruler-cancellation-verdict-lab.html">preregistered experiment</a>.</p>
 <div class="callout gap"><strong>Scope.</strong> This guide presents one quantum realization. It is not an experiment on the operational core or evidence for an ontology. Arrow conditions and cut selection remain unresolved, and one numerical claim was falsified. Each task states its procedure class and limit.</div>
 
 <!-- ============================ LEVEL 1 ============================ -->
@@ -117,9 +117,9 @@
   <div id="l1-cutui" style="display:none">
     <p>You are subsystem A in this realization. The cut and declared coupling now define three <strong>cut-relative indicators</strong>:</p>
     <div class="coproducts">
-      <div class="coproduct" id="l1-cp-time"><div class="k small muted">TIME</div>
+      <div class="coproduct" id="l1-cp-time"><div class="k small muted">ENTROPIC INDICATOR</div>
         <canvas id="l1-clock" width="120" height="120"></canvas>
-        <div class="small">τ<sub>A</sub><sup>ent</sup> from S<sub>A</sub> — candidate order, not a calibrated clock</div></div>
+        <div class="small">τ<sub>A</sub><sup>ent</sup> from S<sub>A</sub> — candidate arrow label, neither causal order nor a calibrated clock</div></div>
       <div class="coproduct" id="l1-cp-info"><div class="k small muted">INFORMATION</div>
         <div class="v" id="l1-bits" style="font:bold 1.5rem Consolas,monospace">0.00</div>
         <div class="small">reduced-state uncertainty about B</div><div class="meterbar"><i id="l1-infobar"></i></div></div>
@@ -141,7 +141,7 @@
     <li>Global entropy is a degenerate clock indicator here; that is not a proof that no internal clock relation can exist.</li></ul></div>
   <div class="card no"><h4>WHAT THIS DOES NOT SHOW</h4><ul>
     <li>The block uses the simulator's external parameter, which is model-builder data unless an observer-access procedure is declared.</li>
-    <li>That S_A supplies seconds, a universal clock, record formation, or the origin of time.</li>
+    <li>That S_A supplies causal ordering, seconds, a universal clock, record formation, or the origin of time.</li>
     <li>That S_A grows forever. It doesn't (Level 4).</li></ul></div>
 </div>
 <div class="nextrow"><button class="primary nextlv" data-next="2">Level 2 →</button></div>
@@ -243,7 +243,7 @@
 <!-- ============================ LEVEL 4 ============================ -->
 <section class="level" id="lv4">
 <h2>Level 4 — Testing an arrow from entropy</h2>
-<p>You have a cut and a changing S_A along the model parameter. This level asks whether that particular entropy curve, with its declared symmetric preparation, selects a macroscopic arrow from the supplied records.</p>
+<p>You have a cut and a changing S_A along the model parameter. Causal sequencing is already defined in this model. This level asks whether that particular entropy curve, with its declared symmetric preparation, selects a macroscopic arrow from the supplied records.</p>
 
 <div class="canvasbox"><canvas id="l4-plot" width="820" height="300"></canvas>
   <p class="small muted">Exact S_A along the model parameter s in both directions from s = 0. The task is to test whether this transcript selects either direction.</p></div>
@@ -274,7 +274,7 @@
 <div class="honesty">
   <div class="card yes"><h4>WHAT THIS SHOWS</h4><ul>
     <li>For this Hamiltonian, preparation, and entropy observable, the computed curve satisfies S_A(−s) = S_A(s) to plotting precision, so this supplied transcript does not pick a side.</li>
-    <li>Changing the boundary/preparation condition changes the modeled entropy history. A macroscopic arrow still requires environmental, coarse-graining, and record assumptions <span class="tag gap">GAP</span>.</li></ul></div>
+    <li>Changing the boundary/preparation condition changes the modeled entropy history, not the causal reachability relation. A macroscopic arrow still requires environmental, coarse-graining, and record assumptions <span class="tag gap">GAP</span>.</li></ul></div>
   <div class="card no"><h4>WHAT THIS DOES NOT SHOW</h4><ul>
     <li>The origin of the low-entropy boundary condition; this model takes it as an additional input <span class="tag gap">GAP</span>.</li>
     <li>That unitarity alone implies time-reversal symmetry, or that this one symmetric curve covers all procedures.</li>
